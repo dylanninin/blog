@@ -89,7 +89,7 @@
 	
 #要求
 
-* 进限于Linux平台。因使用[pyinotify](https://github.com/seb-m/pyinotify)有平台限制。Pyinotify监听指定路径，即可自动处理新增、更新以及删除的博客。详见[pyinotify](https://github.com/seb-m/pyinotify)。
+* 仅限于Linux平台。因使用[pyinotify](https://github.com/seb-m/pyinotify)有平台限制。Pyinotify监听指定路径，即可自动处理新增、更新以及删除的博客。详见[pyinotify](https://github.com/seb-m/pyinotify)。
 
 * Markdown。将markdown格式文件渲染成HTML，详见[markdown](https://github.com/waylan/Python-Markdown)。
 
