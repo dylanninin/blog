@@ -1,0 +1,11 @@
+$def with(recently_entries)
+$if not recently_entries == None and not recently_entries == []:
+    <div class="widget-recently" >
+        <h3 class="widget-header">Recently Entries</h3>
+        <div class="widget-content">
+            <ul>
+                $for entry in recently_entries:
+            	   <li><a href="$entry.url">$entry.name</a></li>
+            </ul>
+        </div>
+    </div>

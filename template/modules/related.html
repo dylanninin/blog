@@ -1,0 +1,9 @@
+$def with (related_entries)
+$if not related_entries == None and not related_entries == []:
+	<div class="related-entry">
+	    <h4><button class="btn btn btn-warning" type="button"><i class="icon-question-sign"></i> Related</button></h4>
+	    <ul>
+            $for entry in related_entries:
+				<li><i class="icon-share-alt"></i> $entry.date : <a href="$entry.url">$entry.name</a></li>
+	    </ul>
+	</div>

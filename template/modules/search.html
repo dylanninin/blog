@@ -1,0 +1,8 @@
+$def with (search, entries)
+<div class="search">
+	<div class='search-title'>
+	   <h3>$search.title</h3>
+	</div>
+	$for excerpt in entries:
+		$:render.modules.excerpt(excerpt)
+</div>

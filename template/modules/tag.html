@@ -1,0 +1,9 @@
+$def with (tags)
+$if not tags == None and not tags == [] :
+	<div class="entry-tag">
+	    <h4><button class="btn btn-primary" type="button"><i class="icon-tags"></i> Tag</button></h4>
+		<ul >
+			$for tag in tags
+			  <li><a href="$config.search_url?type=tag&value=$tag&start=$config.start&limit=$config.limit">$tag</a></li>
+		</ul>
+	</div>

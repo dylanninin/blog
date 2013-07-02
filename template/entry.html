@@ -1,0 +1,32 @@
+$def with (params)
+<!DOCTYPE html>
+<html lang='zh'>
+	$:render.layout.header(params.entry.name)
+<body>
+	$:render.layout.navbar()
+	<div id="content">
+		<div class="container">
+			<div class="row">
+				<div class="span6">
+					$:render.modules.entry(params.entry)
+					<hr>
+					$:render.modules.info(params.entry)
+					$:render.modules.category(params.entry.categories)
+					$:render.modules.tag(params.entry.tags)
+					$:render.modules.related(params.entries)
+					<hr>
+					$:render.modules.comment()						
+				</div>
+				<div class="span3">
+					$:render.layout.three.primary(params.primary)
+				</div>
+				<div class="span3">
+					$:render.layout.three.secondary(params.secondary)
+				</div>
+			</div>
+		</div>
+	</div>
+	$:render.misc.analytics()
+	$:render.layout.footer()
+</body>
+</html>

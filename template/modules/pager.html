@@ -1,0 +1,13 @@
+$def with (pager)
+$if not pager == None and pager.pages > 1:
+	<div class="pagination  pagination-centered">
+	  <ul>  
+	        $for number in pager.pagination:
+	           $if number == pager.start:
+	               <li class="active"><a href="#">$number</a></li>
+	           $if not number == pager.start and pager.type == 'index':
+	               <li class="disabled"><a href="$config.home/?start=$number&limit=$pager.limit">$number</a></li>
+	           $if not number == pager.start and not pager.type == 'index':
+	               <li class="disabled"><a href="$config.search_url/?type=$pager.type&value=$pager.value&start=$number&limit=$pager.limit">$number</a></li>
+	  </ul>
+	</div>

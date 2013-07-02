@@ -1,0 +1,13 @@
+$def with (entry)
+<div class="entry-info">
+    <div class="entry-info-content">
+        <h4><button class="btn btn-info" type="button"><i class="icon-info-sign"></i> Information</button></h4>
+    	<ul>
+    		<li><i class="icon-file"></i> <a href="$entry.url">$entry.name</a></li>
+    		<li><i class="icon-share-alt"></i> <a href="$entry.url">$config.home$entry.url</a>
+    		<li><i class="icon-th"></i> <a href="$entry.raw_url">$config.home$entry.raw_url</a></li>
+    		<li><i class="icon-user"></i> <a href="$entry.author.url">$entry.author.name</a> on $entry.time</li>
+    		<li><i class="icon-warning-sign"></i> Licensed under <a href="http://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank">CC BY 3.0</a></li>
+    	</ul>
+    </div>
+</div>

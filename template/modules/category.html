@@ -1,0 +1,9 @@
+$def with (categories)
+$if not categories == None and not categories == []: 
+	<div class="entry-category">
+	   <button class="btn btn-success" type="button"><i class="icon-folder-open"></i> Category</button>
+		<ul>
+			$for category in categories:
+				<li><a href="$config.search_url?type=category&value=$category&start=$config.start&limit=$config.limit">$category</a></li>
+		</ul>
+	</div>

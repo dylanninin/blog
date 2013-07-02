@@ -1,0 +1,18 @@
+$def with (abouts)
+$if not abouts == None:
+    $for about in abouts:
+        <div class="widget-about">
+            <h3 class="widget-header">About This $about.display</h3>
+                <div class="widget-content">
+				    $if about.type == 'entry' and not about.prev_url == None:
+				        <p><i class="icon-hand-right"></i> <a href="$about.prev_url">$about.prev_name</a></p>
+	                $if about.type == 'entry' and not about.next_url == None:
+	                    <p><i class="icon-hand-left"></i> <a href="$about.next_url">$about.next_name</a></p>
+	                $if about.type == 'blog' and not about.prev_url == None:
+	                    <p><i class="icon-home"></i> <a href="$about.prev_url">$about.prev_name</a> to find recently</p>
+	                $if about.type == 'blog' and not about.next_url == None:
+	                    <p><i class="icon-book"></i> <a href="$about.next_url">$about.next_name</a> to find all</p>
+	                $if about.type == 'archive' and not about.prev_url == None:
+	                    <p><i class="icon-home"></i> <a href="$about.prev_url">$about.prev_name</a> to find recently</a></p>
+			   </div>
+		</div>

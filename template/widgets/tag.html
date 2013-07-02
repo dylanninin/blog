@@ -1,0 +1,11 @@
+$def with(tags)
+$if not tags == None and not tags == [] :
+	<div class="widget-tag-cloud">
+		<h3 class="widget-header">Tag Cloud</h3>
+		<div class="widget-content">
+			<ul class="unstyled inline">
+			     $for tag in tags:
+				     <li class="rank-$tag.rank"><a href="$config.search_url?type=tag&value=$tag.name&start=$config.start&limit=$config.limit">$tag.name </a></li>
+			</ul>
+		</div>
+	</div>

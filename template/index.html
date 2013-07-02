@@ -1,0 +1,28 @@
+$def with (params)
+<!DOCTYPE html>
+<html lang='zh'>
+	$:render.layout.header(config.name)
+<body>
+    $:render.layout.navbar()
+	<div id="content">
+		<div class="container">
+			<div class="row">
+				<div class="span6">
+					<div id="excerpts">
+					$for entry in params.entries:
+						$:render.modules.excerpt(entry)
+					</div>
+					$:render.modules.pager(params.pager)
+				</div>
+				<div class="span3">
+					$:render.layout.three.primary(params.primary)
+				</div>
+				<div class="span3">
+					$:render.layout.three.secondary(params.secondary)
+				</div>
+			</div>
+		</div>
+	</div>
+	$:render.layout.footer()
+</body>
+</html>

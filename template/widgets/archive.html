@@ -1,0 +1,11 @@
+$def with (archives)
+$if not archives == []:
+    <div class="widget-monthly-archives">
+    	<h3 class="widget-header">Monthly <a href="$config.archive_url">Archives</a></h3>
+    	<div class="widget-content">
+    	   <ul>
+    	        $for archive in archives:
+                    <li><a href="$archive.url">$archive.display ($archive.count)</a></li>
+           </ul>
+    	</div>
+    </div>
