@@ -93,21 +93,23 @@
 
 * Markdown。将markdown格式文件渲染成HTML，详见[markdown](https://github.com/waylan/Python-Markdown)。
 
-* Web.py。使用的Web框架，由已故的[Aaron Swartz](http://www.aaronsw.com/)开发，详见[Web.py](http://webpy.org)
+* Web.py。使用的Web框架，由已故的[Aaron Swartz](http://www.aaronsw.com/)开发，详见[Web.py](http://webpy.org)。
+
+* Python 2.7.5。本博客程序仅在Python 2.7.5下测试通过。
 
 #运行
 
-clone repo
+克隆博客代码
 
 	$ cd ~
 
 	$ git clone git@github.com:dylanninin/blog.git
  
-change dir
+切换路径
 	
 	$ cd blog
 
-run blog
+启动博客
 
 	$ python blog.py > blog.log 2>&1 &  #Listen on 0.0.0.0:8080 default
 
