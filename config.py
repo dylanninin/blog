@@ -11,7 +11,7 @@ import web
 
 blogconfig = web.storage(
     name = 'Pastime Paradise',
-    home = 'http://www.dylanninin:8080',
+    home = 'http://dylanninin.com:8080',
     author = 'dylan',
     template_dir = 'template',
     entry_dir = 'raw/entry',
