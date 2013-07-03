@@ -16,7 +16,7 @@
 
 	* 初始化。EntryService读取指定路径下的markdown文件，进行初始化，以`2013-7-3_github_tips.md`为例：
 		
-		* 1.生成URL，即根据文件名生成URL。如 `2013-7-3_github_tips.md` -> `/blog/2013/07/03/github_tips.html`，对应的raw文件URL则为`/raw/2013/07/03/github_tips.`。
+		* 1.生成URL，即根据文件名生成URL。如 `2013-7-3_github_tips.md` -> `/blog/2013/07/03/github_tips.html`，对应的raw文件URL则为`/raw/2013/07/03/github_tips.md`。
 		* 2.获取时间，优先从文件名中提取，否则获取文件的创建或者更新时间，这里暂未处理好。
 	    * 3.获取内容，包括markdown原文内容，以及经过markdown到html转换后的内容。
 		* 4.其他初始化，如tag, category, calendar, archive等。
