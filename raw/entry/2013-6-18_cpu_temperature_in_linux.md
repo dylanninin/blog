@@ -3,7 +3,7 @@
 os kernel
 
 	[root@tplat1 ~]# uname -a
-	Linux tplat1.tp-link.net 2.6.32-358.el6.x86_64 #1 SMP Fri Feb 22 13:35:02 PST 2013 x86_64 x86_64 x86_64 GNU/Linux
+	Linux tplat1.egolife.net 2.6.32-358.el6.x86_64 #1 SMP Fri Feb 22 13:35:02 PST 2013 x86_64 x86_64 x86_64 GNU/Linux
 
 install lm_sensors
 
