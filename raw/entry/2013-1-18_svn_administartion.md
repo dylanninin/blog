@@ -95,7 +95,7 @@ The svnsync process requires only read access to the source repository; it never
 
 	[root@server Workspace]# pwd
 	/root/Workspace
-	[root@server Workspace]# svn checkout --username 'gonghaibing@tp-link.net' --password 'Us*+2&:9L/C,8^.?' http://172.29.88.162/Test .
+	[root@server Workspace]# svn checkout --username 'dylanninin@gmail.com' --password 'Us*+2&:9L/C,8^.?' http://172.29.88.162/Test .
 
 	[root@server Workspace]# ls
 	DBA  Notes  svn  Test
