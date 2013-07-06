@@ -92,24 +92,25 @@ class EntryService:
             return nones
         if content == None or len(content.strip()) == 0:
             return nones
-        date = datetime.datetime.now()
+	date, mtime = None, None
         name, _ = os.path.splitext(os.path.basename(file_path))
         chars = ['_' ,'-', '~']
         pattern = r'\d{4}-\d{1,2}-\d{1,2}'
         match = re.search(pattern, name)
         if match:
             y, m, d = match.group().split('-')
-            date = datetime.date(int(y), int(m), int(d))
+            try:
+                date = datetime.date(int(y), int(m), int(d))
+            except:
+                pass
             name = name[len(match.group()):]
             for c in chars:
                 if name.startswith(c):
                     name = name[1:]
-        else:
-            try:
-                stat = os.path.stat(file_path)
-                date = datetime.datetime.fromtimestamp(stat.st_mtime)
-            except:
-                pass
+        stat = os.stat(file_path)
+        mtime = datetime.datetime.fromtimestamp(stat.st_mtime)
+	if date == None:
+	    date = mtime
         prefix, url_prefix, raw_prefix = date.strftime(config.url_date_fmt), '', ''
         if entry_type == self.types.entry:
             url_prefix = config.entry_url + '/' + prefix + '/'
@@ -117,8 +118,8 @@ class EntryService:
         if entry_type == self.types.page:
             url_prefix = '/'
             raw_prefix = config.raw_url + '/'
-        time = date.strftime(config.time_fmt)
         date = date.strftime(config.date_fmt)
+        time = date + mtime.strftime(config.time_fmt)[len('yyyy-mm-dd'):]
         url = url_prefix + name + config.url_suffix
         raw_url = raw_prefix + name + config.raw_suffix
         for c in chars:
