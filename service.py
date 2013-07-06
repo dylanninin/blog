@@ -209,19 +209,15 @@ class EntryService:
         """
         #TODO: FIXME: related entries
         """
-        entries, urls, index = None, [], 0
+        urls, index = [], 0
         try:
             index = self.urls.index(url)
         except:
 	    return None
         urls = self.urls[:index]
 	urls.extend(self.urls[index + 1:])
-        indexes = [random.randint(0, len(urls) - 1) for _ in range(0, 10)]
-	indexes = set(indexes)
-        if len(indexes) > 1:
-            urls = [urls[index] for index in indexes]
-            entries = [self.entries.get(url) for url in sorted(urls, reverse=True)]
-        return entries
+	urls = random.sample(urls, min(len(urls), 10))
+        return [self.entries.get(url) for url in sorted(urls, reverse=True)]
 
     def _init_abouts_widget(self, about_types=[], url=None):
         abouts = []
