@@ -21,9 +21,9 @@ extract = Extract()
 
 
 class EntryService:
-    
-    
-    
+
+
+
     def __init__(self):
         self.entries = {}
         self.pages = {}
@@ -35,7 +35,7 @@ class EntryService:
         self.types = self.models.types()
         self.params = self.models.params()
         self._init_entries()
-        
+
     def _init_entries(self):
         for root, _, files in os.walk(config.entry_dir):
             for f in files:
@@ -44,13 +44,13 @@ class EntryService:
             for f in files:
                 self._add_page(root + '/' + f)
         self._init_miscellaneous(self.types.add, self.entries.values())
-    
+
     def add_entry(self, inotified, path):
         entry = self._init_entry(self.types.entry, path)
         if not entry == None:
             self.entries[entry.url] = entry
-        if not entry == None and inotified:
-            self._init_miscellaneous(self.types.add, [entry])
+            if inotified:
+                self._init_miscellaneous(self.types.add, [entry])
 
     def delete_entry(self, path):
         for entry in self.entries.values():
@@ -132,7 +132,7 @@ class EntryService:
             self._init_monthly_archive(init_type, entry.url)
         self.urls = sorted(self.entries.keys(), reverse=True)
         self._init_params()
-        
+
     def _init_subscribe(self):
         time = None
         if self.urls == []:
@@ -208,11 +208,17 @@ class EntryService:
         """
             #TODO: FIXME: related entries
         """
-        entries = None
-        indexes = [random.randint(0, len(self.urls) - 1) for _ in range(0, 10)]
-        indexes = set(indexes)
+        entries, urls, index = None, [], 0
+        try:
+            index = self.urls.index(url)
+        except:
+	    return None
+        urls = self.urls[:index]
+	urls.extend(self.urls[index + 1:])
+        indexes = [random.randint(0, len(urls) - 1) for _ in range(0, 10)]
+	indexes = set(indexes)
         if len(indexes) > 1:
-            urls = [self.urls[index] for index in indexes]
+            urls = [urls[index] for index in indexes]
             entries = [self.entries.get(url) for url in sorted(urls, reverse=True)]
         return entries
 
@@ -253,12 +259,10 @@ class EntryService:
         ranks = config.ranks
         div, mod = divmod(len(tags), ranks)
         if div == 0:
-            ranks = mod
-            div = 1
+            ranks, div = mod, 1
         for r in range(ranks):
-            start = r * div
-            end = start + div
-            for tag in tags[start:end]:
+            s, e = r * div, (r + 1) * div
+            for tag in tags[s:e]:
                 tag.rank = r + 1
         return tags
 
@@ -270,8 +274,7 @@ class EntryService:
         if len(self.urls)> 0:
             date = self.entries[self.urls[0]].date
         calendar = self.models.calendar(date)
-        ym = calendar.month
-        y, m = ym.split('-')
+        y, m = calendar.month.split('-')
         for url in self.urls:
             _, _, _, _, d, _ = url.split('/')
             prefix = config.entry_url + '/' +  y + '/' + m + '/' + d
@@ -289,12 +292,15 @@ class EntryService:
         return calendar
 
     def _init_categories_widget(self):
-        return self.by_categories.values()
+        return sorted(self.by_categories.values(), key=lambda c:c.name)
 
     def _init_archive_widget(self):
         return sorted(self.by_months.values(), key=lambda m:m.url, reverse=True)
 
     def _find_by_query(self, query, start, limit):
+        """
+        #TODO: FIXME: how to search in the content of entries
+        """
         queries = [q.lower() for q  in query.split(' ')]
         urls = []
         for query in queries:
@@ -325,18 +331,16 @@ class EntryService:
         return self.models.pager(pager_type, value, total, pages, start, limit)
 
     def find_by_url(self, entry_type, url):
-        entry = None
+        entry, abouts = None, [self.types.blog]
         if entry_type == self.types.entry:
             entry = self.entries.get(url)
-            self.params.primary.abouts = self._init_abouts_widget([self.types.entry, self.types.blog], url)
+            abouts.insert(0, self.types.entry)
         if entry_type == self.types.page:
             entry = self.pages.get(url)
-            self.params.primary.abouts = self._init_abouts_widget([self.types.blog], url)
-        if entry == None:
-            self.params.primary.abouts = self._init_abouts_widget([self.types.blog])
         self.params.entry = entry
         self.params.entries = self._init_related_entries(url)
         self.params.error = self.models.error(url=url)
+        self.params.primary.abouts = self._init_abouts_widget(abouts, url)
         return self.params
 
     def find_raw(self, raw_url):
@@ -376,7 +380,7 @@ class EntryService:
         return self.params
 
     def search(self, search_type, url, value='', start=config.start, limit=config.limit):
-        entries, total = None, 0
+        entries, total, abouts = None, 0, [self.types.blog]
         if  search_type == self.types.query:
             entries, total = self._find_by_query(value, start, limit)
         if search_type == self.types.tag:
@@ -389,14 +393,14 @@ class EntryService:
                 entries = None
             else:
                 entries, total = self._find_by_page(self.by_categories.get(value).urls, start, limit)
-        self.params.primary.abouts = self._init_abouts_widget([self.types.blog])
         if search_type == self.types.index:
             entries, total = self._find_by_page(self.urls, start, limit)
-            self.params.primary.abouts = self._init_abouts_widget([])
+            abouts = []
         self.params.error = self.models.error(url=url)
         self.params.entries = entries
         self.params.search = self.models.search(search_type, value, total)
         self.params.pager = self._paginate(search_type, value, total, start, limit)
+        self.params.primary.abouts = self._init_abouts_widget(abouts)
         return self.params
 
     def error(self, url):
