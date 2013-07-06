@@ -207,7 +207,7 @@ class EntryService:
 
     def _init_related_entries(self, url):
         """
-            #TODO: FIXME: related entries
+        #TODO: FIXME: related entries
         """
         entries, urls, index = None, [], 0
         try:
