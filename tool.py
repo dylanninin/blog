@@ -40,7 +40,7 @@ class Extract:
         reference:
             http://www.ruanyifeng.com/blog/2013/03/automatic_summarization.html
         """
-        return entry.html[:200]
+        return entry.content[:200]
 
     def auto_similiarities(self, entry, entries):
         """
