@@ -17,7 +17,7 @@ $def with(params)
     		</author>
     		<content>
     		<![CDATA[
-    			$entry.html
+    			$:entry.html
     		]]>
     		</content>
     	</entry>
