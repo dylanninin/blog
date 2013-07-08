@@ -74,8 +74,8 @@ class EntryService:
             entry.date = date
             entry.time = time
             entry.content = content
-            entry.excerpt = extract.auto_summarization(entry)
             entry.html = markdown.markdown(content)
+            entry.excerpt = extract.auto_summarization(entry)
             entry.tags = extract.auto_keyphrase(entry)
             entry.categories = extract.auto_categories(entry)
             return entry
