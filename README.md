@@ -53,7 +53,7 @@
 	    ├── archive.html	   #归档模板
 	    ├── atom.xml		   #RSS订阅模板
 	    ├── error.html		   #错误页面模板
-	    ├── layout			   #布局模板，这里采用 `AA|B|C`的三栏布局，AA放博客主要内容，B、C作为左侧边栏显示widgets
+	    ├── layout			   #布局模板，这里采用 `AA|B|C`的三栏布局，AA放博客主要内容，B、C作为右侧边栏显示widgets
 	    │   ├── footer.html
 	    │   ├── header.html
 	    │   ├── navbar.html
@@ -103,7 +103,7 @@
 
 	$ cd ~
 
-	$ git clone git@github.com:dylanninin/blog.git
+	$ git clone https://github.com/dylanninin/blog.git
  
 切换路径
 	
