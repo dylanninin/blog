@@ -10,7 +10,7 @@ $def with(params)
 	$for entry in params.entries:
     	<entry>
     		<title>$entry.name</title>
-    		<link rel="alternate" type="text/html" href="$entry.url"/>
+    		<link rel="alternate" type="text/html" href="$config.home$entry.url"/>
     		<id></id>
     		<published>$entry.time</published>
     		<updated>$entry.time</updated>
