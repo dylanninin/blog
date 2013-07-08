@@ -14,7 +14,7 @@ $def with(params)
     		<id></id>
     		<published>$entry.time</published>
     		<updated>$entry.time</updated>
-    		<summary>$entry.excerpt</summary>
+    		<summary>$:entry.excerpt</summary>
     		<author>
     			<name>$entry.author.name</name>
     			<uri>$entry.author.url</uri>
