@@ -105,8 +105,7 @@ class Extract:
                     yml.append(line)
                     line = f.readline()
                     count += 1
-                    last = line
-                if len(yml) == 0 or not last in seperators or not f.readline() in newlines:
+                if len(yml) == 0 or not line in seperators or not f.readline() in newlines:
                     msg = 'Error, YAML header declaration with %s does not match in %s ' % (seperators, md)
                     print msg
                 skip = count + 2
