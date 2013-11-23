@@ -6,11 +6,12 @@ version 1.0
 history:
 2013-6-19    dylanninin@gmail.com    init
 """
+import yaml
 
 
 class Extract:
-    
-    
+
+
     def __init__(self):
         """
         #TODO: FIXME: init
@@ -21,7 +22,7 @@ class Extract:
     def auto_keyphrase(self, entry):
         """
         #TODO: FIXME: extract keyphrase automaticly
-        
+
         reference:
             http://www.ruanyifeng.com/blog/2013/03/tf-idf.html
         """
@@ -36,7 +37,7 @@ class Extract:
     def auto_summarization(self, entry):
         """
         #TODO: FIXME: extract summarization automaticly
-        
+
         reference:
             http://www.ruanyifeng.com/blog/2013/03/automatic_summarization.html
         """
@@ -45,7 +46,7 @@ class Extract:
     def auto_similiarities(self, entry, entries):
         """
         #TODO: FIXME: extract similiarities  automaticly
-        
+
         reference:
             http://www.ruanyifeng.com/blog/2013/03/cosine_similarity.html
         """
@@ -53,38 +54,38 @@ class Extract:
 
 
     def parse(self, entry):
-		"""
-		parse the raw content of a markdown entry
-		TODO: FIXME
-		
-		args:
-			filename:    the filename of a markdown entry
-	
-		return:
-			a tuple like (yaml_header, title, categories, tags)
-			the content will be preprocessed if it does have a yaml header declaration.
+        """
+        parse the raw content of a markdown entry
+        TODO: FIXME
+
+        args:
+            filename:    the filename of a markdown entry
+
+        return:
+            a tuple like (yaml_header, title, categories, tags)
+            the content will be preprocessed if it does have a yaml header declaration.
 
         yaml header field options:
             title
             category or categories
             tags
 
-		blog example:
-			---
-			title: the title, default None if it's empty
-			category: category, default Uncategorised if it's empty.
-			tags: [tag1, tag2], default [Untagged] if it's empty.
-			---
+        blog example:
+            ---
+            title: the title, default None if it's empty
+            category: category, default Uncategorised if it's empty.
+            tags: [tag1, tag2], default [Untagged] if it's empty.
+            ---
 
-			##header
-			the content of the blog
-			blah blah ...
-			... ...
-			
-		reference:
-		    http://jekyllrb.com/docs/frontmatter/
-		    
-		"""
+            ##header
+            the content of the blog
+            blah blah ...
+            ... ...
+
+            reference:
+                http://jekyllrb.com/docs/frontmatter/
+
+        """
         seperators = ['---\n', '---\r\n']
         newlines = ['\n', '\r\n']
         title = None
@@ -124,7 +125,7 @@ class Dict2Object(dict):
     """
     dict to object
     so you can access like a.attribute but not a['attribute']
-    
+
     reference:
         http://stackoverflow.com/questions/1305532/convert-python-dict-to-object
     """
