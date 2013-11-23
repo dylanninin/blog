@@ -73,11 +73,13 @@ class EntryService:
             entry.raw_url = raw_url
             entry.date = date
             entry.time = time
+            header, title, categories, tags = extract.parse(entry)
             entry.content = content
+            content = content.replace(header, '')
             entry.html = markdown.markdown(content)
-            entry.excerpt = extract.auto_summarization(entry)
-            entry.tags = extract.auto_keyphrase(entry)
-            entry.categories = extract.auto_categories(entry)
+            entry.excerpt = content[:200]
+            entry.categories = categories
+            entry.tags = tags
             return entry
         return None
 
