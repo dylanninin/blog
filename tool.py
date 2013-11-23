@@ -56,10 +56,10 @@ class Extract:
 		"""
 		parse the raw content of a markdown entry
 		TODO: FIXME
-
+		
 		args:
 			filename:    the filename of a markdown entry
-
+	
 		return:
 			a tuple like (yaml_header, title, categories, tags)
 			the content will be preprocessed if it does have a yaml header declaration.
