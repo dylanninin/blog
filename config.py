@@ -11,7 +11,7 @@ import web
 
 blogconfig = web.storage(
     name = 'Pastime Paradise',
-    home = 'http://dylanninin.com:8080',
+    home = 'http://dylanninin.com',
     author = 'dylan',
     disqus = '"webpymdblog"',
     google_analytics = '"UA-21870463-1"',
