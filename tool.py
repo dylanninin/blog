@@ -52,6 +52,74 @@ class Extract:
         return entries
 
 
+    def parse(self, entry):
+		"""
+		parse the raw content of a markdown entry
+		TODO: FIXME
+
+		args:
+			filename:    the filename of a markdown entry
+
+		return:
+			a tuple like (yaml_header, title, categories, tags)
+			the content will be preprocessed if it does have a yaml header declaration.
+
+        yaml header field options:
+            title
+            category or categories
+            tags
+
+		blog example:
+			---
+			title: the title, default None if it's empty
+			category: category, default Uncategorised if it's empty.
+			tags: [tag1, tag2], default [Untagged] if it's empty.
+			---
+
+			##header
+			the content of the blog
+			blah blah ...
+			... ...
+			
+		reference:
+		    http://jekyllrb.com/docs/frontmatter/
+		    
+		"""
+        seperators = ['---\n', '---\r\n']
+        newlines = ['\n', '\r\n']
+        title = None
+        categories = ['Uncategorised']
+        tags = ['Untagged']
+        number = 4
+        yml = []
+        header = ''
+        with open(entry.path, 'r') as f:
+            first = f.readline()
+            if first in seperators:
+                count, line = 1, f.readline()
+                while count <= number and not line in seperators:
+                    yml.append(line)
+                    line = f.readline()
+                    count += 1
+                    last = line
+                if len(yml) == 0 or not last in seperators or not f.readline() in newlines:
+                    msg = 'Error, YAML header declaration with %s does not match in %s ' % (seperators, md)
+                    print msg
+                skip = count + 2
+                f.seek(0)
+                header = ''.join([f.readline() for i in xrange(skip)])
+        yml = ''.join(yml)
+        if not yml == '':
+            y = yaml.load(yml)
+            title = y.get('title') or title
+            categories = y.get('categories') or categories
+            category = y.get('category')
+            if not category == None:
+                categories = [category]
+            tags = y.get('tags')
+        return header, title, categories, tags
+
+
 class Dict2Object(dict):
     """
     dict to object
