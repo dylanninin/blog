@@ -221,7 +221,7 @@ class Models:
         model = {
             'name':tag,
             'count':1,
-            'rank':1,
+            'rank':config.ranks,
             'urls':[url]
         }
         return  Dict2Object(model)
