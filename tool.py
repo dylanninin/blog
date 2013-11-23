@@ -106,8 +106,8 @@ class Extract:
                     line = f.readline()
                     count += 1
                 if len(yml) == 0 or not line in seperators or not f.readline() in newlines:
-                    msg = 'Error, YAML header declaration with %s does not match in %s ' % (seperators, md)
-                    print msg
+                    msg = 'Error, YAML header declaration with %s does not match in %s ' % (seperators, entry.path)
+                    raise Exception(msg)
                 skip = count + 2
                 f.seek(0)
                 header = ''.join([f.readline() for i in xrange(skip)])
