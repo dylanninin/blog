@@ -1,11 +1,13 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
-"""
-Entry Service
+"""Entry Service.
+
 version 1.0
 history:
 2013-6-19    dylanninin@gmail.com    init
+2013-11-23    dylanninin@gmail.com     update tags, categories
+
 """
+# -*- coding: utf-8 -*-
 
 import os
 import codecs
@@ -21,8 +23,7 @@ extract = Extract()
 
 
 class EntryService:
-
-
+    """EntryService."""
 
     def __init__(self):
         self.entries = {}
@@ -77,7 +78,7 @@ class EntryService:
             entry.content = content
             content = content.replace(header, '')
             entry.html = markdown.markdown(content)
-            entry.excerpt = content[:200]
+            entry.excerpt = content[:200] + ' ... ...'
             entry.categories = categories
             entry.tags = tags
             return entry
@@ -94,7 +95,7 @@ class EntryService:
             return nones
         if content == None or len(content.strip()) == 0:
             return nones
-	date, mtime = None, None
+        date, mtime = None, None
         name, _ = os.path.splitext(os.path.basename(file_path))
         chars = ['_' ,'-', '~']
         pattern = r'\d{4}-\d{1,2}-\d{1,2}'
@@ -111,8 +112,8 @@ class EntryService:
                     name = name[1:]
         stat = os.stat(file_path)
         mtime = datetime.datetime.fromtimestamp(stat.st_mtime)
-	if date == None:
-	    date = mtime
+        if date == None:
+            date = mtime
         prefix, url_prefix, raw_prefix = date.strftime(config.url_date_fmt), '', ''
         if entry_type == self.types.entry:
             url_prefix = config.entry_url + '/' + prefix + '/'
@@ -215,10 +216,10 @@ class EntryService:
         try:
             index = self.urls.index(url)
         except:
-	    return None
+            return None
         urls = self.urls[:index]
-	urls.extend(self.urls[index + 1:])
-	urls = random.sample(urls, min(len(urls), 10))
+        urls.extend(self.urls[index + 1:])
+        urls = random.sample(urls, min(len(urls), 10))
         return [self.entries.get(url) for url in sorted(urls, reverse=True)]
 
     def _init_abouts_widget(self, about_types=[], url=None):
@@ -406,6 +407,7 @@ class EntryService:
         self.params.error = self.models.error(url=url)
         self.params.primary.abouts = self._init_abouts_widget([self.types.blog])
         return self.params
+
 
 if __name__ == '__main__':
     import doctest

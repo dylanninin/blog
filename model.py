@@ -1,11 +1,13 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
-"""
-Models for the entry, page, templates, modules
+"""Models for the entry, page, templates, modules.
+
 version 1.0
 history:
 2013-6-19    dylanninin@gmail.com    init
+2013-11-23    dylanninin@gmail.com     update default value for tag.rank
+
 """
+# -*- coding: utf-8 -*-
 
 import calendar
 from datetime import datetime

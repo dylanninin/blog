@@ -1,16 +1,19 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
-"""
-ToolKit
+"""ToolKit.
+
 version 1.0
 history:
 2013-6-19    dylanninin@gmail.com    init
+2013-11-23    dylanninin@gmail.com     update tags, categories
+
 """
+# -*- coding: utf-8 -*-
+
 import yaml
 
 
 class Extract:
-
+    """Extrace tool."""
 
     def __init__(self):
         """
@@ -82,8 +85,8 @@ class Extract:
             blah blah ...
             ... ...
 
-            reference:
-                http://jekyllrb.com/docs/frontmatter/
+        reference:
+            http://jekyllrb.com/docs/frontmatter/
 
         """
         seperators = ['---\n', '---\r\n']
