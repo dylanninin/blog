@@ -148,6 +148,26 @@
 
 * 代码重构
 
+#更新 2013-11-23
+
+本计划使用[TF-IDF](http://en.wikipedia.org/wiki/Tf%E2%80%93idf)以及[Jieba](https://github.com/fxsjy/jieba)，自动提取博客的关键字、摘要以及相似文章，但效果并不理想。
+
+这里模仿 Githuh Pages中的做法，在博客的开始声明一些属性：
+
+	---
+	title: the title, default None if it's empty
+	category: category, default Uncategorised if it's empty.
+	tags: [tag1, tag2], default [Untagged] if it's empty.
+	---
+
+因使用[YAML](http://en.wikipedia.org/wiki/Yaml)解析，需要新增[PyYAML](http://pyyaml.org/)包。
+
+另外，此博客的在线demo放在[http://ec2-54-251-227-120.ap-southeast-1.compute.amazonaws.com/](http://ec2-54-251-227-120.ap-southeast-1.compute.amazonaws.com/)。
+
+
+* 阮一峰的网络日志—— TF-IDF与余弦相似性的应用系列：[自动提取关键字](http://www.ruanyifeng.com/blog/2013/03/tf-idf.html)；[找出相似文章](http://www.ruanyifeng.com/blog/2013/03/cosine_similarity.html)；[自动摘要](http://www.ruanyifeng.com/blog/2013/03/automatic_summarization.html)
+* Python 中文分词[Jieba](https://github.com/fxsjy/jieba)
+
 #参考
 
 * [Web.py](http://webpy.org)
