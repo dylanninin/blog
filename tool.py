@@ -59,7 +59,7 @@ class Extract:
     def parse(self, entry):
         """
         parse the raw content of a markdown entry
-        TODO: FIXME
+        TODO: FIXME ... ...
 
         args:
             filename:    the filename of a markdown entry
@@ -119,7 +119,7 @@ class Extract:
             category = y.get('category')
             if not category == None:
                 categories = [category]
-            tags = y.get('tags')
+            tags = y.get('tags') or tags
         return header, title, categories, tags
 
 
