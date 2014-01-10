@@ -162,7 +162,7 @@
 
 因使用[YAML](http://en.wikipedia.org/wiki/Yaml)解析，需要新增[PyYAML](http://pyyaml.org/)包。
 
-另外，此博客的在线demo放在[http://ec2-54-251-227-120.ap-southeast-1.compute.amazonaws.com/](http://ec2-54-251-227-120.ap-southeast-1.compute.amazonaws.com/)。
+另外，此博客的在线[demo](http://ec2-54-254-45-254.ap-southeast-1.compute.amazonaws.com/)。
 
 
 * 阮一峰的网络日志—— TF-IDF与余弦相似性的应用系列：[自动提取关键字](http://www.ruanyifeng.com/blog/2013/03/tf-idf.html)；[找出相似文章](http://www.ruanyifeng.com/blog/2013/03/cosine_similarity.html)；[自动摘要](http://www.ruanyifeng.com/blog/2013/03/automatic_summarization.html)
