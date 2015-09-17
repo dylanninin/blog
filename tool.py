@@ -55,7 +55,6 @@ class Extract:
         """
         return entries
 
-
     def parse(self, entry):
         """
         parse the raw content of a markdown entry
@@ -131,7 +130,8 @@ class Dict2Object(dict):
     reference:
         http://stackoverflow.com/questions/1305532/convert-python-dict-to-object
     """
-    def __init__(self, data = None):
+
+    def __init__(self, data=None):
         super(Dict2Object, self).__init__()
         if data:
             self.__update(data, {})
@@ -158,7 +158,7 @@ class Dict2Object(dict):
         return self.get(key, None)
 
     def __setattr__(self, key, value):
-        if isinstance(value,dict):
+        if isinstance(value, dict):
             self[key] = Dict2Object(value)
         else:
             self[key] = value
@@ -166,7 +166,7 @@ class Dict2Object(dict):
     def update(self, *args):
         for obj in args:
             for k in obj:
-                if isinstance(obj[k],dict):
+                if isinstance(obj[k], dict):
                     self[k] = Dict2Object(obj[k])
                 else:
                     self[k] = obj[k]
@@ -176,20 +176,20 @@ class Dict2Object(dict):
         for obj in args:
             for k in obj:
                 if self.has_key(k):
-                    if isinstance(self[k],list) and isinstance(obj[k],list):
+                    if isinstance(self[k], list) and isinstance(obj[k], list):
                         self[k] += obj[k]
-                    elif isinstance(self[k],list):
+                    elif isinstance(self[k], list):
                         self[k].append(obj[k])
-                    elif isinstance(obj[k],list):
+                    elif isinstance(obj[k], list):
                         self[k] = [self[k]] + obj[k]
-                    elif isinstance(self[k],Dict2Object) and isinstance(obj[k],Dict2Object):
-                        self[k].merge(obj[k] )
-                    elif isinstance(self[k],Dict2Object) and isinstance(obj[k],dict):
+                    elif isinstance(self[k], Dict2Object) and isinstance(obj[k], Dict2Object):
+                        self[k].merge(obj[k])
+                    elif isinstance(self[k], Dict2Object) and isinstance(obj[k], dict):
                         self[k].merge(obj[k])
                     else:
                         self[k] = [self[k], obj[k]]
                 else:
-                    if isinstance(obj[k],dict):
+                    if isinstance(obj[k], dict):
                         self[k] = Dict2Object(obj[k])
                     else:
                         self[k] = obj[k]
@@ -198,4 +198,5 @@ class Dict2Object(dict):
 
 if __name__ == '__main__':
     import doctest
+
     doctest.testmod()
