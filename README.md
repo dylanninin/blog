@@ -148,7 +148,13 @@
 
 * 代码重构
 
-#更新 2013-11-23
+#更新 
+
+## 2015-09-17
+
+- 格式化代码
+
+## 2013-11-23
 
 本计划使用[TF-IDF](http://en.wikipedia.org/wiki/Tf%E2%80%93idf)以及[Jieba](https://github.com/fxsjy/jieba)，自动提取博客的关键字、摘要以及相似文章，但效果并不理想。
 
