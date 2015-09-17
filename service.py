@@ -39,11 +39,11 @@ class EntryService(object):
         self.models = Models()
         self.types = self.models.types()
         self.params = self.models.params()
-        self._init_entries()
+        self._init_blog()
 
-    def _init_entries(self):
+    def _init_blog(self):
         """
-        initialize entries
+        Initialize blog
             - all entries in entry_dir
             - all pages in page_dir
             - others
@@ -58,7 +58,7 @@ class EntryService(object):
 
     def add_entry(self, inotified, path):
         """
-        add entry
+        Add entry
         """
         entry = self._init_entry(self.types.entry, path)
         if entry is not None:
@@ -68,7 +68,7 @@ class EntryService(object):
 
     def delete_entry(self, path):
         """
-        delete entry
+        Delete entry
         """
         for entry in self.entries.values():
             if path == os.path.abspath(entry.path):
@@ -77,7 +77,7 @@ class EntryService(object):
 
     def _add_page(self, path):
         """
-        Add pae
+        Add page
         """
         page = self._init_entry(self.types.page, path)
         if page is not None:
@@ -130,6 +130,7 @@ class EntryService(object):
                 date = datetime.date(int(y), int(m), int(d))
             except:
                 print traceback.format_exc()
+                print file_path
             name = name[len(match.group()):]
             for c in chars:
                 if name.startswith(c):
@@ -142,7 +143,7 @@ class EntryService(object):
         if entry_type == self.types.entry:
             url_prefix = config.entry_url + '/' + prefix + '/'
             raw_prefix = config.raw_url + '/' + prefix + '/'
-        if entry_type == self.types.page:
+        elif entry_type == self.types.page:
             url_prefix = '/'
             raw_prefix = config.raw_url + '/'
         date = date.strftime(config.date_fmt)
