@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 """Entry Service.
 
 version 1.0
@@ -7,14 +9,16 @@ history:
 2013-11-23    dylanninin@gmail.com     update tags, categories
 
 """
-# -*- coding: utf-8 -*-
+import traceback
 
 import os
 import codecs
 import re
 import datetime
 import random
+
 import markdown
+
 from config import blogconfig as config
 from tool import Extract
 from model import Models
@@ -22,7 +26,7 @@ from model import Models
 extract = Extract()
 
 
-class EntryService:
+class EntryService(object):
     """EntryService."""
 
     def __init__(self):
@@ -35,9 +39,15 @@ class EntryService:
         self.models = Models()
         self.types = self.models.types()
         self.params = self.models.params()
-        self._init_entries()
+        self._init_blog()
 
-    def _init_entries(self):
+    def _init_blog(self):
+        """
+        Initialize blog
+            - all entries in entry_dir
+            - all pages in page_dir
+            - others
+        """
         for root, _, files in os.walk(config.entry_dir):
             for f in files:
                 self.add_entry(False, root + '/' + f)
@@ -47,26 +57,38 @@ class EntryService:
         self._init_miscellaneous(self.types.add, self.entries.values())
 
     def add_entry(self, inotified, path):
+        """
+        Add entry
+        """
         entry = self._init_entry(self.types.entry, path)
-        if not entry == None:
+        if entry is not None:
             self.entries[entry.url] = entry
             if inotified:
                 self._init_miscellaneous(self.types.add, [entry])
 
     def delete_entry(self, path):
+        """
+        Delete entry
+        """
         for entry in self.entries.values():
             if path == os.path.abspath(entry.path):
                 self.entries.pop(entry.url)
                 self._init_miscellaneous(self.types.delete, [entry])
 
     def _add_page(self, path):
+        """
+        Add page
+        """
         page = self._init_entry(self.types.page, path)
-        if not page == None:
+        if page is not None:
             self.pages[page.url] = page
 
     def _init_entry(self, entry_type, path):
-        url, raw_url, name, date, time, content =  self._init_file(path, entry_type)
-        if not url == None:
+        """
+        initialize single entry
+        """
+        url, raw_url, name, date, time, content = self._init_file(path, entry_type)
+        if url is not None:
             entry = self.models.entry(entry_type)
             entry.path = path
             entry.name = name
@@ -78,6 +100,7 @@ class EntryService:
             entry.content = content
             content = content.replace(header, '')
             entry.html = markdown.markdown(content)
+            # FIXME How to extract the excerpt of an entry
             entry.excerpt = content[:200] + ' ... ...'
             entry.categories = categories
             entry.tags = tags
@@ -86,18 +109,19 @@ class EntryService:
 
     def _init_file(self, file_path, entry_type):
         """
-        #TODO: FIXME: how to determine the publish time of an entry
+        Initialize single file
         """
+        # FIXME: how to determine the publish time of an entry
         content, nones = None, [None for _ in xrange(6)]
         try:
             content = codecs.open(file_path, mode='r', encoding='utf-8').read()
         except:
             return nones
-        if content == None or len(content.strip()) == 0:
+        if content is None or len(content.strip()) == 0:
             return nones
         date, mtime = None, None
         name, _ = os.path.splitext(os.path.basename(file_path))
-        chars = ['_' ,'-', '~']
+        chars = ['_', '-', '~']
         pattern = r'\d{4}-\d{1,2}-\d{1,2}'
         match = re.search(pattern, name)
         if match:
@@ -105,20 +129,21 @@ class EntryService:
             try:
                 date = datetime.date(int(y), int(m), int(d))
             except:
-                pass
+                print traceback.format_exc()
+                print file_path
             name = name[len(match.group()):]
             for c in chars:
                 if name.startswith(c):
                     name = name[1:]
         stat = os.stat(file_path)
         mtime = datetime.datetime.fromtimestamp(stat.st_mtime)
-        if date == None:
+        if date is None:
             date = mtime
         prefix, url_prefix, raw_prefix = date.strftime(config.url_date_fmt), '', ''
         if entry_type == self.types.entry:
             url_prefix = config.entry_url + '/' + prefix + '/'
             raw_prefix = config.raw_url + '/' + prefix + '/'
-        if entry_type == self.types.page:
+        elif entry_type == self.types.page:
             url_prefix = '/'
             raw_prefix = config.raw_url + '/'
         date = date.strftime(config.date_fmt)
@@ -129,7 +154,14 @@ class EntryService:
             name = name.replace(c, ' ')
         return url, raw_url, name, date, time, content
 
-    def _init_miscellaneous(self,init_type, entries):
+    def _init_miscellaneous(self, init_type, entries):
+        """
+        Initialize miscellaneous
+            - tags
+            - categories
+            - archives
+            - all urls
+        """
         for entry in entries:
             self._init_tag(init_type, entry.url, entry.tags)
             self._init_category(init_type, entry.url, entry.categories)
@@ -138,14 +170,19 @@ class EntryService:
         self._init_params()
 
     def _init_subscribe(self):
-        time = None
-        if self.urls == []:
+        """
+        Initialize subscriptions
+        """
+        if not self.urls:
             time = datetime.datetime.now().strftime(config.time_fmt)
         else:
             time = self.entries[self.urls[0]].time
         return self.models.subscribe(time)
 
-    def _init_tag(self,init_type, url, tags):
+    def _init_tag(self, init_type, url, tags):
+        """
+        Initialize tags
+        """
         for tag in tags:
             if tag not in self.by_tags:
                 if init_type == self.types.add:
@@ -163,11 +200,14 @@ class EntryService:
                         self.by_tags.pop(tag)
 
     def _init_category(self, init_type, url, categories):
+        """
+        Initialize categories
+        """
         for category in categories:
             if category not in self.by_categories:
                 if init_type == self.types.add:
                     self.by_categories[category] = \
-                    self.models.category(category, url)
+                        self.models.category(category, url)
                 if init_type == self.types.delete:
                     pass
             else:
@@ -180,14 +220,17 @@ class EntryService:
                     if self.by_categories[category].count == 0:
                         self.by_categories.pop(category)
 
-    def _init_monthly_archive(self,init_type, url):
+    def _init_monthly_archive(self, init_type, url):
+        """
+        Initialize archives
+        """
         start = len(config.entry_url) + 1
         end = start + len('/yyyy/mm')
         month = url[start:end]
         if month not in self.by_months:
             if init_type == self.types.add:
                 self.by_months[month] = \
-                self.models.monthly_archive(self.types.entry, month, url)
+                    self.models.monthly_archive(self.types.entry, month, url)
             if init_type == self.types.delete:
                 pass
         else:
@@ -201,6 +244,10 @@ class EntryService:
                     self.by_months.pop(month)
 
     def _init_params(self):
+        """
+        Initialize global params
+        :return:
+        """
         self.params.subscribe = self._init_subscribe()
         self.params.primary.tags = self._init_tags_widget()
         self.params.primary.recently_entries = self._init_recently_entries_widget()
@@ -210,27 +257,36 @@ class EntryService:
 
     def _init_related_entries(self, url):
         """
-        #TODO: FIXME: related entries
+        Initialize related entries
         """
-        urls, index = [], 0
+        # FIXME: related entries
         try:
             index = self.urls.index(url)
         except:
+            print traceback.format_exc()
             return None
         urls = self.urls[:index]
         urls.extend(self.urls[index + 1:])
         urls = random.sample(urls, min(len(urls), 10))
         return [self.entries.get(url) for url in sorted(urls, reverse=True)]
 
-    def _init_abouts_widget(self, about_types=[], url=None):
+    def _init_abouts_widget(self, about_types=None, url=None):
+        """
+        Initialize abouts widget
+        :param about_types:
+        :param url:
+        :return:
+        """
+        about_types = about_types or []
         abouts = []
         for about_type in about_types:
             about = self.models.about(about_type)
-            if about_type == self.types.entry and not url == None:
+            if about_type == self.types.entry and url is not None:
                 try:
                     i = self.urls.index(url)
                     p, n = i + 1, i - 1
                 except:
+                    print traceback.format_exc()
                     p, n = 999999999, -1
                 if p < len(self.urls):
                     url = self.urls[p]
@@ -243,7 +299,7 @@ class EntryService:
             if about_type == self.types.archive:
                 about.prev_url = '/'
                 about.prev_name = 'main index'
-            if about_type == self.types.blog:
+            elif about_type == self.types.blog:
                 about.prev_url = '/'
                 about.prev_name = 'main  index'
                 about.next_url = config.archive_url
@@ -253,9 +309,10 @@ class EntryService:
 
     def _init_tags_widget(self):
         """
-        #TODO: FIXME: calculate tags' rank
+        Initialize tags widget
         """
-        tags = sorted(self.by_tags.values(), key=lambda v:v.count, reverse=True)
+        # FIXME: calculate tags' rank
+        tags = sorted(self.by_tags.values(), key=lambda v: v.count, reverse=True)
         ranks = config.ranks
         div, mod = divmod(len(tags), ranks)
         if div == 0:
@@ -267,17 +324,25 @@ class EntryService:
         return tags
 
     def _init_recently_entries_widget(self):
+        """
+        Initialize recently entries widget
+        :return:
+        """
         return [self.entries[url] for url in self.urls[:config.recently]]
 
     def _init_calendar_widget(self):
+        """
+        Initialize calender widget
+        :return:
+        """
         date = datetime.datetime.today().strftime(config.date_fmt)
-        if len(self.urls)> 0:
+        if len(self.urls) > 0:
             date = self.entries[self.urls[0]].date
         calendar = self.models.calendar(date)
         y, m = calendar.month.split('-')
         for url in self.urls:
             _, _, _, _, d, _ = url.split('/')
-            prefix = config.entry_url + '/' +  y + '/' + m + '/' + d
+            prefix = config.entry_url + '/' + y + '/' + m + '/' + d
             d = int(d)
             if url.startswith(prefix):
                 calendar.counts[d] += 1
@@ -292,16 +357,29 @@ class EntryService:
         return calendar
 
     def _init_categories_widget(self):
-        return sorted(self.by_categories.values(), key=lambda c:c.name)
+        """
+        Initialize categories widget
+        :return:
+        """
+        return sorted(self.by_categories.values(), key=lambda c: c.name)
 
     def _init_archive_widget(self):
-        return sorted(self.by_months.values(), key=lambda m:m.url, reverse=True)
+        """
+        Initialize archive widget
+        :return:
+        """
+        return sorted(self.by_months.values(), key=lambda m: m.url, reverse=True)
 
     def _find_by_query(self, query, start, limit):
         """
-        #TODO: FIXME: how to search in the content of entries
+        Find by query
+        :param query:
+        :param start:
+        :param limit:
+        :return:
         """
-        queries = [q.lower() for q  in query.split(' ')]
+        # FIXME: how to search in the content of entries
+        queries = [q.lower() for q in query.split(' ')]
         urls = []
         for query in queries:
             for entry in self.entries.values():
@@ -309,11 +387,18 @@ class EntryService:
                     entry.content.index(query)
                     urls.append(entry.url)
                 except:
-                    pass
+                    print
         return self._find_by_page(sorted(urls), start, limit)
 
     def _find_by_page(self, urls, start, limit):
-        if urls == None or start < 0 or limit <= 0:
+        """
+        Find by page
+        :param urls:
+        :param start:
+        :param limit:
+        :return:
+        """
+        if urls is None or start < 0 or limit <= 0:
             return [], 0
         total = len(urls)
         urls = sorted(urls, reverse=True)
@@ -323,19 +408,34 @@ class EntryService:
         return [self.entries[url] for url in urls[s:e]], total
 
     def _paginate(self, pager_type, value, total, start, limit):
+        """
+        Pagination
+        :param pager_type:
+        :param value:
+        :param total:
+        :param start:
+        :param limit:
+        :return:
+        """
         if limit <= 0:
             return self.models.pager(pager_type, value, total, 0, start, limit)
-        pages, mod = divmod(total,limit)
+        pages, mod = divmod(total, limit)
         if mod > 0:
             pages += 1
         return self.models.pager(pager_type, value, total, pages, start, limit)
 
     def find_by_url(self, entry_type, url):
+        """
+        Find content by url
+        :param entry_type:
+        :param url:
+        :return:
+        """
         entry, abouts = None, [self.types.blog]
         if entry_type == self.types.entry:
             entry = self.entries.get(url)
             abouts.insert(0, self.types.entry)
-        if entry_type == self.types.page:
+        elif entry_type == self.types.page:
             entry = self.pages.get(url)
         self.params.entry = entry
         self.params.entries = self._init_related_entries(url)
@@ -344,30 +444,44 @@ class EntryService:
         return self.params
 
     def find_raw(self, raw_url):
+        """
+        Find the raw content by raw_url
+        :param raw_url:
+        :return:
+        """
         page_url = raw_url.replace(config.raw_url, '').replace(config.raw_suffix, config.url_suffix)
         page = self.find_by_url(self.types.page, page_url).entry
-        if not page== None and page.raw_url == raw_url:
+        if page is not None and page.raw_url == raw_url:
             return page.content
+
         entry_url = raw_url.replace(config.raw_url, config.entry_url).replace(config.raw_suffix, config.url_suffix)
         entry = self.find_by_url(self.types.entry, entry_url).entry
-        if not entry == None and entry.raw_url == raw_url:
+        if entry is not None and entry.raw_url == raw_url:
             return entry.content
         return None
 
     def archive(self, archive_type, url, start=1, limit=999999999):
+        """
+        Archives
+        :param archive_type:
+        :param url:
+        :param start:
+        :param limit:
+        :return:
+        """
         self.params.error = self.models.error(url=url)
 
         if archive_type == self.types.raw:
-            url = url.replace(config.raw_url,config.archive_url)
+            url = url.replace(config.raw_url, config.archive_url)
 
         entries, count, = [], 0
         archive_url = url.replace(config.archive_url, '').strip('/')
-        prefix =  url.replace(config.archive_url, config.entry_url)
+        prefix = url.replace(config.archive_url, config.entry_url)
         pattern = r'\d{4}/\d{2}/\d{2}|\d{4}/\d{2}|\d{4}'
         match = re.search(pattern, archive_url)
         if match and match.group() == archive_url or archive_url == '':
             urls = [url for url in self.urls if url.startswith(prefix)]
-            entries, _  =  self._find_by_page(urls, start, limit)
+            entries, _ = self._find_by_page(urls, start, limit)
             count = len(entries)
         else:
             entries = None
@@ -380,20 +494,29 @@ class EntryService:
         return self.params
 
     def search(self, search_type, url, value='', start=config.start, limit=config.limit):
+        """
+        Search the site
+        :param search_type:
+        :param url:
+        :param value:
+        :param start:
+        :param limit:
+        :return:
+        """
         entries, total, abouts = None, 0, [self.types.blog]
-        if  search_type == self.types.query:
+        if search_type == self.types.query:
             entries, total = self._find_by_query(value, start, limit)
-        if search_type == self.types.tag:
-            if self.by_tags.get(value) == None:
+        elif search_type == self.types.tag:
+            if self.by_tags.get(value) is None:
                 entries = None
             else:
                 entries, total = self._find_by_page(self.by_tags.get(value).urls, start, limit)
-        if search_type == self.types.category:
-            if self.by_categories.get(value) == None:
+        elif search_type == self.types.category:
+            if self.by_categories.get(value) is None:
                 entries = None
             else:
                 entries, total = self._find_by_page(self.by_categories.get(value).urls, start, limit)
-        if search_type == self.types.index:
+        elif search_type == self.types.index:
             entries, total = self._find_by_page(self.urls, start, limit)
             abouts = []
         self.params.error = self.models.error(url=url)
@@ -404,6 +527,11 @@ class EntryService:
         return self.params
 
     def error(self, url):
+        """
+        Error params
+        :param url:
+        :return:
+        """
         self.params.error = self.models.error(url=url)
         self.params.primary.abouts = self._init_abouts_widget([self.types.blog])
         return self.params
@@ -411,4 +539,5 @@ class EntryService:
 
 if __name__ == '__main__':
     import doctest
+
     doctest.testmod()

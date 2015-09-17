@@ -8,6 +8,7 @@ history:
 """
 
 import os
+
 import config
 from __init__ import entryService
 
@@ -15,7 +16,8 @@ render = config.render
 web = config.web
 config = config.blogconfig
 
-class Index:
+
+class Index(object):
     """
     Index Handler for /?
     example:
@@ -36,6 +38,7 @@ class Index:
     reference:
         config.py, model.py, service.py
     """
+
     def GET(self):
         params = web.input(start=config.start, limit=config.limit)
         limit = int(params.limit)
@@ -44,7 +47,7 @@ class Index:
         return render.index(params)
 
 
-class Entry:
+class Entry(object):
     """
     Entry Handler for /blog(.*)
         
@@ -64,6 +67,7 @@ class Entry:
     reference:
         config.py, model.py, service.py
     """
+
     def GET(self, url):
         if not url in ['', '/']:
             url = config.entry_url + url
@@ -76,7 +80,7 @@ class Entry:
         return render.index(params)
 
 
-class Archive:
+class Archive(object):
     """
     Archive Handler for /archive(.*)
     
@@ -111,15 +115,16 @@ class Archive:
     reference:
         config.py, model.py, service.py
     """
+
     def GET(self, url):
-        url= config.archive_url + url
+        url = config.archive_url + url
         params = entryService.archive(entryService.types.entry, url)
         if params.entries == None:
             raise web.notfound(render.error(params))
         return render.archive(params)
 
 
-class About:
+class About(object):
     """
     Page Handler for /about.html
     
@@ -128,7 +133,8 @@ class About:
     
     reference:
         config.py, model.py, service.py
-    """    
+    """
+
     def GET(self):
         url = config.about_url
         params = entryService.find_by_url(entryService.types.page, url)
@@ -137,7 +143,7 @@ class About:
         return render.entry(params)
 
 
-class Subscribe:
+class Subscribe(object):
     """
     Subscribe Handler for /atom.xml
     #TODO: FIXME: find related entries
@@ -147,14 +153,15 @@ class Subscribe:
     
     reference:
         config.py, model.py, service.py
-    """       
+    """
+
     def GET(self):
-        params =  entryService.search(entryService.types.index, config.subscribe_url)
+        params = entryService.search(entryService.types.index, config.subscribe_url)
         web.header('Content-Type', 'text/xml')
         return render.atom(params)
 
 
-class Search:
+class Search(object):
     """
     Search Handler for /search?type=type&value=value&start=start&limit=limit
     
@@ -171,18 +178,20 @@ class Search:
     reference:
         config.py, model.py, service.py
     """
+
     def GET(self, url):
-        params = web.input(type=entryService.types.query, value='',\
+        params = web.input(type=entryService.types.query, value='', \
                            start=config.start, limit=config.limit)
         limit = int(params.limit)
         start = int(params.start)
         url = '%s/?type=%s&value=%s&start=%d&limit=%d' % (config.search_url, params.type, params.value, start, limit)
         params = entryService.search(params.type, url, params.value, start, limit)
-        if not params.entries == None: 
+        if not params.entries == None:
             return render.search(params)
         raise web.notfound(render.error(params))
 
-class Raw:
+
+class Raw(object):
     """
     Raw Handler for /raw(.+)
     example:
@@ -202,45 +211,46 @@ class Raw:
     reference:
         config.py, model.py, service.py
     """
+
     def GET(self, url):
         url = config.raw_url + url
         raw = entryService.find_raw(url)
         if not raw == None:
             web.header('Context-Type', 'text/plain')
-            web.header('Content-Encoding','utf-8')
+            web.header('Content-Encoding', 'utf-8')
             return raw
         params = entryService.archive(entryService.types.raw, url)
-        if params.entries  == None:
+        if params.entries == None:
             raise web.notfound(render.error(params))
         return render.archive(params)
 
 
-class Image:
+class Image(object):
     """
     favicon.ico handler
         
     reference: 
         config.py
     """
+
     def GET(self):
         url = config.favicon_url
         name = url.lstrip('/')
         ext = name.split('.')[-1]
         cType = {
-            "png":"images/png",
-            "jpg":"images/jpeg",
-            "gif":"images/gif",
-            "ico":"images/x-icon"
+            "png": "images/png",
+            "jpg": "images/jpeg",
+            "gif": "images/gif",
+            "ico": "images/x-icon"
         }
         if name in os.listdir(config.static_dir):
             web.header('Content-Type', cType[ext])
-            return open('%s/%s' %(config.static_dir, name), 'rb').read()
-        params =  entryService.error(url)
+            return open('%s/%s' % (config.static_dir, name), 'rb').read()
+        params = entryService.error(url)
         raise web.notfound(render.error(params))
 
 
-class Error():
-    
+class Error(object):
     """
     Error Handler for any other url
         
@@ -250,12 +260,14 @@ class Error():
     reference:
         config.py, model.py, service.py
     """
+
     def GET(self, url):
         params = entryService.error(url)
-        #return render.error(params)
+        # return render.error(params)
         raise web.notfound(render.error(params))
 
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
