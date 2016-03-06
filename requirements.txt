@@ -1,0 +1,4 @@
+Markdown==2.6.5
+PyYAML==3.11
+web.py==0.37
+pyinotify==0.9.6
