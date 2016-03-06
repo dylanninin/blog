@@ -150,6 +150,10 @@
 
 #更新 
 
+## 2016-03-06
+
+- 增加 [requirements.txt](./requirements.txt)
+
 ## 2015-09-17
 
 - 格式化代码
