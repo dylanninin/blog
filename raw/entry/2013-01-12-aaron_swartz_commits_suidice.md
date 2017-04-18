@@ -12,7 +12,7 @@ tags : [Python, People]
 [@程序员杂志](http://e.weibo.com/programmermag)：
 震惊！Aaron Swartz自杀身亡，年仅26。他是Reddit的联合创始人，web.py的设计者，14岁参与创造了RSS 1.0规范，又与John Gruber共同设计了Markdown。2011年曾因下载480万篇JSTOR学术论文而被捕。[http://t.cn/zjrzsyb](http://t.cn/zjrzsyb)
 
-##News
+## News
 
 Aaron Swartz commits suicide By Anne Cai -- NEWS EDITOR; UPDATED AT 2:15 A.M. 1/12/13
 
@@ -24,7 +24,7 @@ Swartz was indicted in July 2011 by a federal grand jury for allegedly mass down
 
 The accomplished Swartz co-authored the now widely-used RSS 1.0 specification at age 14, was one of the three co-owners of the popular social news site Reddit, and completed a fellowship at Harvard's Ethics Center Lab on Institutional Corruption. In 2010, he founded [DemandProgress.org](http://demandprogress.org/), a "campaign against the Internet censorship bills SOPA/PIPA."
 
-##About Aaron Swartz
+## About Aaron Swartz
 
 Aaron Swartz is the founder of [Demand Progress](http://demandprogress.org), which launched the campaign against the Internet censorship bills (SOPA/PIPA) and now has over a million members. He is also a Contributing Editor to [The Baffler](http://thebaffler.com/) and on the Council of Advisors to The Rules.
 
@@ -34,7 +34,7 @@ He has also developed the site [theinfo.org](http://theinfo.org/). His landmark 
 
 His piece with photographer Taryn Simon, Image Atlas (2012), is has [been featured](http://www.newmuseum.org/exhibitions/view/taryn-simon-cultural-differences) in the New Museum. In 2007, he led the development of the nonprofit Open Library, an ambitious project to collect information about every book ever published. He also cofounded the online news site Reddit, where he released as free software the web framework he developed, [web.py](http://webpy.org/).
 
-##Reference
+## Reference
 
 * MIT News: [Aaron Swartz commits suicide](http://tech.mit.edu/V132/N61/swartz.html?comments#comments)
 * Site: [Aaron Swartz](http://www.aaronsw.com/)

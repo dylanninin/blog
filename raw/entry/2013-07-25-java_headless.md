@@ -5,7 +5,7 @@ category : Java
 tags : [Java, Exception]
 ---
 
-##reproduce exception
+## reproduce exception
     
     [dev@db ~]$ java -version
     java version "1.6.0_33"
@@ -87,7 +87,7 @@ set profile and restart tomcat
     Using JRE_HOME:        /usr/java/jdk1.6.0_33
     Using CLASSPATH:       /apps/test/tomcat/bin/bootstrap.jar
     
-##awt test
+## awt test
    
 source code
    
@@ -144,7 +144,7 @@ unset DISPLAY
     class: class sun.java2d.HeadlessGraphicsEnvironment
     isHeadless: true
 
-##Summary
+## Summary
     
 1) Java Technology Community
 

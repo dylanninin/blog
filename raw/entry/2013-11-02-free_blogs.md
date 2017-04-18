@@ -5,7 +5,7 @@ category : Miscellanies
 tags : [Git, Github, Markdown, Python, Resource]
 ---
 
-##Github
+## Github
 
 阳志平："正是Github，让社会化编程成为现实。本文尝试谈谈GitHub的文化、技巧与影响。" 在[阳志平：如何高效利用GitHub](http://www.yangzhiping.com/tech/github.html)文中介 绍了Github的方方面面，包括一些很有意思的创意，如用Github做PPT，发布婚宴的邀请函等， 可以让人快速拥抱Github，十分不错。
 
@@ -13,14 +13,14 @@ tags : [Git, Github, Markdown, Python, Resource]
 * [阳志平：如何高效利用GitHub](http://www.yangzhiping.com/tech/github.html)，信息量很大，值得深入学习和实践。
 * [Got Github](http://www.worldhello.net/gotgithub/)，蒋鑫，介绍Github的开源书籍，你真的了解Github吗，如果不了解，可以认真看看此书。
 
-##Git
+## Git
 
 * [Pro Git](http://git-scm.com/book)，Git深入浅出教程，不过[git-scm]被blocked了，不信你试试。
 * [Pro Git 中文版](http://git-scm.com/book/zh)
 * [Git Reference](http://gitref.org/)
 * [Linus讲解git](http://www.youtube.com/watch?v=4XpnKHJAok8)，Google大会演讲，Linus介绍他创造git的原因，对比了git和svn。
 
-##Markdown
+## Markdown
 
 语法
 
@@ -56,7 +56,7 @@ Evernote
 * [Ruby China: 不选择Markdown的理由](http://ruby-china.org/topics/10734)，讲Markdown的坑，用了一年多，我也感觉该换换了。 
 * [Rei](http://blog.chloerei.com/authors/chloerei)是[Writings.io](https://writings.io/)的创建者，不过它[失败了](http://blog.chloerei.com/articles/79-writings-io-is-failure),马上就要[关闭](https://writings.io/)；[36氪](http://www.36kr.com/)上的采访[我犯了过早产品化的错误——Writings.io创始人谈Writings.io的关闭](http://www.36kr.com/p/206974.html)。源代码在[Github](https://github.com/chloerei/writings)上。
 
-##Blog
+## Blog
 
 为什么要写博客
 
@@ -77,7 +77,7 @@ Dropbox
 
 * [Dropbox-Hosted Websites](https://news.ycombinator.com/item?id=6387242)
 
-##About Me
+## About Me
 
 我写博客起于2012年9月底，至今一年有余，但积累少，输出少，也无法大放厥词，无奈之下只好用工作中累积的一些Note、Log来充数。
 

@@ -15,7 +15,7 @@ unlock hr
 	 
 	User altered
 
-##example 1
+## example 1
 
 	SQL> explain plan for
 	  2  select e.employee_id, j.job_title,e.salary,d.department_name
@@ -62,7 +62,7 @@ display plan
 	25 rows selected
 
 
-##example 2
+## example 2
 	
 sql
 						   
@@ -107,6 +107,6 @@ display plan
 	 
 	SQL> 
 
-##Reference
+## Reference
 
 * Oracle Database Performance Guide

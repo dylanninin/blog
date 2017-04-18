@@ -5,7 +5,7 @@ category : Oracle
 tags : [Oracle, Database, DBA, Exception]
 ---
 
-##异常日志
+## 异常日志
 
 警告日志
 
@@ -26,7 +26,7 @@ tags : [Oracle, Database, DBA, Exception]
 
 在跟踪日志文件中，可以看到同样的错误信息。
 
-##异常确认
+## 异常确认
 
 检查索引状态：
 
@@ -63,7 +63,7 @@ tags : [Oracle, Database, DBA, Exception]
 	ORA-06512: at "SYS.DBMS_STATS", line 20360
 	ORA-06512: at line 2
 
-##解决异常
+## 解决异常
 
 重建索引：
 
@@ -81,12 +81,12 @@ tags : [Oracle, Database, DBA, Exception]
 	
 	PL/SQL procedure successfully completed.
 
-##关于重建索引
+## 关于重建索引
 	
 When you rebuild an index, you use an existing index as the data source. Creating an index in this manner enables you to change storage characteristics or move to a new tablespace. Rebuilding an index based on an existing data source removes intra-block fragmentation. Compared to dropping the index and using the `CREATE INDEX` statement, re-creating an existing index offers better performance.
 
 即：重建(rebuild)索引使用已有的索引作为数据源，可以调整存储参数，移除数据块之间的碎片。另外，重要的一点是，相比先删除(drop)再创建索引(create index)，重建(rebuild)能够提供更好的性能。
 
-##参考
+## 参考
 
- * Oracle Database Administrator's Guide#Rebuilding an Existing Index
+ * Oracle Database Administrator's Guide#Rebuilding an Existing Inde

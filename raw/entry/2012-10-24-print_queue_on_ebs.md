@@ -5,7 +5,7 @@ category : Oracle
 tags : [Oracle, EBS, DBA]
 ---
 
-##写在前面的话
+## 写在前面的话
 
 在ERP系统中，打印报表是不可或缺的应用之一。
 
@@ -17,9 +17,9 @@ Oracle ERP打印队列结构图
 
 ![Oracle ERP](http://dylanninin.com/assets/images/2012/printer_of_erp.png)
 
-##打印服务器
+## 打印服务器
 
-###1. Windows打印机管理
+### 1. Windows打印机管理
 
 在Windows中，有两种方式添加打印机：
 
@@ -29,7 +29,7 @@ Oracle ERP打印队列结构图
 
 当批量添加打印机时，使用图形界面的方式实在是一件体力活。如在做打印服务器迁移时， 将几台打印服务器上的远程打印机迁移到同一台打印服务器，此时使用向导界面则会非常耗 时，而且稍有不慎，就可能会勾选错误，导致打印机设置不正确；当然，出现问题也不好排 查。所幸的是，Windows也提供了vbs脚本来管理打印机。
 
-####使用命令行管理打印机
+#### 使用命令行管理打印机
 
 使用命令行管理打印机需要Windows操作系统中有`prnmngr.vbs`脚本，一般Windows XP， Windows Server 2003中会自带这些脚本，以下为简单的学习笔记。
 
@@ -65,7 +65,7 @@ Oracle ERP打印队列结构图
 	prnmngr -g
 	prnmngr -t -p "\\服务器\打印机"
 
-#####主要用法
+##### 主要用法
 
 添加本地打印机
 
@@ -122,16 +122,16 @@ Oracle ERP打印队列结构图
 * prnqctl.vbs：管理打印测试页、暂停打印机、继续运行打印机或清除打印机队列
 * prnport.vbs：添加或删除打印机端口
 
-###2. RPM打印队列管理
+### 2. RPM打印队列管理
 
 在Windows打印服务器管理打印队列，可以使用付费软件Remote Print Manager。用来接收 来自ERP服务器的打印请求，接收请求后，在RPM打印队列中进行一些格式的调整或转换，之 后，再将这些请求发送给远程打印机进行真正的打印作业。
 
 目前主要接触过RPM Elite 4.5和RPM 5.1.1.99，新版本的功能更加强大，管理也方便。
 
 
-###3. AIX打印队列管理
+### 3. AIX打印队列管理
 
-####基本概念
+#### 基本概念
 
 print job
 
@@ -155,13 +155,13 @@ Print spooler
 
 * 管理打印的通用系统
 
-####日常管理
+#### 日常管理
 
-#####create
+##### create
 
 * 命令:smit print
 
-#####configure
+##### configure
 
 * /etc/qconfig
 
@@ -177,9 +177,9 @@ Print spooler
 	@testptq:
 	        backend = /usr/lib/lpd/rembak
 
-#####control
+##### control
 
-######lpstat 
+###### lpstat 
 	
 lpstat：显示线性打印机的目前状态信息
 
@@ -194,19 +194,19 @@ lpq：显示某些指定用户、任务号的打印任务的状态信息
 
 lpr：使用打印系统打印文件
 
-######stop
+###### stop
 
 	enq  -D -P 'testoffice:@testptq'  #D Down print queue
 	enq  -A -w Delay   #当打印队任务完成时每间隔多少秒更新打印状态信息
 
-######start
+###### start
 
 	lpstat -vxxoffice              #status
 	enq -U -P 'xxoffice:@testptq'  #start queue
 	qchk -P  xxoffice              #status
 	enabl    xxoffice:@testptq     #start queue
 
-######flush
+###### flush
 
 	lpstat -vxxoffice
 	qcan -P xxoffice -x 3          #cancel job 3 on queue xxoffice
@@ -246,7 +246,7 @@ example:
 	              QUEUED    507 STDIN.581720       testmgr                1   1   1
 	: (FATAL ERROR) 0781-233 Unknown host xxoffice.
 
-######check
+###### check
 
 * lpstat       
 * ps ef | grep qdaemon
@@ -255,7 +255,7 @@ example:
 * obsolete queue:/var/spool/lpd/qdir and remove from /etc/qconfig
 * hosts can be pinged 
 
-#####命令汇总
+##### 命令汇总
 
 Commands and equivalents
 
@@ -265,7 +265,7 @@ Commands and equivalents
 	lp                  lpstat               lprm
 	lpr                 lpq                  cancel
 
-###4. ERP打印队列的管理
+### 4. ERP打印队列的管理
 
 在ERP应用中打印队列的设置主要包括打印机驱动、样式、类型以及注册等四个方面，用户 在提交报表请求时选择所需要的打印机即可完成想要的打印作业。
 
@@ -283,7 +283,7 @@ Commands and equivalents
 
  配置好打印驱动之后，还需要设置好打印样式、打印类型；之后，就可以在ERP应用中注册 打印队列。
 
-###5.CentOS打印队列管理
+### 5.CentOS打印队列管理
 
 Oracle ERP也是一个跨平台的应用，除了可以部署在Unix上，如IBM AIX，还可以部署在 Linux、Windows平台，如CentOS等。
 
@@ -293,7 +293,7 @@ Oracle ERP也是一个跨平台的应用，除了可以部署在Unix上，如IBM
 
 CentOS中，打印机配置文件：`/etc/cups/printers.conf`。编辑后，重启cups服务。
 
-##测试
+## 测试
 
 从Oracle ERP打印机设置中可以看出，在实际使用过程中，打印请求会首先从ERP应用中运 行完毕后以打印命令的方式抛向ERP服务器；然后，ERP服务器通过CUPS/lpd服务或协议将请 求发送给远程打印服务器，这里为RPM打印管理服务器；在RPM打印管理服务器上，又会进行 一些格式的调整或转换，最后才将请求抛给远程打印机进行真正的打印作业。
 
@@ -301,17 +301,17 @@ CentOS中，打印机配置文件：`/etc/cups/printers.conf`。编辑后，重�
 
 在此例中，测试可能需要经过以下步骤：
 
-###1. Windows上打印机管理
+### 1. Windows上打印机管理
 
 新建TCP/IP端口，并创建远程打印机后，打印测试页，进行测试。
 
 注：在测试前，确保远程打印机可以ping通。
 
-###2. RPM上打印队列管理
+### 2. RPM上打印队列管理
 
 目前暂未找到直接测试RPM上打印队列的方法
 
-###3. AIX上打印队列管理
+### 3. AIX上打印队列管理
 
 使用命令行测试
 
@@ -325,11 +325,11 @@ CentOS中，打印机配置文件：`/etc/cups/printers.conf`。编辑后，重�
 
 打印时，可以打印中英文，测试下是否有乱码发生。
 
-###4. ERP上打印队列管理
+### 4. ERP上打印队列管理
 
 设置好打印驱动、打印队列后，提交打印请求，更改打印选项，选择测试的打印机，提交请 求，查看打印效果。
 
-##脚本
+## 脚本
 
 在实际应用中，由于远程打印机、网络、断电重启等原因，时常会出现ERP服务器上打印队 列down掉的情况，这时需要手动检查远程打印机的网络是否正常，并重启打印队列。
 
@@ -337,11 +337,11 @@ CentOS中，打印机配置文件：`/etc/cups/printers.conf`。编辑后，重�
 
 前面提到过AIX上一些打印队列管理的命令，因此可以编写简单的shell脚本，检查网络、打 印队列等，并尝试重启打印队列，再部署成定时任务，出现问题时发送邮件通知。这样可以 将时间留给其他更重要的工作。
 
-###1.脚本示意图
+### 1.脚本示意图
 
 ![](http://dylanninin.com/blog/assets/themes/images/2012/checklp.png)
 
-##2.checklp.sh 检查队列
+## 2.checklp.sh 检查队列
 
 	#!/bin/ksh
 	#abstract:
@@ -434,7 +434,7 @@ CentOS中，打印机配置文件：`/etc/cups/printers.conf`。编辑后，重�
 	    cat ${checklp_log} | mail -s "${mail_date}:${hostname} dba daily check of lpstat" ${receipt} 
 	fi
 
-###3.office.ip 办事处IP
+### 3.office.ip 办事处IP
 
 	xxoffice:192.168.1.111
 	xx1office: 192.168.2.111
@@ -442,7 +442,7 @@ CentOS中，打印机配置文件：`/etc/cups/printers.conf`。编辑后，重�
 	... ...
 	xxnoffice: 192.168.255.111
 
-###4.restartlp.sh 重启所有队列
+### 4.restartlp.sh 重启所有队列
 
 	#!/bin/ksh
 	#abstract:
@@ -495,7 +495,7 @@ CentOS中，打印机配置文件：`/etc/cups/printers.conf`。编辑后，重�
 	   cat ${restartlp_log} | mail -s "${mail_date}:${hostname} dba daily check of lpstat" ${receipt} 
 	fi
 
-###5.testlp.sh测试打印队列
+### 5.testlp.sh测试打印队列
 
 	#!/bin/ksh
 	#abstract:
@@ -520,7 +520,7 @@ CentOS中，打印机配置文件：`/etc/cups/printers.conf`。编辑后，重�
 	    iconv -f UTF-8 -t GB18030 ${content} | lpr -P${lpq} -#1 -T'Print Queue Test on Oracle EBS at ${current_date}'
 	fi
 
-###6. 其他
+### 6. 其他
 
 以上脚本发送的邮件若出现中文乱码，可以使用iconv进行编码转换，如：
 
@@ -528,7 +528,7 @@ CentOS中，打印机配置文件：`/etc/cups/printers.conf`。编辑后，重�
 	   iconv -f UTF-8 -t GB18030 ${sqllog} | mail -s "${mail_date}:${hostname} dba daily check of ${script_name}" ${receipt} 
 	fi
 
-##参考
+## 参考
 
 * [Microsoft：prnmngr.vbs](http://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/prnmngr.mspx?mfr=true)
 * IBM AIX Redbook：IBM @server p5 and pSeries Administration and Support for AIX 5L Version 5.3

@@ -5,7 +5,7 @@ category : Linux
 tags : [Linux, Network]
 ---
 
-##Configuration Files
+## Configuration Files
 
 Before delving into the interface configuration files, let us first itemize the primary configuration files used in network configuration. Understanding the role these files play in setting up the network stack can be helpful when customizing a Red Hat Enterprise Linux system.
 
@@ -20,11 +20,11 @@ This file specifies routing and host information for all network interfaces. It 
  * `/etc/sysconfig/network-scripts/ifcfg-interface-name`
 For each network interface, there is a corresponding interface configuration script. Each of these files provide information specific to a particular network interface. Refer to Section 9.2, “Interface Configuration Files” for more information on this type of file and the directives it accepts.
 
-##Interface Configuration Files
+## Interface Configuration Files
 
 Interface configuration files control the software interfaces for individual network devices. As the system boots, it uses these files to determine what interfaces to bring up and how to configure them. These files are usually named ifcfg-name, where name refers to the name of the device that the configuration file controls.
 
-##Channel Bonding Interfaces
+## Channel Bonding Interfaces
 
 Red Hat Enterprise Linux allows administrators to bind multiple network interfaces together into a single channel using the bonding kernel module and a special network interface called a channel bonding interface. Channel bonding enables two or more network interfaces to act as one, simultaneously increasing the bandwidth and providing redundancy.
 
@@ -61,6 +61,6 @@ For a channel bonding interface to be valid, the kernel module must be loaded. T
 
 Replace N with the interface number, such as 0. For each configured channel bonding interface, there must be a corresponding entry in your new /`etc/modprobe.d/bonding.conf` file.
 
-##Reference
+## Reference
 
- * [REL Deployment Guide](https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/6/html-single/Deployment_Guide/index.html#ch-Network_Interfaces)
+ * [REL Deployment Guide](https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/6/html-single/Deployment_Guide/index.html#ch-Network_Interfaces

@@ -89,6 +89,6 @@ Hash Join
 
        2 - access("S"."TABLE_NAME"="B"."OBJECT_NAME")
 	   
-##Reference
+## Reference
 
 * Oracle Database Performance Tuning Guide

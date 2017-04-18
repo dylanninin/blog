@@ -13,7 +13,7 @@ tags : [Oracle, Database, DBA]
 
 关于Oracle Instant Client，请访问：[Oracle Database Instant Client](http://www.oracle.com/technetwork/cn/database/features/instant-client/index-092537-zhs.html)
 
-##参考
+## 参考
 
 * [Oracle Database Instant Client](http://www.oracle.com/technetwork/cn/database/features/instant-client/index-092537-zhs.html)
 * [Oracle Instant Client使用说明](http://blog.csdn.net/tianlesoftware/article/details/7244641)

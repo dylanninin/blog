@@ -5,26 +5,26 @@ category : Oracle
 tags : [Oracle, Database, DBA, Exception]
 ---
 
-##异常症状
+## 异常症状
 
 在Oracle EBS系统中可以正常打开物料编辑页面，输入料号、描述等，选择物料模板，点击 保存按钮保存；此时切换到组织属性或组织分配页，再切换回物料属性页或者按料号查找该 物料，均无法找到该物料的信息；直接在数据库中查找该物料为空。
 
-##异常确认
+## 异常确认
 
 登录到Oracle ERP系统，输入物料确实无法保存；最大化编辑页面，Oracle Forms左下角没 有保存数据的事务操作提示。
 
-##环境
+## 环境
 
 * Oracle RDBMS : 11.1.0.7.0
 * Oracle Applications : 12.1.1
 
-##异常解决
+## 异常解决
 
 在ERP服务器上部署了一些定时任务，其中每天结束前（23:55）会定时检查数据库系统的警 告日志，若有错误，则会发送邮件通知。
 
 2012-10-29 收到来自此ERP系统的警告日志邮件通知。
 
-###警告日志
+### 警告日志
 
 alert_PROD.log.2012-10-28
 
@@ -39,7 +39,7 @@ alert_PROD.log.2012-10-28
 	Error message: ORA-48913: Writing into trace file failed, file size limit [10485760] reached
 	Writing to the above trace file is disabled for now on...
 
-###跟踪日志
+### 跟踪日志
 
 `PROD_ora_14573_i22169.trc`
 
@@ -107,7 +107,7 @@ alert_PROD.log.2012-10-28
 	SQL> alter package xx_qcsgpvc_p compile body;
 	Warning: Package Body altered with compilation errors.
 
-###警告日志
+### 警告日志
 
 alert_VIS.ora
 
@@ -120,7 +120,7 @@ alert_VIS.ora
 	/u1/VIS/visora/db/tech_st/11.1.0/admin/VIS_demoerp/diag/rdbms/vis/
 	VIS/incident/incdir_24961/VIS_ora_925_i24961.trc
 
-###跟踪日志
+### 跟踪日志
 
 `VIS_ora_925_i24961.trc`
 
@@ -173,7 +173,7 @@ alert_VIS.ora
 
 物料表和物料接口表近期均未更改和重编译。
 
-###紧接着查找系统无效对象
+### 紧接着查找系统无效对象
 
 无效对象
 
@@ -239,7 +239,7 @@ alert_VIS.ora
 
 根据ORA-600[qcsgpvc3]的错误提示以及近期有客制化功能开发可以总结，因对象结构发生 变更使得系统中存在一些无效对象从而导致物料无法保存。在本例中，引起物料无法保存的 应是依赖于物料基础表MTL_SYSTEMS_ITEM_B的触发器XX_ITEM_DEFAULT_SUBINVENTORY无效， 即当对物料基础表进行插入操作时该触发器无法运行，导致整个操作失败。在客制化开发过 程中，涉及到更改标准功能或者系统标准对象等，因Oracle系统的庞大和复杂性，无法确定 做出更改后所有功能都可以正常使用；但对数据库系统的日常维护来说，定期检查和编译无 效对象是必须的，否则某些功能将不能正常运行。
 
-##脚本
+## 脚本
 
 检查数据库系统警告日志，结合crontab，若有ora error message，则发送邮件通知
 
@@ -294,7 +294,7 @@ checkalert.sh
 	   cat ${sqllog} | mail -s "${mail_date}:${hostname} dba daily check of ${script_name}" ${receipt}
 	fi
 	
-##参考
+## 参考
 
 * Bug 7172752 - OERI[qcsgpvc3] recompiling a package body [ID 7172752.8]
 * Invalid Objects In Oracle Applications FAQ [ID 104457.1]

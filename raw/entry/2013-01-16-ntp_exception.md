@@ -14,9 +14,9 @@ tags : [NTP, Linux, Exception]
 * 结合理论进行测试，绝知此事要躬行;
 * 要掌握一个理论，不是一朝一夕之事;
 
-##搭建NTP服务器
+## 搭建NTP服务器
 
-###主要配置
+### 主要配置
 
 启用本机时钟作为NTP基准时间，主要需取消注释`server	127.127.1.0	# local clock`和`fudge	127.127.1.0 stratum 10`。
 
@@ -79,7 +79,7 @@ tags : [NTP, Linux, Exception]
 	# Enable writing of statistics records.
 	#statistics clockstats cryptostats loopstats peerstats
 
-###开启服务
+### 开启服务
 
 开启ntp服务
 
@@ -103,15 +103,15 @@ tags : [NTP, Linux, Exception]
 
 这是因为NTP server还没有和其自身或者它的server同步上。详见[NTP常见错误](http://www.blogjava.net/spray/archive/2008/07/10/213964.html)。
 
-##同步测试
+## 同步测试
 
-###1. NTP服务器(192.168.1.162)
+### 1. NTP服务器(192.168.1.162)
 当前时间：
 
 	[root@server ~]# date
 	Tue Jan  8 19:32:42 EST 2013
  
-###2. NTP客户端时间(192.168.1.163)：
+### 2. NTP客户端时间(192.168.1.163)：
 当前时间：
 
 	[root@oradb ~]# date
@@ -129,7 +129,7 @@ tags : [NTP, Linux, Exception]
 
 在与172.31.1.1同步时，出现时钟同步异常，因与192.168.1.162同步的时钟相差太大。导致这种情况大致推测有两个原因：1）172.31.1.1上时间不对；2）192.168.1.162、163时间不对。不过这两点很快都被排除了，经过同事提点，查看[鸟哥的私房菜](http://linux.vbird.org/linux_server/0440ntp.php)，对比[世界时差表](http://www.timedate.cn/time/time_diff.asp)，才知道是192.168.1.162、163系统的时区不正确。由于系统安装时没有选择时区（默认为美国纽约），与中国上海大概相差13个小时。
  
-###3.调整时区
+### 3.调整时区
 
 系统当前时区
 
@@ -164,7 +164,7 @@ tags : [NTP, Linux, Exception]
 	[root@server ~]# crontab -l
 	00 07 * * *  /usr/sbin/ntpdate 172.31.1.1 && /sbin/hwclock -w
 
-##鸟哥的讲解
+## 鸟哥的讲解
 
 例題： 
 
@@ -187,7 +187,7 @@ tags : [NTP, Linux, Exception]
  
 這個範例做完之後，記得將這兩個檔案改回來！不然以後你的時間都是美國時間啦！ 
 
-##参考
+## 参考
 * [鸟哥的私房菜：时间服务器](http://linux.vbird.org/linux_server/0440ntp.php)
 * [NTP Project](http://www.eecis.udel.edu/~mills/ntp.html)
 * [NTP常见错误](http://www.blogjava.net/spray/archive/2008/07/10/213964.html)

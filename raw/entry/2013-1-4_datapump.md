@@ -1,4 +1,4 @@
-##Data Pump Introduce
+## Data Pump Introduce
 
 Oracle Data Pump is made up of three distinct parts:
 
@@ -24,15 +24,15 @@ independently of the Data Pump clients.
 ![Oracle Data Pump Architecture](http://docs.oracle.com/cd/E11882_01/server.112/e10713/img/cncpt261.gif)
 
 
-##Example
+## Example
 
 同一个数据库中克隆schema，本例中为克隆用户OA到OADev(以下操作均采用SYS用户)。
 
-###1.新建用户
+### 1.新建用户
 	
 	create user oadev identified by "oadev";
 
-###2.表空间和数据文件
+### 2.表空间和数据文件
 
 单独创建表空间，数据文件
 
@@ -58,7 +58,7 @@ independently of the Data Pump clients.
 	
 	SELECT * FROM DBA_USERS DU WHERE DU.USERNAME IN ('OA', 'OADEV');
 
-####3.权限设置
+#### 3.权限设置
 
 查询已有系统权限
 
@@ -82,7 +82,7 @@ independently of the Data Pump clients.
 	 WHERE DSP.GRANTEE IN ('OA', 'OADEV')
 	 ORDER BY 1;
 
-###4.使用expdp/impdp准备工作
+### 4.使用expdp/impdp准备工作
 
 在OS上创建expdp/impdp目录:/dba/exp，并分配Oracle读写权限
 
@@ -101,19 +101,19 @@ independently of the Data Pump clients.
 	SELECT * FROM ALL_TAB_PRIVS ATP
 	 WHERE ATP.TABLE_NAME = 'EXPDP';
 
-###5.使用expdp导出oa数据
+### 5.使用expdp导出oa数据
 
 运行expdp命令，导出schema
 
 	[oracle@oradb exp]$ expdp  oa/oatest directory=expdp dumpfile=oa_20121227.dmp logfile=oa_20121227.log parallel=2
 
-###6.使用impdp导入5中导出的数据到oadev
+### 6.使用impdp导入5中导出的数据到oadev
 
 运行impdp命令，导入数据，注意重新映射schema，tablespace
 
 	[oracle@oradb exp]$ impdp oadev/oadev directory=expdp dumpfile=oa_20121227.dmp logfile=oadev_20121227.log remap_schema=oa:oadev remap_tablespace=oa_data:oadev_data,oa_idx:oadev_idx
 
-###7.验证
+### 7.验证
 
 查看导出、导入日志，有异常则进行检查即可。
 使用oadev登录，更改应用数据库的用户即可，启动测试。
@@ -127,7 +127,7 @@ independently of the Data Pump clients.
 	 WHERE O.OWNER = 'OADEV';
 
 
-###8.Utility
+### 8.Utility
 
 进行data pump测试时，可能会反复重建用户，这里可以根据已有用户生成新用户的创建脚本，包括角色、系统权限、目录对象权限。
 
@@ -155,7 +155,7 @@ independently of the Data Pump clients.
 	 WHERE ATP.TABLE_NAME = upper('&directory')
 	   AND ATP.GRANTEE = upper('&grantee');
 
-##expdp command line
+## expdp command line
 
 [oracle@oradb exp]$ expdp help=Y
 	
@@ -175,7 +175,7 @@ independently of the Data Pump clients.
 	               or TABLES=(T1:P1,T1:P2), if T1 is partitioned table
 	USERID must be the first parameter on the command line.
 
-##impdp command line
+## impdp command line
 
 [oracle@oradb exp]$ impdp help=Y
 
@@ -194,7 +194,7 @@ independently of the Data Pump clients.
 	     Example: impdp scott/tiger DIRECTORY=dmpdir DUMPFILE=scott.dmp
 	USERID must be the first parameter on the command line.
 
-##Reference
+## Reference
 
 * [tianlesoftware](http://blog.csdn.net/tianlesoftware/article/details/4674224)
-* Oracle Database Utilities
+* Oracle Database Utilitie

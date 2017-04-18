@@ -9,26 +9,26 @@ tags : [Oracle, Database, DBA, Linux]
 
 在Adminstartor's Guide的第二章，讲到了如何使用`CREATE DATABASE`语句手工创建数据 库。这个语句比MySQL的复杂多了，涵盖了Oracle数据库最核心的概念，需要有一定的基础 知识。按照参考文档的提示进行操作时，还是出现过一些错误，最后参考CSDN上的一篇 [博客](http://blog.csdn.net/tianlesoftware/article/details/4680213)进行调整，成 功创建了数据库，这里记录如下。
 
-##测试环境
+## 测试环境
 
 * 操作系统 CentOS 6.0 x86 64bit
 * 数据库	  Oracle 10.2
 
-##创建步骤
+## 创建步骤
 
-###1. 规划sid,oracle home
+### 1. 规划sid,oracle home
 
 	export ORACLE_SID=MANUAL
 	export ORACLE_BASE=/db/oracle
 	export ORACLE_HOME=/db/oracle/product/10.2.0/db_1
 
-###2. 系统规划
+### 2. 系统规划
 
 	ORACLE_SID=manual
 	DB_NAME=MANUAL
 	DB_DOMAIN=egolife.com
 
-###3. 手工创建必须的目录
+### 3. 手工创建必须的目录
 
 dump目录
 	
@@ -46,11 +46,11 @@ dump目录
 	
 	mkdir /db/oracle/flash_recovery_area/MANUAL
 
-###4. 建立密码文件
+### 4. 建立密码文件
 
 	orapwd file=/db/oracle/product/10.2.0/db_1/dbs/orapwMANUAL password=oracle
 
-###5. 修改参数文件
+### 5. 修改参数文件
 
 编辑init.ora文件，更改主要配置：
 
@@ -94,7 +94,7 @@ dump目录
 	*.workarea_size_policy='AUTO'
 	_allow_resetlogs_corruption=true
 
-###6. 启动数据库
+### 6. 启动数据库
 
 	SQL> conn /as sysdba
 	Connected to an idle instance.
@@ -108,7 +108,7 @@ dump目录
 	Database Buffers   364904448 bytes
 	Redo Buffers     7168000 bytes
 
-###7. 运行创建数据库脚本
+### 7. 运行创建数据库脚本
 
 	CREATE DATABASE MANUAL
 	LOGFILE
@@ -131,12 +131,12 @@ dump目录
 	UNDO TABLESPACE UNDOTS DATAFILE '/db/oracle/oradata/MANUAL/undo.dbf' SIZE 500M
 	DEFAULT TEMPORARY TABLESPACE TEMP TEMPFILE '/db/oracle/oradata/MANUAL/temp.dbf' SIZE 500M;
 
-###8. 运行必要的sql脚本(注意按以下顺序)
+### 8. 运行必要的sql脚本(注意按以下顺序)
 
 	/db/oracle/product/10.2.0/db_1/rdbms/admin/catalog.sql
 	/db/oracle/product/10.2.0/db_1/rdbms/admin/catproc.sql
 
-###9. 创建相关表空间和用户
+### 9. 创建相关表空间和用户
 	
 	create tablespace users datafile '/db/oracle/oradata/MANUAL/users01.dbf' size 500M;
 	create tablespace indexes datafile '/db/oracle/oradata/MANUAL/index01.dbf' size 500M;
@@ -146,13 +146,13 @@ dump目录
 	create user dylan identified by 000000 default tablespace users;
 	grant connect,resource to dylan;
 
-###10. 改为spfile启动
+### 10. 改为spfile启动
 
 	create spfile from pfile;
 
 重启数据库，并运行show parameter spfile，确认启动的参数文件类型。
 
-###11. Windows客户端测试
+### 11. Windows客户端测试
 
 tnsnames.ora配置：
 
@@ -167,7 +167,7 @@ tnsnames.ora配置：
 
 运行tnsping MANUAL命令，并使用sqlplus进行连接测试。
 
-##参考
+## 参考
 
 * [Manually Creating an Oracle Database](http://docs.oracle.com/cd/B19306_01/server.102/b14231/create.htm#sthref220)
 * [Linux下手工新建数据库](http://blog.csdn.net/tianlesoftware/article/details/4680213)

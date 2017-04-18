@@ -25,6 +25,6 @@ bash shell startup files
 	... ...
 
 
-##参考
+## 参考
 
 * [The Bash Shell Startup Files](http://www.linuxfromscratch.org/blfs/view/svn/postlfs/profile.html)

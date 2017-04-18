@@ -5,7 +5,7 @@ category : Oracle
 tags : [Oracle, Database, DBA]
 ---
 
-##Oracle Clusterware命令
+## Oracle Clusterware命令
 
 集群层次
 
@@ -14,14 +14,14 @@ tags : [Oracle, Database, DBA]
 * 集群：csrctl, ocrcheck, orchdump, orcconfig
 * 应用：srvctl, crs_stat, onsctl
 
-##节点
+## 节点
 
 olsnodes
 
     [grid@dev1 ~]$ olsnodes -help
     ... ...
 
-##网络
+## 网络
 
 oifcfg
 
@@ -29,9 +29,9 @@ oifcfg
 	... ...
 
 
-##集群
+## 集群
 
-###crs
+### crs
 
 	crsctl start|stop crs	
     crsctl enable|disable crs
@@ -40,9 +40,9 @@ oifcfg
     [grid@dev1 ~]$ crsctl -help
 	... ...
 
-##应用
+## 应用
 
-###crs
+### crs
 
     crs_stat 已经deprecated，请使用crsctl status resource
 
@@ -54,12 +54,12 @@ oifcfg
     [grid@dev1 ~]$ crs_stat -help
 	... ...
 
-###onsctl
+### onsctl
 	
 	[grid@dev1 ~]$ onsctl help
 	... ...
 
-###srvctl	
+### srvctl	
 
 srvctl help	
 
@@ -94,9 +94,9 @@ srvctl	asm
 	srcctl start asm -n erpdb2
 
     
-##常用命令
+## 常用命令
 
-###停止/启动
+### 停止/启动
 
 停止顺序：grid停止database或instance -> root用户停止crs
 启动顺序：root用户启动crs -> grid用户启动database或instance
@@ -113,26 +113,26 @@ srvctl	asm
 
     crsctl stop|start crs
     
-###检查crs resource状态
+### 检查crs resource状态
 
     crs_stat -t -v
     crsctl stat res -t
     
-###检查HAS资源是否正常
+### 检查HAS资源是否正常
 
     crsctl check crs
     
-###检查vodedisk, orc的位置
+### 检查vodedisk, orc的位置
 
     crsctl query css votedisk
     ocrcheck
     
-###检查orc备份
+### 检查orc备份
 
     ocrconfig -showbackup
     
-###检查网络配置
+### 检查网络配置
 
     srvctl config nodeapps -a
     oifcfg getif
-    oifcfg iflist
+    oifcfg iflis

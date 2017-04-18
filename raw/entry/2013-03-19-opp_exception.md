@@ -5,11 +5,11 @@ category : Oracle
 tags : [Oracle, DBA, EBS, Exception]
 ---
 
-##Output Post Processor
+## Output Post Processor
 
 Concurrent Processing now uses the Output Post Processor (OPP) to enforce post-processing actions for concurrent requests. Post-processing actions are actions taken on concurrent request output. An example of a post-processing action is that used in Concurrent Processing support of XML Publisher. If a request is submitted with an XML Publisher template specified as a layout for the concurrent request output, then after the concurrent manager finishes running the concurrent program, it will contact the OPP to apply the XML Publisher template and create the final output.
 
-###Manager Log
+### Manager Log
 
 Responsibility Path：System Administartor >> Concurrent >> Manager >> Administer，找到 Output Post Processor，选择Processes，查看日志时，选择 Manager Log即可。
 
@@ -87,7 +87,7 @@ Responsibility Path：System Administartor >> Concurrent >> Manager >> Administe
 	[3/19/13 8:40:41 AM] [OPPServiceThread0] Received immediate shutdown request. Service Thread will shutdown once all running requests have completed.
 	... ...
 
-###异常确认
+### 异常确认
 
 重新提交ECO XML报表，结束状态为 WARNING。查看日志：
 
@@ -108,7 +108,7 @@ Responsibility Path：System Administartor >> Concurrent >> Manager >> Administe
 
 	Finished executing request completion options.
 
-##error message
+## error message
 
 Error Message：ONC-PP NO RESPONSE and TIMEOUT
 
@@ -116,7 +116,7 @@ The Output Post-processor is running but has not picked up this request.
 No further attempts will be made to post-process this request, and the request will be marked  with Warning status.
 Setting the profile option Concurrent: OPP Response Timeout to a higher value may be necessary.
 
-###Cause: ONC-PP NO RESPONSE and TIMEOUT
+### Cause: ONC-PP NO RESPONSE and TIMEOUT
 
 1.The Output Post Processor (OPP) service is not picking up any new requests.
 
@@ -135,15 +135,15 @@ In case there are other concurrent requests running which have already invoked t
 
 This can be due to errors in previous requests or just to the amount of time the manager has been running. The OPP becomes unresponsive (stale) after running for more than one week.
 
-###Solution
+### Solution
 
 * Option 1: Increase the value (in seconds) for the profile option 'Concurrent:OPP Response Timeout'.
 * Option 2: Increase the number of processes or threads (or both) of the OPP via Oracle Applications Manager.
 
 
-###ERPProd
+### ERPProd
 
-####查看当前设置
+#### 查看当前设置
 
 在Administer Concurrent Managers中找到Output Post Processor，可以看到该程序的OS Pid，即Concurrent值；并在OS上查找该进行，可以看到OPP的设置信息。如下：
 
@@ -160,7 +160,7 @@ This can be due to errors in previous requests or just to the amount of time the
 	AND fcq.application_id = fcp.queue_application_id
 	and concurrent_queue_name = 'FNDCPOPP';
 
-####更改OPP设置
+#### 更改OPP设置
 
 登陆ERP，选择System Administrator >> Dashboard >> Site Map >> Administration : Application Services : Generic Services，选择 Output Post Processor，即可查看更改OPP设置。
 
@@ -170,14 +170,14 @@ The OPP Service is multi-threaded and will start a new thread for each concurren
 
 现调整为： 2 Process * 10 Threads Per Process。
 
-####重启OPP
+#### 重启OPP
 
 在Administer Concurrent Managers中找到Output Post Processor，可以选择Restart，但长期不响应，很长时间处于restarting状态，这里就只能采取杀死OPP进程，再重新启动OPP的办法。
 
-####报表测试
+#### 报表测试
 
 再次提交ECO XML报表，则可以正常完成和输出报表。
 
-##Reference
+## Reference
 
 * Concurrent Requests Fail Due to Output Post Processing (OPP) Timeout [ID 352518.1]

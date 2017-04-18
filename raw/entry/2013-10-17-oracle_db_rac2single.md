@@ -5,7 +5,7 @@ category : Oracle
 tags : [Oracle, Database, DBA]
 ---
 
-###环境介绍
+### 环境介绍
 
 11gR2 RAC（原系统）
 
@@ -139,7 +139,7 @@ rman backup
 
 ## copy backup set
 
-###use scp
+### use scp
 
 copy backup set using scp (estimated time: 0.55h (214GB * 1024MB / 110MB / 3600 ))
 
@@ -239,7 +239,7 @@ make soft link
     -rwxr-xr-x. 1 root    root     2255872 Oct 16 16:28 20131016_inc0_81omi33h_1_1.bkp
     -rw-r--r--. 1 testora dba         3121 Oct 15 14:11 initPROD1.ora
     
-###shared with nfs 
+### shared with nfs 
 
 configure exportfs
 
@@ -292,9 +292,9 @@ chmod backup directory
     -rwxrwxrwx. 1 nobody nobody    17006592 Oct 16 12:54 20131016_inc0_80omi33a_1_1.bkp
     -rwxrwxrwx. 1 nobody nobody     2255872 Oct 16 12:54 20131016_inc0_81omi33h_1_1.bkp
     
-##recovery on target system
+## recovery on target system
 
-###edit parameter file
+### edit parameter file
 
 copy pfile to destination
 
@@ -537,7 +537,7 @@ diff between initPROD1.ora and initPROD.ora
     > *.log_file_name_convert=('+DATADG/prodora/proddata','/u1/TEST/testora/testdata')
     > *.db_file_name_convert=('+DATADG/prodora/proddata','/u1/TEST/testora/testdata')
     
-###recovery test
+### recovery test
     
     [testora@target ~]$ export ORACLE_SID=PROD
     [testora@target ~]$ rman target/
@@ -705,7 +705,7 @@ clean failure instance and datafiles
     
     [root@target testdata]# rm control01.ctl control02.ctl system01.dbf
     
-###recover database
+### recover database
   
 sql script to set newname for datafile  
   
@@ -1302,7 +1302,7 @@ run recover rman script
     recover database;
     }
     
-###power off failure （中间遇电路检修，短暂停电）
+### power off failure （中间遇电路检修，短暂停电）
     
     [testora@target testora]$ du -sh testdata  
     205G	testdata
@@ -1777,7 +1777,7 @@ datafile size
     [testora@target testora]$ du -sh testdata
     271G	testdata
     
-###recreate controlfile
+### recreate controlfile
 
     [testora@target ~]$ export ORACLE_SID=PROD
     [testora@target ~]$ sqlplus  /nolog
@@ -2175,9 +2175,9 @@ alert.log
     TEMP				     1 /u1/TEST/testora/testdata/temp01.dbf	  2097152000	  256000 ONLINE    
     TEMP				     2 /u1/TEST/testora/testdata/temp02.dbf	  2097152000	  256000 ONLINE    
     
-##Post Steps
+## Post Steps
  
-###listener configuration
+### listener configuration
     
 show service_names
     
@@ -2321,7 +2321,7 @@ start listener
     
 client test with `PL*SQL` Developer ...
 
-###restart database
+### restart database
 
     SQL> create pfile from spfile;
 
@@ -2343,8 +2343,8 @@ client test with `PL*SQL` Developer ...
     Database mounted.
     Database opened.
 
-##full backup of database ...
+## full backup of database ...
 
-##Reference
+## Reference
 
 * Oracle Database Backup and Reference User's Guide

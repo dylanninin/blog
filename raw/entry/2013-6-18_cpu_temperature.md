@@ -1,4 +1,4 @@
-##Detect CPU Temperatur
+## Detect CPU Temperatur
 
 os kernel
 
@@ -153,6 +153,6 @@ get current cup temperature
 	Core 4:        +33.0°C  (high = +81.0°C, crit = +91.0°C)  
 	Core 5:        +38.0°C  (high = +81.0°C, crit = +91.0°C) 
 
-##Reference
+## Reference
 
 * [Linux下查看CPU温度](http://www.linuxsong.org/2010/09/linux-look-cpu-temperature/)

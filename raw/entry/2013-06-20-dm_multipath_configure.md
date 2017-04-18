@@ -5,7 +5,7 @@ category : Linux
 tags : [Linux, Storage]
 ---
 
-##unique scsi identifiers
+## unique scsi identifiers
 
 list all scsi devices
 
@@ -77,7 +77,7 @@ obtain clusterware device unique scsi identifiers
 	/dev/sdu 36005076802810b12180000000000000f
 	/dev/sda 3600605b0061b8b301944b4a80d86a2f9
 
-##configure multipathing
+## configure multipathing
 
 enable the multipath configuration file and starts the multipathd daemon
 
@@ -144,7 +144,7 @@ multipath -v3
 	36005076802810b121800000000000005 4:0:0:0 sdc 8:32  10  undef ready  IBM,2145 
 	... ...
 
-##alias
+## alias
 
 alias settings
 
@@ -202,7 +202,7 @@ show created devices
 	vg_devdb-LV_DB	(252:13)
 	vg_devdb-LV_SWAP	(252:0)
 	
-##adminstartion commands
+## adminstartion commands
 
 mpathconf
 
@@ -301,7 +301,7 @@ multipathd
 	 map|multipath $map setprstatus
 	 map|multipath $map unsetprstatus
 
-##full configure
+## full configure
 
 	[root@devdb ~]# grep -v '^#' /etc/multipath.conf
 	defaults {
@@ -380,4 +380,4 @@ multipathd
 			wwid			36005076802810b12180000000000000f
 			alias			data
 		}
-	}
+	

@@ -5,7 +5,7 @@ category : Oracle
 tags : [Oracle, Database, DBA, Performance]
 ---
 
-##Joins
+## Joins
 
 Joins are statements that retrieve data from multiple tables. A join is characterized by multiple tables in the  FROM  clause. The existence of a join condition in the  WHERE  clause defines the relationship between the tables. In a join, one row set is called inner, and the other is called outer.
 
@@ -35,7 +35,7 @@ The optimizer also considers other factors when determining the cost of each ope
 
 You can use the  ORDERED  hint to override the optimizer's choice of join orders. If the ORDERED  hint specifies a join order that violates the rule for an outer join, then the optimizer ignores the hint and chooses the order. Also, you can override the optimizer's choice of join method with hints. 
 
-##Nested Loop Joins
+## Nested Loop Joins
 
 Nested loop joins are useful when the following conditions are true:
 
@@ -62,7 +62,7 @@ The outer loop is the driving row source. It produces a set of rows for driving 
 
 The inner loop is iterated for every row returned from the outer loop, ideally by an index scan. If the access path for the inner loop is not dependent on the outer loop, then you can end up with a Cartesian product; for every iteration of the outer loop, the inner loop produces the same set of rows. Therefore, you should use other join methods when two independent row sources are joined together.
 
-##Hash Joins
+## Hash Joins
 
 The database uses hash joins to join large data sets. The optimizer uses the smaller of two tables or data sources to build a hash table on the join key in memory. It then scans the larger table, probing the hash table to find the joined rows.
 
@@ -75,7 +75,7 @@ The optimizer uses a hash join to join two tables if they are joined using an eq
 * A large amount of data must be joined.
 * A large fraction of a small table must be joined.
 
-##Sort Merge Joins
+## Sort Merge Joins
 
 Sort merge joins can join rows from two independent sources. Hash joins generally perform better than sort merge joins. However, sort merge joins can perform better than hash joins if both of the following conditions exist:
 
@@ -102,7 +102,7 @@ To instruct the optimizer to use a sort merge join, apply the  USE_MERGE  hint. 
 
 There are situations where it makes sense to override the optimizer with the  USE_ MERGE  hint. For example, the optimizer can choose a full scan on a table and avoid a sort operation in a query. However, there is an increased cost because a large table is accessed through an index and single block reads, as opposed to faster access through a full table scan.
 
-##Cartesian Joins
+## Cartesian Joins
 
 The database uses a Cartesian join when one or more of the tables does not have any join conditions to any other tables in the statement. The optimizer joins every row from one data source with every row from the other data source, creating the Cartesian product of the two sets.
 
@@ -114,7 +114,7 @@ Cartesian Join Hints
 
 Applying the  ORDERED  hint, instructs the optimizer to use a Cartesian join. By specifying a table before its join table is specified, the optimizer does a Cartesian join. 
 
-##Outer Joins
+## Outer Joins
 
 An outer join extends the result of a simple join. An outer join returns all rows that satisfy the join condition and also returns some or all of those rows from one table for which no rows from the other satisfy the join condition.
 
@@ -129,6 +129,6 @@ The optimizer uses nested loop joins to process an outer join in the following c
 * It is possible to drive from the outer table to inner table.
 * Data volume is low enough to make the nested loop method efficient.
 
-##Reference
+## Reference
 
 * Oracle Database Performance Tuning Guide

@@ -5,7 +5,7 @@ category : Linux
 tags : [Linux, Utilities]
 ---
 
-##bitnami-redmine
+## bitnami-redmine
 
 [Redmine](http://www.redmine.org/)是一个开源的项目管理系统，基于[ROR](http://rubyonrails.org/)开发，在小型项目管理中比较实用。[BitNami](http://bitnami.com/)提供了打包好的[Redmine](http://bitnami.com/stack/redmine)程序，集成Apache, Mysql，简化了安装配置过程。
 
@@ -159,7 +159,7 @@ tags : [Linux, Utilities]
 	http://localhost:80 from your browser.
 	Press [Enter] to continue :
 
-##导出数据
+## 导出数据
 
 	[root@old]# /opt/rubystack-2.1-0/apps/redmine/config/database.yml
 
@@ -174,7 +174,7 @@ tags : [Linux, Utilities]
 	[root@old rubystack-2.1-0]# mysql/bin/mysqldump -ubn_redmine -p --opt bitnami_redmine > ~/redmine_20130402.sql
 	Enter password: 
 
-##导入数据
+## 导入数据
 
 	[root@redmine]# less /apps/rubystack/apps/redmine/htdocs/config/database.yml
 	
@@ -189,7 +189,7 @@ tags : [Linux, Utilities]
 	[root@redmine ~]# /apps/redmine/mysql/bin/mysql -ubitnami -p bitnami_redmine < redmine_20130402.sql 
 	Enter password: 7e37e93290
 
-##参考
+## 参考
 
 * [Installing Redmine](http://www.redmine.org/projects/redmine/wiki/RedmineInstall)
 * [bitnami Redmine]((http://bitnami.com/stack/redmine))

@@ -19,7 +19,7 @@ tags : [SQLite, Rails]
 
 当然，书中文笔也是很优美、很流畅的，所以看到一图胜万言时，也不要忘记认细读。这不，我就顺手摘抄了其中的一些好句子，与大家共赏。
 
-##The Definitive Guide to SQLite 
+## The Definitive Guide to SQLite 
 
 The Definitive Guide to SQLite 
 
@@ -51,9 +51,9 @@ In short, what SQLite can’t do is a direct result of what it can.
 
 No matter how good you think your chosen backup approach is, remember you are only as good as your last successful restore. Test your restore procedure if you need to rely on it—otherwise, you’ll be remembered for one failed restore, regardless of how many successful backups you took. 
 
-##SQLite in Rails Application
+## SQLite in Rails Application
 
-###Development
+### Development
 
 For this application, we’ll use the open source SQLite database (which you’ll need if you’re following along with the code). We’re using SQLite version 3 here.
 
@@ -61,11 +61,11 @@ SQLite 3 is the default database for Rails development and was installed along w
 
 If it’s important to you to use a database server other than SQLite 3, the commands you’ll need to create the database and grant permissions will be different. You will find some helpful hints in the Getting Started Rails Guide.
 
-###Deployment and Production
+### Deployment and Production
 
 The SQLite website is refreshingly honest when it comes to describing what this database is good at and what is not good at. In particular, SQLite is not recommended for high-volume, high-concurrency websites with large datasets. And, of course, we want our website to be such a website . 
 
-##Reference
+## Reference
 
 * [Agile Web Development with Rails 4](http://book.douban.com/subject/24718727/)
 * [The Definitive Guide to SQLite](http://book.douban.com/subject/5392299/) 

@@ -7,9 +7,9 @@ tags : [Oracle, Database, DBA]
 
 在ORACLE Database中，执行对表的删除操作不会降低该表的高水位线。而全表扫描将始终读取一个段(extent)中所有低于高水位线标记的块。如果在执行删除操作后不降低高水位线标记，则将导致查询语句的性能低下。rebuild, truncate, shrink,move 等操作会降低高水位。
 
-##实验
+## 实验
 
-###创建表
+### 创建表
 
 	[oracle@dev ~]$ sqlplus /nolog
 	
@@ -38,7 +38,7 @@ tags : [Oracle, Database, DBA]
 疑问：在查询dba_segments时没有找到数据，延时？？？
 
 	
-###插入数据
+### 插入数据
 
 	SQL> declare
 	  2      i number;
@@ -68,7 +68,7 @@ tags : [Oracle, Database, DBA]
 	
 此时表HWM已经占有了数据，24个数据块。其他统计信息为空。这些信息需要做统计分析之后才会有。
 
-###搜集统计信息
+### 搜集统计信息
 
 	SQL> exec dbms_stats.gather_table_stats('DEV','HWM');
 	
@@ -89,7 +89,7 @@ tags : [Oracle, Database, DBA]
 使用`dbms_stats`收集统计信息后，显示表HWM有1000行，占用20个数据块。但`EMPTY_BLOCKS`为空，该列需要在`ANALYZE`之后才会有数据。
 
 
-###分析表
+### 分析表
 	
 	
 	SQL> analyze table hwm compute statistics;
@@ -110,7 +110,7 @@ tags : [Oracle, Database, DBA]
 	HWM				    	10000	  	  20			4
 	
 
-###删除数据
+### 删除数据
 
 	SQL> delete from hwm;
 	
@@ -155,7 +155,7 @@ tags : [Oracle, Database, DBA]
 delete数据，不会降低高水位。
 
 
-###truncate表
+### truncate表
 
 	SQL> truncate table hwm;
 	

@@ -5,16 +5,16 @@ category : Oracle
 tags : [Oracle, Database, DBA, Performance]
 ---
 
-##pl/sql packages
+## pl/sql packages
 
 	[oracle@oradb ~]$ ls -l /db/oracle/product/11.2.0/db_1/rdbms/admin/addm*
 	-rw-r--r--. 1 oracle oinstall 4748 Jan  6  2005 /db/oracle/product/11.2.0/db_1/rdbms/admin/addmrpti.sql
 	-rw-r--r--. 1 oracle oinstall 3168 Oct 16  2003 /db/oracle/product/11.2.0/db_1/rdbms/admin/addmrpt.sql
 	-rw-r--r--. 1 oracle oinstall 6196 Mar  6  2007 /db/oracle/product/11.2.0/db_1/rdbms/admin/addmtmig.sql
 
-##dbms_advisor
+## dbms_advisor
 
-###statistics_level
+### statistics_level
      
     SQL> show parameter statistics_level;
      
@@ -22,7 +22,7 @@ tags : [Oracle, Database, DBA, Performance]
     ------------------------------------ ----------- ------------------------------
     statistics_level                     string      TYPICAL
      
-###tables
+### tables
      
     SQL> create table bigtab as select rownum as "id", a.* from dba_objects a;
      
@@ -45,13 +45,13 @@ tags : [Oracle, Database, DBA, Performance]
      
     PL/SQL procedure successfully completed
 
-###create first snapshot
+### create first snapshot
     
     SQL> exec dbms_workload_repository.create_snapshot('TYPICAL');
      
     PL/SQL procedure successfully completed
      
-###high-load operation   
+### high-load operation   
   
     SQL> declare
       2  v_var number;
@@ -69,13 +69,13 @@ tags : [Oracle, Database, DBA, Performance]
 
     PL/SQL procedure successfully completed
 
-###create second snapshot
+### create second snapshot
     
     SQL> exec dbms_workload_repository.create_snapshot('TYPICAL');
      
     PL/SQL procedure successfully completed
 
-###create advisor task
+### create advisor task
     
 get last two snap_id
     
@@ -94,7 +94,7 @@ get dbid
     ----------
     1193549399
 
-###create advisor task and execute
+### create advisor task and execute
     
     SQL> declare
       2     task_name varchar2(30) := 'ADDM_01';
@@ -111,7 +111,7 @@ get dbid
      
     PL/SQL procedure successfully completed
     
-###display task report
+### display task report
     
     SQL> set long 1000000 pagesize 0 longchunksize 1000
     SQL> column get_clob for a80
@@ -232,7 +232,7 @@ get dbid
     The database's maintenance windows were active during 100% of the analysis
     period.
 
-##Alternative
+## Alternative
 
 script path
 
@@ -501,6 +501,6 @@ execute addmrpt
     End of Report
     Report written to addmrpt_1_4217_4220.txt
 	
-##Reference
+## Reference
 
 * Oracle Database Performance Tuning Guide

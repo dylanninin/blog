@@ -1,10 +1,10 @@
-##MovableType 安装记录（二）
+## MovableType 安装记录（二）
 
 接着[上一篇](/blog/2012/09/29/mt_installation.html)继续配置Movable Type。
 
-##Apache配置
+## Apache配置
 
-###配置站点首页
+### 配置站点首页
 
 打开`http://dev.egolife.com`时，默认显示为Apache的测试页面`。当访问`http://dev.egolife.com/blog`才会显示博客首页。
 
@@ -24,7 +24,7 @@
 
 运行`service http reload`命令，重新加载配置后，直接访问主机，则出现的是`/var/www/html`的页面列表信息。
 
-###禁止列表文件
+### 禁止列表文件
 禁止列表信息，需要更改配置`/etc/httpd/conf/httpd.conf`：
 
 	[root@dev html]# vim /etc/httpd/conf/httpd.conf
@@ -62,7 +62,7 @@
 
 更改配置后，重新加载配置文件，则显示禁止访问，此时可以自定义显示的页面，这里采用软链接的方式。
 
-###设置软连接
+### 设置软连接
 
 	[root@dev html]# ln -s /var/www/html/blog/index.html /var/www/html/index.html
 	[root@dev html]# ll
@@ -75,7 +75,7 @@
 
 这样访问`http://dev.egolife.com`时，会直接显示博客首页。当然，可以使用URL重写或重定向来实现.
 
-###错误提示页
+### 错误提示页
 
 主要是403,404,500页面的配置，更改`/etc/httpd/conf/httpd.conf`：
 
@@ -91,7 +91,7 @@
 	841 ErrorDocument 404 http://dev.egolife.com/errors/404.html
 	842 ErrorDocument 403 http://dev.egolife.com/errors/403.html
 
-###添加错误页面
+### 添加错误页面
 
 	[root@dev errors]# pwd
 	/var/www/html/errors
@@ -103,6 +103,6 @@
 
 以上页面内容待完善!
 
-##参考
+## 参考
 
 * Movable Type：[MTOS文件系统描述](http://www.movabletype.org/documentation/installation/file-system.html)

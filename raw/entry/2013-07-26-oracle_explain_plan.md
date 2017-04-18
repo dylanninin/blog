@@ -5,7 +5,7 @@ category : Oracle
 tags : [Oracle, Database, DBA, Performance]
 ---
 
-##Execution plan
+## Execution plan
 
 To execute a SQL statement, Oracle Database may need to perform many steps. Each step either retrieves rows of data physically from the database or prepares them in some way for the user issuing the statement. The combination of the steps that Oracle Database uses to execute a statement is an execution plan. 
 
@@ -20,7 +20,7 @@ These are the basics of using the  EXPLAIN PLAN  statement:
 * After issuing the  EXPLAIN PLAN  statement, use one of the scripts or package provided by Oracle Database to display the most recent plan table output.
 * The execution order in  EXPLAIN PLAN  output begins with the line that is the furthest indented to the right. The next step is the parent of that line. If two lines are indented equally, then the top line is normally executed first.
 
-##Using EXPLAIN PLAN  
+## Using EXPLAIN PLAN  
 
 This chapter introduces execution plans, describes the SQL statement  `EXPLAIN PLAN` , and explains how to interpret its output. This chapter also provides procedures for managing outlines to control application performance characteristics. This chapter contains the following sections: 
 
@@ -35,7 +35,7 @@ This chapter introduces execution plans, describes the SQL statement  `EXPLAIN P
 * Viewing Partitioned Objects with EXPLAIN PLAN
 * PLAN_TABLE Columns
 
-###Understanding EXPLAIN PLAN
+### Understanding EXPLAIN PLAN
 
 The  `EXPLAIN PLAN`  statement displays execution plans chosen by the optimizer for` SELECT` ,  `UPDATE` , `INSERT` , and  `DELETE`  statements. A statement execution plan is the sequence of operations that the database performs to run the statement. 
 
@@ -54,7 +54,7 @@ In addition to the row source tree, the plan table contains information about th
 
 The  `EXPLAIN PLAN`  results let you determine whether the optimizer selects a particular execution plan, such as, nested loops join. The results also help you to understand the optimizer decisions, such as why the optimizer chose a nested loops join instead of a hash join, and lets you understand the performance of a query.
 
-###How Execution Plans Can Change
+### How Execution Plans Can Change
 
 With the query optimizer, execution plans can and do change as the underlying optimizer inputs change.  EXPLAIN PLAN  output shows how Oracle Database would run the SQL statement when the statement was explained. This plan can differ from the actual execution plan a SQL statement because of differences in the execution environment and explain plan environment
 
@@ -82,7 +82,7 @@ Examining an explain plan lets you look for throw-away in cases such as the foll
 * Wrong join order
 * Late filter operations
 
-###Looking Beyond Execution Plans
+### Looking Beyond Execution Plans
 
 The execution plan operation alone cannot differentiate between well-tuned statements and those that perform poorly. For example, an  EXPLAIN PLAN  output that shows that a statement uses an index does not necessarily mean that the statement runs efficiently. Sometimes indexes are extremely inefficient. In this case, you should examine the following:
 
@@ -91,7 +91,7 @@ The execution plan operation alone cannot differentiate between well-tuned state
 
 It is best to use  EXPLAIN PLAN  to determine an access plan, and then later prove that it is the optimal plan through testing. When evaluating a plan, examine the statement's actual resource consumption. 
 
-##Using V$SQL_PLAN Views
+## Using V$SQL_PLAN Views
 
 In addition to running the  EXPLAIN PLAN  command and displaying the plan, you can use the  V$SQL_PLAN  views to display the execution plan of a SQL statement: After the statement has executed, you can display the plan by querying the  V$SQL_ PLAN  view.  V$SQL_PLAN  contains the execution plan for every statement stored in the shared SQL area.
 
@@ -123,7 +123,7 @@ Some examples of the use of  DBMS_XPLAN  to display  PLAN_TABLE  output are:
 	SELECT PLAN_TABLE_OUTPUT FROM TABLE(DBMS_XPLAN.DISPLAY('MY_PLAN_TABLE', 'st1','TYPICAL'));
   
 
-###Customizing PLAN_TABLE Output
+### Customizing PLAN_TABLE Output
 
 If you have specified a statement identifier, then you can write your own script to query the  PLAN_TABLE . For example:
 
@@ -144,6 +144,6 @@ sql
 			SELECT STATEMENT
 			 TABLE ACCESS FULL EMPLOYEES
   
-##Reference
+## Reference
 
 * Oracle Database Performance Guide

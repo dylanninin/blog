@@ -5,7 +5,7 @@ category : Linux
 tags : [Linux, Network]
 ---
 
-##Binding Configure
+## Binding Configure
 
 1.服务器
 
@@ -62,7 +62,7 @@ Network Interface
 	0e:00.0 Ethernet controller: Intel Corporation 82580 Gigabit Network Connection (rev 01)
 	0e:00.1 Ethernet controller: Intel Corporation 82580 Gigabit Network Connection (rev 01)
 
-##Single Interface
+## Single Interface
 
 ifconfig
 
@@ -180,9 +180,9 @@ speed test
 	user	0m58.625s
 	sys		0m39.648s
 
-##Configure bond0 with eth2, eth3
+## Configure bond0 with eth2, eth3
 
-###Channel Bonding Configure
+### Channel Bonding Configure
 
 bond0
 
@@ -300,7 +300,7 @@ route
 	172.29.73.0     *               255.255.255.0   U     0      0        0 eth0
 	192.168.1.0     *               255.255.255.0   U     0      0        0 bond0
 
-###mode 0
+### mode 0
 
 ping
 
@@ -482,7 +482,7 @@ bring up bond0
 	eth3       1500   0   665254      0      0      0 11499799      0      0      0 BMsRU
 	lo        16436   0      293      0      0      0      293      0      0      0 LRU
 
-###mode 1
+### mode 1
 
 	[root@dev1 ~]# cat /etc/modprobe.conf 
 	alias eth2 pcnet32
@@ -532,7 +532,7 @@ bring up bond0
 	eth3       1500   0  5553122      0      0      0 22367688      0      0      0 BMsRU
 	lo        16436   0      293      0      0      0      293      0      0      0 LRU
 
-###mode 6
+### mode 6
 
 	[root@dev1 ~]# cat /etc/modprobe.conf 
 	alias eth2 pcnet32
@@ -639,7 +639,7 @@ after completing transfering
 	eth3       1500   0 10520932      0      0      0 32735220      0      0      0 BMsU
 	lo        16436   0      325      0      0      0      325      0      0      0 LRU
 
-##Test Summary
+## Test Summary
 
 eth2
 
@@ -738,8 +738,8 @@ after completing transfering
 	eth3       1500   0 10520932      0      0      0 32735220      0      0      0 BMsU
 	lo        16436   0      325      0      0      0      325      0      0      0 LRU
 
-##Reference
+## Reference
 
 * [Oracle RAC与网卡绑定](http://blog.csdn.net/tianlesoftware/article/details/6189639)
 * [Linux 双网卡绑定测试](http://www.cnblogs.com/killkill/archive/2009/02/15/1390717.html)
-* [Redhat Deployment_Guide](https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/6/html-single/Deployment_Guide/index.html#sec-Using_Channel_Bonding)
+* [Redhat Deployment_Guide](https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/6/html-single/Deployment_Guide/index.html#sec-Using_Channel_Bonding

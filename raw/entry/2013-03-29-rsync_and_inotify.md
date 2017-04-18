@@ -5,7 +5,7 @@ category : Linux
 tags : [Linux, Utilities]
 ---
 
-##测试环境
+## 测试环境
 
 * wxbak.egolife.com CentOS 5.5 	inotify-tools-3.14-1.el5
 * nxbak.egolife.com CentOS 5.5  xinetd-2.3.14-10.el5
@@ -21,9 +21,9 @@ tags : [Linux, Utilities]
 
 ![rsync_arch](http://dylanninin.com/assets/images/2013/rsync_arch.png)
 
-##服务端
+## 服务端
 
-###1.开启rsync服务
+### 1.开启rsync服务
 
 编辑	/etc/xinetd.d/rsync文件
 
@@ -44,7 +44,7 @@ tags : [Linux, Utilities]
 
 将`disable = yes` 改为 `disable = no`
 
-###2.配置rsync服务
+### 2.配置rsync服务
 
 创建/etc/rsyncd.conf
 
@@ -76,7 +76,7 @@ tags : [Linux, Utilities]
 	hosts allow = 192.168.1.118
 	hosts deny = 0.0.0.0/32	
 
-###3.密码文件
+### 3.密码文件
 
 创建/etc/rsync_server.pwd
 
@@ -89,9 +89,9 @@ tags : [Linux, Utilities]
 	[root@nxbak]# ll /etc/rsync_server.pwd 
 	-rw------- 1 root root 17 Jun 12 11:43 /etc/rsync_server.pwd
 
-##客户端
+## 客户端
 
-###1.密码文件
+### 1.密码文件
 
 	[root@wxbak ]# vim /etc/rsync_client.pwd 
 	security
@@ -102,7 +102,7 @@ tags : [Linux, Utilities]
 	[root@wxbak]# ll /etc/rsync_client.pwd 
 	-rw------- 1 root root 10 Jun 12 11:42 /etc/rsync_client.pwd
 	
-###2.rsync+inotify脚本
+### 2.rsync+inotify脚本
 
 	[root@wxbak ]# cat /apps/scripts/rsync.sh 
 	#!/bin/sh
@@ -137,9 +137,9 @@ tags : [Linux, Utilities]
 	#inotify
 	inotify_fun >> ${log_file}  2>&1 &
 
-##测试
+## 测试
 
-###1.开启xinetd服务（服务端）
+### 1.开启xinetd服务（服务端）
 
 	 [root@nxbak]# service xinetd restart
 	Stopping xinetd:                                           [  OK  ]
@@ -156,7 +156,7 @@ tags : [Linux, Utilities]
 	COMMAND  PID USER   FD   TYPE DEVICE SIZE NODE NAME
 	xinetd  5310 root    5u  IPv4 597328       TCP *:rsync (LISTEN)
 
-###2.运行rsync脚本（客户端）
+### 2.运行rsync脚本（客户端）
 
 	[root@wxbak ]# /apps/scripts/rsync.sh
 
@@ -167,7 +167,7 @@ tags : [Linux, Utilities]
 	root     29898 29896  0 09:42 pts/1    00:00:00 /bin/sh /apps/scripts/rsync.sh
 	root     29902 18433  0 09:42 pts/1    00:00:00 grep rsync
 
-###3.变更同步目录（客户端）
+### 3.变更同步目录（客户端）
 
 	[root@wxbak rmanbak]# pwd
 	/apps/rmanbak
@@ -192,7 +192,7 @@ tags : [Linux, Utilities]
 	-rw-r--r-- 1 root   root              0 Jun 13 09:48 inotify
 	-rw-r--r-- 1 root   root              0 Jun 13 09:48 rsync
 
-###4.查看同步效果（服务端）
+### 4.查看同步效果（服务端）
 
 	[oracle@nxbak rmanbak]$ pwd
 	/data/nxbak/rmanbak
@@ -215,7 +215,7 @@ tags : [Linux, Utilities]
 	-rw-r--r-- 1 root   root              0 Jun 13 09:48 inotify
 	-rw-r--r-- 1 root   root              0 Jun 13 09:48 rsync
 
-###5.查看日志
+### 5.查看日志
 
 服务端日志
 
@@ -265,7 +265,7 @@ tags : [Linux, Utilities]
 	sent 645 bytes  received 44 bytes  1378.00 bytes/sec
 	total size is 1239517788  speedup is 1799009.85
 
-##异常
+## 异常
 
 昨天在配置rsync时，出现一个新问题，提示`mkdir failed: Permission denied (13)`和`mkstemp failed: Permission`，后来查看Stackoverflow，以及以前的[CentOS 5.5下rsync使用技巧与权限问题解读](http://os.51cto.com/art/201101/243374.htm)，发现可能是开启了SELinux导致的，因对SELinux的权限控制不熟悉，关闭SELinux，rsync即可以正常同步文件、文件夹。
 
@@ -352,7 +352,7 @@ You can run the command getenforce to see if SELinux is enabled on the machine.
 
 In my situation I ended up just disabling SELINUX completely because it wasn't needed and already disabled on the server that was working fine and just caused problems being enabled. To disable, open `/etc/selinux/config` and set `SELINUX=disabled`. To temporarily disable you can run the command `setenforce 0` which will set SELinux into a permissive state rather then enforcing state which causes it to print warnings instead of enforcing.
 
-##参考
+## 参考
 
 * [Inotify](http://en.wikipedia.org/wiki/Inotify)
 * [Inotify: Efficient, Real-Time Linux File System Event Monitoring](http://www.infoq.com/articles/inotify-linux-file-system-event-monitoring)

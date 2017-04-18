@@ -7,14 +7,14 @@ tags : [Linux, Windows, Utilities]
 
 偶尔会碰到myeclipse突然崩溃的情况，但tomcat服务还为关闭，再次启动myeclipse和tomcat时，会提示Address Already Bind。稍总结了下Windows和Linux下查看系统端口使用的一般方法。
 
-##进程与端口 
+## 进程与端口 
 
 * 进程与端口一一对应；除了使用IP标识一台PC外，还需要使用端口标志与哪一个进程进行通信；
 * 端口仅针对TCP、UDP应用。
 
-##Window查找指定端口
+## Window查找指定端口
     
-###主要步骤
+### 主要步骤
     
 1）查看被占用的端口号
 
@@ -37,7 +37,7 @@ tags : [Linux, Windows, Utilities]
 
 打开任务管理器，菜单->查看->选择列，勾选"PID(进程标识符)"即可显示PID，找到后结束该进程即可。
             
-###命令学习
+### 命令学习
 
 netstat    
           
@@ -90,9 +90,9 @@ netstat
 * netstat -r 显示路由表
 
 
-##Linux下查找指定端口
+## Linux下查找指定端口
 
-###主要步骤
+### 主要步骤
 
 1）查看端口
     
@@ -171,6 +171,6 @@ iptables禁用端口
     kill -9 pid                         #9为信号量，表示立即强行删除一个进程
     pkill  "service_name"               #pkill会关闭所有同名服务，慎用
 
-###命令学习
+### 命令学习
 
 使用man/info等查询命令帮助即可

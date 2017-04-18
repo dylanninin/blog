@@ -206,7 +206,7 @@ server
     Dec 19 17:57:35 oa postfix/smtp[4405]: C683287A03: to=<me@egolife.com>, relay=smtp.egolife.com[192.168.1.10]:25, delay=0.28, delays=0.04/0/0.02/0.22, dsn=2.0.0, status=sent (250 Message queued)
     Dec 19 17:57:35 oa postfix/qmgr[2159]: C683287A03: removed
 	
-##Reference
+## Reference
 
 * [postfix](http://www.postfix.org/)
 * [SASL](http://asg.web.cmu.edu/sasl/)

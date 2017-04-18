@@ -1,8 +1,8 @@
-##权限
+## 权限
 
 权限(Privilege)：即执行特定语句的能力。权限允许用户访问数据库中其他用户的对象，执行存储过程，或者执行一些系统级的操作。在Oracle数据库系统中，一般分为系统权限，和对象权限。
 
-###1.系统权限
+### 1.系统权限
 
 与具体的对象无关，是在任何对象上执行操作的权利，以及运行批处理、改变系统参数、创建角色等方面的权限。
 	
@@ -12,7 +12,7 @@
 	--查询某个用户/角色的所有系统权限
 	SELECT * FROM DBA_SYS_PRIVS DSP WHERE DSP.GRANTEE = UPPER('&grantee');	
 	
-###2.对象权限
+### 2.对象权限
 
 在特定对象上执行特定操作的权限，如SELECT,INSERT,UPDATE等。对象：表、视图、过程等。
 	
@@ -25,7 +25,7 @@
 	--使用密码文件的用户
 	SELECT * FROM V$PWFILE_USERS;
 	
-###3.角色相关
+### 3.角色相关
 
 一组权限的集合，简化权限的管理。被授予给角色的用户，将继承该角色所授予的所有权限以及角色。角色可以使用密码认证加强安全性。
 	
@@ -38,7 +38,7 @@
 	--用户角色分配关系
 	SELECT * FROM DBA_ROLE_PRIVS DRP WHERE DRP.GRANTEE = UPPER('&user');
 	
-###4.当前用户
+### 4.当前用户
 
 与当前登录用户相关的系统权限、对象权限、角色等相关的视图。
 
@@ -63,9 +63,9 @@
 	--当前用户的对象权限
 	SELECT * FROM TABLE_PRIVILEGES;
 	
-##权限、角色配置与管理
+## 权限、角色配置与管理
 
-###1.授权
+### 1.授权
 
 	SQL> ? grant
 	
@@ -112,7 +112,7 @@
 *  WITH ADMIN OPTION：带有该选项，则被授权用户也可以管理该权限，即授权、取消授权给其他用户。
 * GRANT ANY PRIVILEGE：带有该选项，则被授权用户可以对任何权限进行授权或取消授权。
 
-###2.取消授权
+### 2.取消授权
 
 	SQL> ? revoke
 	
@@ -154,9 +154,9 @@
 	 For detailed information on this command, see the Oracle8 Server SQL
 	 Reference.
 
-###3.角色
+### 3.角色
 
-####创建角色
+#### 创建角色
 
 	SQL> ? create role
 	
@@ -172,7 +172,7 @@
 	 For detailed information on this command, see the Oracle8 Server SQL
 	 Reference.
 
-####角色选择
+#### 角色选择
 
 创建角色后，可以使用GRANT/REVOKE给角色授予、取消授予适当权限，并最终分配给用户。一个用户可以拥有多个角色，在一个用户会话过程中，用户可以选择性的使某些角色生效或禁用，以控制对系统、对象的访问。
 
@@ -217,12 +217,12 @@
 	ERROR at line 1:
 	ORA-00942: table or view does not exist
 
-####默认角色
+#### 默认角色
 
 当设置用户默认角色时，这些角色会在用户初始化会话时自动生效。
 
 	alter user username defautl role role_list;
 
-##延伸阅读
+## 延伸阅读
 
-* [Oracle用户及角色介绍](http://blog.csdn.net/tianlesoftware/article/details/4786956)
+* [Oracle用户及角色介绍](http://blog.csdn.net/tianlesoftware/article/details/4786956

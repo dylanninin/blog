@@ -5,11 +5,11 @@ category : Oracle
 tags : [Oracle, Database, DBA, EBS]
 ---
 
-##异常症状
+## 异常症状
 
 2012-12-21下午Oracle ERP在销售模块做ATO产品订单进展时，没有弹出任何错误，也没有 弹出订单进展的"确认"提示，直接跳到订单头信息，行信息中也没有出现带`*`的标准成品料 号。且所有的ATO订单都无法完成订单进展。导致特制单不能及时录入系统，问题较为严重。
 
-##解决思路
+## 解决思路
 
 使用topas查看操作系统是否有异常进程；
 
@@ -19,13 +19,13 @@ tags : [Oracle, Database, DBA, EBS]
 
 看数据库警告日志；
 
-##详细过程
+## 详细过程
 
-###1. OS进程检查
+### 1. OS进程检查
 
 登录到erp，运行topas观察系统进程使用资源情况。
 
-###2. 并发请求 
+### 2. 并发请求 
 
 职责路径：system administrator >> Concurrent >> Manager >> Administer 此时再查看并发管理运行状态，等待处理的请求 因只有系统管理员有该权限，大家也可以通过SQL脚本进行查询，脚本如下(可以APPS运行)：
 
@@ -39,7 +39,7 @@ tags : [Oracle, Database, DBA, EBS]
  	FROM requests_count rc
 	WHERE rc.counts > 300;
 
-###3. 系统当前进程、会话数
+### 3. 系统当前进程、会话数
 
 Oracle数据库当前数据库设置的最大进程数、会话数在数据初始参数中已经设置，可以查询如下：
 
@@ -106,7 +106,7 @@ Oracle数据库当前数据库设置的最大进程数、会话数在数据初�
 	   AND s.action LIKE 'FRM:%'
 	   AND s.STATUS = 'INACTIVE';
 
-###4.查看数据库警告日志
+### 4.查看数据库警告日志
 
 数据库警告日志中记录了数据库在运行过程中的状态信息，包括发生的错误。 登录到服务器主机，如prodora，警告日志文件路径：
 
@@ -177,7 +177,7 @@ Oracle数据库当前数据库设置的最大进程数、会话数在数据初�
 	
 通过发生的ORA-错误，以及应用的异常时间，基本可以确定是由于会话引起的以上异常，清 理一些过期的会话就可以解决。
 
-##特别说明
+## 特别说明
 
 在操作系统中已经做了一些cron任务，定期预警或者执行会话清理。主要如下：
 
@@ -263,7 +263,7 @@ Oracle数据库当前数据库设置的最大进程数、会话数在数据初�
 	   fi
 	fi
 
-##参考
+## 参考
 
 * Oracle Database Administrator Guide
 * Oracle Application Administrator Guide
