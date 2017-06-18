@@ -22,7 +22,7 @@ database version
 truncate table
 
 	truncate table ASO.ASO_ORDER_FEEDBACK_T;
-    
+
 segment size
 
 	SELECT DS.OWNER,
@@ -36,19 +36,19 @@ segment size
    	OWNER	SEGMENT_NAME			SEGMENT_TYPE	SEGMENT_SIZE(MB)
     ------ ------------------------ --------------- ------------------------
 	ASO		ASO_ORDER_FEEDBACK_T	TABLE			34908
- 
+
 
 
 ##Metalink Note
- 
-suggested truncate operation 
+
+suggested truncate operation
 
 1.truncate table reuse storage
 
     Connect as apps
 
     truncate table ASO.ASO_ORDER_FEEDBACK_T REUSE STORAGE;
-    truncate table ASO.AQ$_ASO_ORDER_FEEDBACK_T_I REUSE STORAGE; 
+    truncate table ASO.AQ$_ASO_ORDER_FEEDBACK_T_I REUSE STORAGE;
     truncate table ASO.AQ$_ASO_ORDER_FEEDBACK_T_H REUSE STORAGE;
     truncate table ASO.AQ$_ASO_ORDER_FEEDBACK_T_T REUSE STORAGE;
 
@@ -58,14 +58,14 @@ suggested truncate operation
 2.grant execute privilege
 
     Connect as sysdba
-    
+
     grant execute on SYS.DBMS_AQADM to ASO WITH GRANT OPTION;
     grant execute on SYS.DBMS_AQADM to APPS WITH GRANT OPTION;
     grant execute on SYS.DBMS_AQ to ASO WITH GRANT OPTION;
     grant execute on SYS.DBMS_AQ to APPS WITH GRANT OPTION;
- 
+
 3.execute asoqueue.sql
- 
+
     # su - me
     $ cd $ASO_TOP/patch/115/sql/
     $ pwd
@@ -86,7 +86,7 @@ suggested truncate operation
 	... ...
 
 4.deallocate unused space
- 
+
     ALTER TABLE ASO.ASO_ORDER_FEEDBACK_T DEALLOCATE UNUSED;
     ALTER TABLE ASO.AQ$_ASO_ORDER_FEEDBACK_T_I DEALLOCATE UNUSED;
     ALTER TABLE ASO.AQ$_ASO_ORDER_FEEDBACK_T_H DEALLOCATE UNUSED;
@@ -116,9 +116,9 @@ When the above statements are successful, execute the following SQL statements:
 
 Recreate a new set of Warehouse Builder Runtime Repository users.
 Restart the Runtime Platform Service by running the ORACLE_HOME\owb\rtp\sql\start_service.sql script.
-    
+
 ##Diagnose while re-executing asoqueue.sql
-    
+
     $ whoami
     testora
     $ sqlplus "/ as sysdba"
@@ -132,21 +132,21 @@ Restart the Runtime Platform Service by running the ORACLE_HOME\owb\rtp\sql\star
     Oracle9i Enterprise Edition Release 9.2.0.6.0 - 64bit Production
     With the Partitioning, OLAP and Oracle Data Mining options
     JServer Release 9.2.0.6.0 - Production
-    
-    SQL> oradebug setmypid 
-    oradebug unlimit 
-    oradebug hanganalyze 3 
+
+    SQL> oradebug setmypid
+    oradebug unlimit
+    oradebug hanganalyze 3
     Statement processed.
     SQL> Statement processed.
     SQL> Hang Analysis in /u2/TEST/testora/testdb/9.2.0/admin/ERP_erp/udump/erp_ora_1863752.trc
-    SQL> 
-    SQL> oradebug setmypid 
-    oradebug unlimit 
-    oradebug hanganalyze 3 
+    SQL>
+    SQL> oradebug setmypid
+    oradebug unlimit
+    oradebug hanganalyze 3
     Statement processed.
     SQL> Statement processed.
     SQL> Hang Analysis in /u2/TEST/testora/testdb/9.2.0/admin/ERP_erp/udump/erp_ora_1863752.trc
-    SQL> 
+    SQL>
     SQL> select sid,event from v$session_wait;
 
            SID EVENT
@@ -410,7 +410,7 @@ Restart the Runtime Platform Service by running the ORACLE_HOME\owb\rtp\sql\star
             23 wakeup time manager
 
     203 rows selected.
-    
+
     SQL> select /*+ ordered */ w1.sid  waiting_session,
              h1.sid  holding_session,
              w.kgllktype lock_or_pin,
@@ -497,10 +497,10 @@ Restart the Runtime Platform Service by running the ORACLE_HOME\owb\rtp\sql\star
                  28             184 Pin  07000000ACBBE940 Share     Share
 
     50 rows selected.
-    
-    SQL> oradebug setmypid 
-    oradebug unlimit 
-    oradebug hanganalyze 3 
+
+    SQL> oradebug setmypid
+    oradebug unlimit
+    oradebug hanganalyze 3
     Statement processed.
     SQL> Statement processed.
     SQL> Hang Analysis in /u2/TEST/testora/testdb/9.2.0/admin/ERP_erp/udump/erp_ora_1863752.trc
@@ -537,8 +537,8 @@ Restart the Runtime Platform Service by running the ORACLE_HOME\owb\rtp\sql\star
      -- <0/80/7524/0xa879b848/593972/library cache pin>
     Other chains found:
     Chain 4 : <cnode/sid/sess_srno/proc_ptr/ospid/wait_event> :"/u2/TEST/testora/testdb/9.2.0/admin/ERP_erp/udump/erp_ora_1863752.trc" 880 lines, 45434 characters
-    
-    
+
+
     SQL> select username,program,sql_hash_value from v$session where sid=38;
 
     USERNAME   PROGRAM          SQL_HASH_VALUE
@@ -550,7 +550,7 @@ Restart the Runtime Platform Service by running the ORACLE_HOME\owb\rtp\sql\star
     SQL_TEXT
     -------------------------------------------------------------------------
     BEGIN FND_CP_GSM_IPC.Get_Message(:1,:2,:3,:4,:5,:6,:7,:8,:9,:10); END;
-    
+
     SQL> select s.sid,p.spid from v$session s,v$process p where s.paddr=p.addr and s.sid in (38,78,92);
 
            SID SPID
@@ -564,9 +564,9 @@ Restart the Runtime Platform Service by running the ORACLE_HOME\owb\rtp\sql\star
     SQL> host kill -9 2056366
 
     SQL> host kill -9 2027618
-  
+
 ##Retest
-  
+
 retest and the issue remains
 
 stop apps and asoqueue.sql can be executed successfully.
@@ -584,7 +584,7 @@ segment size
    	OWNER	SEGMENT_NAME			SEGMENT_TYPE	SEGMENT_SIZ
     ------ ------------------------ --------------- -------------------------
     ASO		ASO_ORDER_FEEDBACK_T	TABLE			0.125
-   
+
 ##Reference:
 
 * Release 11.5.10 / R12 Quoting/Order Capture Order Feedback Queue FAQ [ID 181410.1]
