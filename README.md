@@ -30,31 +30,31 @@
 
 ```shell
 	blog/
-	├── __init__.py           	#初始化文件，主要加载 pyinotify，监听 blog/raw/entry 路径下 md 的新增、修改、删除
-	├── blog.py                	#博客程序入口，运行： $ cd blog; python blog.py > blog.log 2>&1 &
-	├── config.py			   			 	#博客配置，主要是站点、文件系统路径、博客URL路由以及全局环境的配置
-	├── controller.py		   			#控制器模块，分发URL请求，并响应响应的视图
-	├── service.py			   			#服务模块，初始化博客系统，处理URL请求逻辑
-	├── model.py			   				#模型模块，针对博客系统的 Entry,Page,Tag,Category 等设置的数据模型，以及模板中的参数模型
-	├── tool.py				   				#工具类，如自动提取关键字，将字典转换为对象等，待完善
+	├── __init__.py               #初始化文件，主要加载 pyinotify，监听 blog/raw/entry 路径下 md 的新增、修改、删除
+	├── blog.py                   #博客程序入口，运行： $ cd blog; python blog.py > blog.log 2>&1 &
+	├── config.py                 #博客配置，主要是站点、文件系统路径、博客URL路由以及全局环境的配置
+	├── controller.py             #控制器模块，分发URL请求，并响应响应的视图
+	├── service.py                #服务模块，初始化博客系统，处理URL请求逻辑
+	├── model.py	                #模型模块，针对博客系统的 Entry,Page,Tag,Category 等设置的数据模型，以及模板中的参数模型
+	├── tool.py                   #工具类，如自动提取关键字，将字典转换为对象等，待完善
 	├── README.md
-	├── raw					   					# raw 格式文件路径，主要是 markdown 文件
-	│   ├── entry			   				#博客文件
-	│   ├── page			   				#页面文件，相对于博客而言，页面处理简单很多
-	│   └── tweet				
-	├── static				   				#静态文件，web.py 框架的要求，此路径下的文件可以有 web.py 当做静态文件处理
+	├── raw                       # raw 格式文件路径，主要是 markdown 文件
+	│   ├── entry	                #博客文件
+	│   ├── page                  #页面文件，相对于博客而言，页面处理简单很多
+	│   └── tweet
+	├── static                    #静态文件，web.py 框架的要求，此路径下的文件可以有 web.py 当做静态文件处理
 	│   ├── css
 	│   ├── favicon.ico
 	│   ├── img
 	│   └── js
-	└─── template			   				#模板库，主要参考 Movable Type 5 的设计。layout, misc, modules, widgets 为子模板。
-	    ├── index.html	       	#首页模板
-	    ├── search.html		   		#搜索模板
-	    ├── entry.html		   		# Entry/Page 详情模板
-	    ├── archive.html	   		#归档模板
-	    ├── atom.xml		   			# RSS 订阅模板
-	    ├── error.html		   		#错误页面模板
-	    ├── layout			   			#布局模板，这里采用 `AA|B|C` 的三栏布局，AA 放博客主要内容，B、C作为右侧边栏显示 widgets
+	└─── template                 #模板库，主要参考 Movable Type 5 的设计。layout, misc, modules, widgets 为子模板。
+	    ├── index.html            #首页模板
+	    ├── search.html           #搜索模板
+	    ├── entry.html            # Entry/Page 详情模板
+	    ├── archive.html          #归档模板
+	    ├── atom.xml              # RSS 订阅模板
+	    ├── error.html            #错误页面模板
+	    ├── layout                #布局模板，这里采用 `AA|B|C` 的三栏布局，AA 放博客主要内容，B、C作为右侧边栏显示 widgets
 	    │   ├── footer.html
 	    │   ├── header.html
 	    │   ├── navbar.html
@@ -62,11 +62,11 @@
 	    │   │   ├── primary.html
 	    │   │   └── secondary.html
 	    │   └── two
-	    ├── misc			  				#杂项资源
+	    ├── misc                  #杂项资源
 	    │   ├── ads
 	    │   │   └── ad.html
 	    │   └── analytics.html
-		├── modules			   				#模板模板，在AA布局中使用
+		├── modules                #模板模板，在AA布局中使用
 		│   ├── archive.html
 		│   ├── category.html
 		│   ├── comment.html
@@ -78,7 +78,7 @@
 		│   ├── related.html
 		│   ├── search.html
 		│   └── tag.html
-		└── widgets           		#小工具模板，在 B、C 侧边栏中使用
+		└── widgets                #小工具模板，在 B、C 侧边栏中使用
 		    ├── about.html
 		    ├── archive.html
 		    ├── calendar.html
@@ -126,7 +126,7 @@
 
 发布博客
 
-	$ rz 		  # use ZMODEM (Batch) file receive tool to send your local markdown file to blog server. md format is usually yyyy-mm-dd_file_name.md
+	$ rz # use ZMODEM (Batch) file receive tool to send your local markdown file to blog server. md format is usually yyyy-mm-dd_file_name.md
 
 删除博客
 
