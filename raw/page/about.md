@@ -48,11 +48,14 @@ group: navigation
   - 2014/05 - 2017-04，引入和维护 [Jenkins-CI](https://jenkins.io/index.html)，对接 **Bitbucket/GitHub**，搭建 **iOS/Android/Web/Backend** 自动化构建平台
   - 2014/07 - 2015-03，接手洋葱圈赛事数据，对接 [soccerway](http://www.soccerway.com/) 服务，为 App 提供定制化的赛事服务；技术栈：**Python/Tornado/MongoDB/rq/Supervisor/Nginx**
   - 2014/10 - 2015-06，接手洋葱圈 UGC 部分服务，一边开发新功能，一边尝试重构；技术栈：**Python/Tornado/rq/MongoDB/MySQL/Redis/Supervisor/Nginx**
+  - 2015/01，代码版本管理工具从 **HG** 迁移到 **Git**，工具 [HG Fast Export](https://github.com/frej/fast-export)
   - 2015/07 - 2016-08，接手洋葱圈管理后台，主要解决运营需求；技术栈：**Python/Django/MySQL/Redis/Supervisor/Nginx**
   - 2015/07 – 2016/05，开发业余赛事统计服务 [OpenPlay](https://openplay.com/)；技术栈：**Python/Tornado/rq/pytest/MongoDB/Redis/ElasticSearch/Supervisor/Nginx**
   - 2016/05 – 2016/07，开发青训服务[开玩青训](http://kaiwanqx.com/)；技术栈：**Ruby/Rails/RSpec/PostgreSQL/Supervisor/Nginx**
   - 2016/08 - 2016/11，学习 **Golang**，探索开发游戏相关 App；技术栈：**Golang/Gin/PostgreSQL/Supervisor/Nginx**
   - 2016/11 - 2017/04，开发 [Fatu](https://fatu.me)；技术栈：**Ruby/Rails/Sidekiq/RSpec/PostgreSQL/Redis/ffmpeg/giflossy/Docker/Nginx**
+  - 2017/02 - 2017/03，引入和维护 [Ansible](https://www.ansible.com/)，自动化服务器维护、**DNS/TLS/Nginx** 配置、应用初始化及进程管理等
+
 - 2017-05 - 至今，休息，希望能开启远程工作、自由职业之旅
 
 <hr>

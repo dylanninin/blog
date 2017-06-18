@@ -134,8 +134,8 @@
 
 # 效果
 
- * Online Demo: [http://dylanninin.com:8080/](http://dylanninin.com:8080)
- * Movable Type 5：[http://dylanninin.com/](http://dylanninin.com/)
+ * Online Demo: [Pastime Paradise](https://webpy-blog.herokuapp.com/)
+ * ~~Movable Type 5：[http://dylanninin.com/](http://dylanninin.com/)~~
 
 # 计划
 
@@ -145,7 +145,7 @@
 
 * 自动查找相关博客
 
-* 功能完善和bug排除
+* 功能完善和 bug 排除
 
 * 代码重构
 
@@ -165,7 +165,7 @@
 
 ## 2013-11-23
 
-本计划使用[TF-IDF](http://en.wikipedia.org/wiki/Tf%E2%80%93idf)以及[Jieba](https://github.com/fxsjy/jieba)，自动提取博客的关键字、摘要以及相似文章，但效果并不理想。
+本计划使用 [TF-IDF](http://en.wikipedia.org/wiki/Tf%E2%80%93idf) 以及 [Jieba](https://github.com/fxsjy/jieba)，自动提取博客的关键字、摘要以及相似文章，但效果并不理想。
 
 这里模仿 Github Pages 中的做法，在博客的开始声明一些属性：
 
@@ -180,7 +180,7 @@
 另外，此博客的在线 [demo](https://webpy-blog.herokuapp.com/)。
 
 
-* 阮一峰的网络日志—— TF-IDF与余弦相似性的应用系列：[自动提取关键字](http://www.ruanyifeng.com/blog/2013/03/tf-idf.html)；[找出相似文章](http://www.ruanyifeng.com/blog/2013/03/cosine_similarity.html)；[自动摘要](http://www.ruanyifeng.com/blog/2013/03/automatic_summarization.html)
+* 阮一峰的网络日志—— TF-IDF 与余弦相似性的应用系列：[自动提取关键字](http://www.ruanyifeng.com/blog/2013/03/tf-idf.html)；[找出相似文章](http://www.ruanyifeng.com/blog/2013/03/cosine_similarity.html)；[自动摘要](http://www.ruanyifeng.com/blog/2013/03/automatic_summarization.html)
 * Python 中文分词 [Jieba](https://github.com/fxsjy/jieba)
 
 # 参考
