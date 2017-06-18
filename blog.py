@@ -10,7 +10,13 @@ history:
 import web
 from config import urls
 
-app = web.application(urls, globals())
+
+class App(web.application):
+    def run(self, port=8080, *middlewares):
+        func = self.wsgifunc(*middlewares)
+        return web.httpserver.runsimple(func, ('0.0.0.0', port))
+
 
 if __name__ == "__main__":
-    app.run()
+    app = App(urls, globals())
+    app.run(web.config.port)

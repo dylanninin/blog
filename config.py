@@ -8,10 +8,12 @@ history:
 """
 
 import web
+import os
 
 blogconfig = web.storage(
     name='Pastime Paradise',
     home='http://dylanninin.com',
+    port=int(os.getenv('PORT') or 8080),
     author='dylan',
     disqus='"webpymdblog"',
     google_analytics='"UA-21870463-1"',
@@ -50,6 +52,7 @@ blogconfig = web.storage(
 )
 
 web.config.debug = blogconfig.debug
+web.config.port = blogconfig.port
 render = web.template.render(blogconfig.template_dir, cache=blogconfig.cache)
 web.template.Template.globals['config'] = blogconfig
 web.template.Template.globals['render'] = render
