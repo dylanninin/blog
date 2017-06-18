@@ -75,6 +75,3 @@ group: navigation
 ## 联系方式
 
 - ![gmail](http://dylanninin.com/assets/images/me/gmail.png) dylanninin (at) gmail.com
-
-<hr>
-{% include JB/comments %}
