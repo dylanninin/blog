@@ -9,13 +9,13 @@ tags : [Oracle, Database, DBA]
 
 以下是更改记录，以作备忘。
 
-##测试环境
+## 测试环境
 
 * 操作系统：CentOS 5.5
 * 数据库: Oracle Database 10.2.0.1.0
 
-##主要步骤
-###1. 先更改dbname
+## 主要步骤
+### 1. 先更改dbname
 
 修改oracle数据库的dbid和dbname，主要步骤如下：
 
@@ -25,7 +25,7 @@ tags : [Oracle, Database, DBA]
 * 4)启动到mount：`startup mount`
 * 5)以resetlogs打开数据库：`alter database open resetlogs`;
 
-####1)重启数据库到mount
+#### 1)重启数据库到mount
 
 查看当前数据库names设置：
 
@@ -72,7 +72,7 @@ tags : [Oracle, Database, DBA]
 	Redo Buffers 7163904 bytes
 	Database mounted.
 
-####2)运行nid,更改`dbname`和`dbid`
+#### 2)运行nid,更改`dbname`和`dbid`
 
 nid即new database id，根据`dbname`生成新的`dbid`：
 
@@ -113,7 +113,7 @@ nid即new database id，根据`dbname`生成新的`dbid`：
 	Succesfully changed database name and ID.
 	DBNEWID - Completed succesfully.
 
-####3)更改initdbtest.ora，将`db_name`设置为CRMTEST
+#### 3)更改initdbtest.ora，将`db_name`设置为CRMTEST
 
 进入到$ORACLE_HOME/dbs目录：
 
@@ -127,7 +127,7 @@ nid即new database id，根据`dbname`生成新的`dbid`：
 	*.db_name='CRMTEST'
 	... ...
 
-####4)以`initdbtest.ora`启动数据库到mount状态
+#### 4)以`initdbtest.ora`启动数据库到mount状态
 
 	SQL> startup mount pfile='/db/oracle/product/10.2.0/db_1/dbs/initdbtest.ora';
 	ORACLE instance started.
@@ -138,7 +138,7 @@ nid即new database id，根据`dbname`生成新的`dbid`：
 	Redo Buffers 7163904 bytes
 	Database mounted.
 
-####5)以resetlogs开启数据库
+#### 5)以resetlogs开启数据库
 
 	SQL> alter database open resetlogs;
 	Database altered.
@@ -159,7 +159,7 @@ nid即new database id，根据`dbname`生成新的`dbid`：
 
 到这里，已经将`dbname`从dbtest更改为CRMTEST，但`instance_name`还是dbtest，接下来 将`intance_name`更改为CRMTEST。 其他的如`db_unique_name`，`service_names`同样更改为CRMTEST。
 
-###2. 再更改`instance_name`
+### 2. 再更改`instance_name`
 
 更改数据库的`instance_name`，主要步骤如下：
 
@@ -169,7 +169,7 @@ nid即new database id，根据`dbname`生成新的`dbid`：
 * 4)更改数据库以spfile启动:`create spfile from pfile`
 * 5)修改监听：`vim $ORACLE_HOME/network/admin/listener.ora`
 
-###1)创建新的密码文件`orapwCRMTEST`
+### 1)创建新的密码文件`orapwCRMTEST`
 
 	[oracle@shoptest dbs]$ pwd
 	/db/oracle/product/10.2.0/db_1/dbs
@@ -187,7 +187,7 @@ nid即new database id，根据`dbname`生成新的`dbid`：
 	-rw-r----- 1 oracle oinstall 7356416 Oct 9 20:06 snapcf_dbtest.f
 	-rw-r----- 1 oracle oinstall 3584 Oct 9 20:17 spfiledbtest.ora
 
-####2)创建initCRMTEST.ora文件，设置相关参数
+#### 2)创建initCRMTEST.ora文件，设置相关参数
 
 拷贝initdbtest.ora到initCRMTEST.ora：
 	
@@ -207,7 +207,7 @@ nid即new database id，根据`dbname`生成新的`dbid`：
 	*.dispatchers='(PROTOCOL=TCP) (SERVICE=CRMTESTXDB)'
 	... ...
 
-####3)以initCRMTEST.ora启动数据库
+#### 3)以initCRMTEST.ora启动数据库
 
 因实例名已经从dbtest改为CRMTEST，需重新设置`ORACLE_SID`：
 
@@ -245,7 +245,7 @@ nid即new database id，根据`dbname`生成新的`dbid`：
 	log_file_name_convert       string
 	service_names               string    dbtest
 
-####4)创建spfile，并以spfile重启数据库
+#### 4)创建spfile，并以spfile重启数据库
 
 从pfile创建spfile：
 
@@ -310,7 +310,7 @@ nid即new database id，根据`dbname`生成新的`dbid`：
 	Next log sequence to archive 1
 	Current log sequence 1
 	
-####5)修改并重启监听
+#### 5)修改并重启监听
 
 修改监听中的`SID_NAME`和`GLOBAL_DBNAME`：
 	
@@ -383,16 +383,16 @@ nid即new database id，根据`dbname`生成新的`dbid`：
 	export ORACLE_SID=CRMTEST
 	... ...
 
-##测试和确认
+## 测试和确认
 
 这样数据库的`instance_name`就更改完成，下面进行一些简单的测试，确认更改成功，主
 要测试一下几个方面：
 * 监听正常，可以接收连接请求：tnsping crmtest
 * 密码文件生效：conn sys@crmtest /as sysdba
 
-###1. 监听测试
+### 1. 监听测试
 
-####服务器端连接测试
+#### 服务器端连接测试
 
 配置tnsnames.ora：
 
@@ -430,7 +430,7 @@ nid即new database id，根据`dbname`生成新的`dbid`：
 	Attempting to contact (DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = shoptest.egolife.com)(PORT = 1521)) (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME = CRMTEST)))
 	OK (0 msec)
 
-####Windows客户端连接测试
+#### Windows客户端连接测试
 
 同样，先配置tnsnames.ora，然后运行tnsping crmtest，确认是否可以连接：
 
@@ -445,7 +445,7 @@ nid即new database id，根据`dbname`生成新的`dbid`：
 	尝试连接 (DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = shoptest.egolife.com)(PORT = 1521)) (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME = CRMTEST)))
 	OK (0 毫秒)
 
-###2. orapwCRMTEST密码文件生效测试
+### 2. orapwCRMTEST密码文件生效测试
 
 再使用sqlplus以sysdba身份登录，检查密码文件是否生效：
 
@@ -457,7 +457,7 @@ nid即new database id，根据`dbname`生成新的`dbid`：
 	已连接。
 	SQL>
 
-##参考
+## 参考
 
 * [Oracle 修改DB_NAME 和 DBID](http://blog.csdn.net/tianlesoftware/article/details/6087641)
 * [如何修改数据库实例名](http://oonicedream.itpub.net/post/36905/457005)

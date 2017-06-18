@@ -5,7 +5,7 @@ category : Oracle
 tags : [Oracle, Database, DBA]
 ---
 
-##flashback database
+## flashback database
 
 check flashback settings
 
@@ -94,7 +94,7 @@ open database
          73448
 
          
-##flashback drop
+## flashback drop
 
 recyclebin
 
@@ -304,7 +304,7 @@ flashback drop test4
     ------------------------------
     TEST_IDX
     
-##flashback query
+## flashback query
 
 nls date format
 
@@ -484,7 +484,7 @@ flashback query test based on scn
 
     7 rows selected.
     
-##flashbak table
+## flashbak table
 
     SQL> alter session set nls_date_format = 'YYYY-MM-DD hh24:mi:ss';
 
@@ -541,7 +541,7 @@ flashback query test based on scn
     ------------------------------
     SMALLTAB
 
-##Reference
+## Reference
 
 * [Oracle 11gR2 中 Flashback 说明](http://blog.csdn.net/tianlesoftware/article/details/7229802)
 * [Oracle Flashback 技术总结](http://blog.csdn.net/tianlesoftware/article/details/4677378)

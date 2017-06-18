@@ -5,7 +5,7 @@ category : Oracle
 tags : [Oracle, Database, DBA, EBS, Excepiton]
 ---
 
-##Truncate Table
+## Truncate Table
 
 database version
 
@@ -39,7 +39,7 @@ segment size
  
 
 
-##Metalink Note
+## Metalink Note
  
 suggested truncate operation 
 
@@ -92,7 +92,7 @@ suggested truncate operation
     ALTER TABLE ASO.AQ$_ASO_ORDER_FEEDBACK_T_H DEALLOCATE UNUSED;
     ALTER TABLE ASO.AQ$_ASO_ORDER_FEEDBACK_T_T DEALLOCATE UNUSED;
 
-##Error Message
+## Error Message
 
 ORA-04021: Timeout occurred while waiting to lock object SYS.DBMS_AQADM.
 
@@ -117,7 +117,7 @@ When the above statements are successful, execute the following SQL statements:
 Recreate a new set of Warehouse Builder Runtime Repository users.
 Restart the Runtime Platform Service by running the ORACLE_HOME\owb\rtp\sql\start_service.sql script.
     
-##Diagnose while re-executing asoqueue.sql
+## Diagnose while re-executing asoqueue.sql
     
     $ whoami
     testora
@@ -565,7 +565,7 @@ Restart the Runtime Platform Service by running the ORACLE_HOME\owb\rtp\sql\star
 
     SQL> host kill -9 2027618
   
-##Retest
+## Retest
   
 retest and the issue remains
 
@@ -585,6 +585,6 @@ segment size
     ------ ------------------------ --------------- -------------------------
     ASO		ASO_ORDER_FEEDBACK_T	TABLE			0.125
    
-##Reference:
+## Reference:
 
-* Release 11.5.10 / R12 Quoting/Order Capture Order Feedback Queue FAQ [ID 181410.1]
+* Release 11.5.10 / R12 Quoting/Order Capture Order Feedback Queue FAQ [ID 181410.1

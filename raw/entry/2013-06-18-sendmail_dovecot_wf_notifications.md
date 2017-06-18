@@ -5,7 +5,7 @@ category : Oracle
 tags : [Oracle, DBA, EBS, Mail, Utilities]
 ---
 
-##Workflow Notification Mailer
+## Workflow Notification Mailer
 
 Operation: System Administrator -> Oracle Application Manager: Workflow -> Notification Mailers -> Edit
 
@@ -26,7 +26,7 @@ Inbount Email Account(IMAP):
 	Password:secret
 	Reply-To Address: me@dev.egolife.com
 
-##Sendmail Configuration
+## Sendmail Configuration
 
 check sendmail service 
 
@@ -128,7 +128,7 @@ sendmail test
 	Jun 18 17:34:39 dev sendmail[4201]: r5I9YcUV004201: to=me@egolife.com, ctladdr=root (0/0), delay=00:00:01, xdelay=00:00:01, mailer=relay, pri=37516, relay=[127.0.0.1] [127.0.0.1], dsn=2.0.0, stat=Sent (r5I9YcOE004202 Message accepted for delivery)
 	Jun 18 17:34:39 dev sendmail[4204]: r5I9YcOE004202: to=<me@egolife.com>, ctladdr=<root@dev.egolife.com> (0/0), delay=00:00:01, xdelay=00:00:00, mailer=esmtp, pri=127772, relay=smtp.egolife.com. [172.29.88.10], dsn=2.0.0, stat=Sent (Message queued)
 
-##Dovecot Configuration
+## Dovecot Configuration
 
 add listen ip and set mail location
 
@@ -175,7 +175,7 @@ view maillog
 	Jun 18 18:16:24 dev dovecot: imap-login: Disconnected (no auth attempts): rip=192.168.1.6, lip=192.168.1.6, secured
 	Jun 18 18:16:26 dev dovecot: imap(me): Disconnected: Logged out bytes=76/773
 
-##Test Mailer in EBS App Node
+## Test Mailer in EBS App Node
 
 Operation: System Administrator -> Oracle Application Manager: Workflow -> Notification Mailers -> Edit -> Test Mailer
 
@@ -207,7 +207,7 @@ WF Mailer Notification Status
 	
 	... ...
 	
-##Reference
+## Reference
 
 * [sendmail](http://www.sendmail.com/)
 * [dovecot](http://www.dovecot.org/)

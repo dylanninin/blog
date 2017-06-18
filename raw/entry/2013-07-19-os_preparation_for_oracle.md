@@ -5,7 +5,7 @@ category : Oracle
 tags : [Oracle, Database, DBA, Linux]
 ---
 
-##OS Configuration
+## OS Configuration
 
 ### kernel
 
@@ -20,7 +20,7 @@ tags : [Oracle, Database, DBA, Linux]
 	172.17.1.100  db.egolife.com db
 	172.29.88.135 wxbak.egolife.com wxbak
 
-##Database 11gR2
+## Database 11gR2
 
 ### group and user
 
@@ -33,12 +33,15 @@ tags : [Oracle, Database, DBA, Linux]
 
 ###	kernel parameters
 
-* `/proc/sys/.../file`: current value of these parameters; non persistent * `/etc/sysctl.conf`: configure file of these parameters; persistent during each startup * `sysctl -p`: persistent during each startup 
+* `/proc/sys/.../file`: current value of these parameters; non persistent 
+* `/etc/sysctl.conf`: configure file of these parameters; persistent during each startup 
+* `sysctl -p`: persistent during each startup 
 
 #### parameters
 
 shared memory, semaphores, file handles parameter, net parameter 
-	
+
+	
     [root@db ~]# sysctl -p
     net.ipv4.ip_forward = 0
     net.ipv4.conf.default.rp_filter = 1
@@ -92,9 +95,11 @@ shared memory, semaphores, file handles parameter, net parameter
     net.core.wmem_default = 262144
     net.core.wmem_max = 1048576
 
-### resource limits
+### resource limits
+
 * `/etc/security.conf`: resource limits configuration file 
-* `/etc/pam.d/login`: login settings * `ulimit`: utility to check or change resource limits 
+* `/etc/pam.d/login`: login settings 
+* `ulimit`: utility to check or change resource limits 
 
 open file descriptors, number of processes available to a single user, size of the 
 stack segment of the process.
@@ -125,7 +130,8 @@ stack segment of the process.
     session    required     /lib64/security/pam_limits.so
     session    required     pam_limits.so
     
-### managing packages
+### managing packages
+
 for Oracle Linux 6 and Red Hat Enterprise Linux 6 x86-64, the following packages (or later versions) must be installed:
 
 * binutils-2.20.51.0.2-5.11.el6 (x86_64)
@@ -232,7 +238,8 @@ to be installed packages:
     export ORACLE_SID=WXPROD
     export PATH=$PATH:$ORACLE_HOME/bin
 
-### X Window System
+### X Window System
+
 ### nobody
 
 ### Install Database
@@ -367,4 +374,4 @@ use oracle as example
 
     touch /var/lock/subsys/local
     su - c "iptables-restore < /etc/iptables.rule"
-    
+   

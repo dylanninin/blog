@@ -5,7 +5,7 @@ category : Oracle
 tags : [Oracle, Database, DBA]
 ---
 
-##监控临时段使用
+## 监控临时段使用
 
 最近一个Web应用后端的数据库经常出现ORA-01652异常，即扩展临时段失败；关键在于该临时段在不久前已经扩展过一次，所以这里不再继续扩展，而是计划监控临时段的使用情况，并从中发现不合理的语句。
 
@@ -23,7 +23,7 @@ tags : [Oracle, Database, DBA]
 		NLSRTL Version 11.2.0.1.0 - Production
 
 
-##创建表结构
+## 创建表结构
 
 `TEMP_SEG_USAGE`用于存放临时段使用统计信息，包括使用的用户、SQL语句等。
 
@@ -39,7 +39,7 @@ tags : [Oracle, Database, DBA]
  
 	Table created
  
-##创建存储过程
+## 创建存储过程
 
 `TEMP_SEG_USAGE_P`存储过程处理`INSERT`操作，方便JOB调用。
 
@@ -123,7 +123,7 @@ tags : [Oracle, Database, DBA]
 	 
 	Procedure altered
 
-##提交JOB
+## 提交JOB
 
 	DEV> BEGIN
 			DBMS_JOB.ISUBMIT(JOB=>8001,WHAT=> 'TEMP_SEG_USAGE_P;',NEXT_DATE => SYSDATE,INTERVAL  => 'sysdate + (5/1440)');
@@ -136,9 +136,9 @@ tags : [Oracle, Database, DBA]
 到这里，监控临时段使用情况的任务已经创建完成，监控一段时间时候，即可获取临时段使用的统计信息，进而发现异常的语句。
 
 
-##遇到的几个问题
+## 遇到的几个问题
 
-###1.权限异常
+### 1.权限异常
 
 在存储过程TEMP_SEG_USAGE_P中，使用到了`V$SESSION`，`V$TEMPSEG_USAGE`,`V$SQLAREA`动态性能视图，但查询当前用户授予的直接角色时，已经有系统标准的DBA角色，有权限查询这些视图。但在存储过程编译时，却提示表或视图不存在。
 
@@ -157,7 +157,7 @@ Note : The privileges assigned to a role can be associated with a user session o
 It is important to note that the privileges acquired via roles can be exercised when running a procedure with invoker's rights but cannot be used when running a procedure with definer's rights.
 
 
-###2.同义词授权
+### 2.同义词授权
 
 在创建上监控程序的过程中，出现过授权访问v$session错误的情况，如下：
 
@@ -190,7 +190,7 @@ It is important to note that the privileges acquired via roles can be exercised 
 
 这样将给用户足够的权限去访问所有的数据字典。
 
-###3.什么是Fixed Views
+### 3.什么是Fixed Views
 
 Throughout its operation, Oracle maintains a set of virtual tables that record current database activity. These tables are called dynamic performance tables.
 
@@ -212,7 +212,7 @@ Standard dynamic performance views (V$ fixed views) store information on the loc
 	----------
 	      1968
 
-###4.什么是Synonym
+### 4.什么是Synonym
 
 A synonym is an alias for any table, view, materialized view, sequence, procedure, function, package, type, Java class schema object, user-defined object type, or another synonym. Because a synonym is simply an alias, it requires no storage other than its definition in the data dictionary.
 
@@ -284,7 +284,7 @@ APP再次访问
 
 这里感觉比较奇怪的是同样是同义词，授权却不一样，`grant select on v$session to username；`提示select操作的对象不对（即select仅能在表或视图上操作），这样就只能通过`grant select on v_$session to username；`授权；而`grant select on synonym_role to username;`却可以正常授权。
 
-##小结
+## 小结
 
 在这个监控临时段使用脚本的创建执行过程中，遇到的主要是权限方面的问题，针对动态性能视图，同义词，以及存储过程。不过，即使根据文档解决了这些问题，还是没理解它们为什么会存在，为什么要这样设计。
 
@@ -295,9 +295,9 @@ APP再次访问
 * Job,Database Link中的权限问题；
 * 同义词的授权；
 
-##参考
+## 参考
 
 * Oracle Database Concepts
 * [Oracle Temp临时表空间](http://blog.csdn.net/tianlesoftware/article/details/4697417)
 * [浅谈Job和Database Link的一个特点](http://yangtingkun.itpub.net/post/468/7984)
-* [DBMS_JOB用法](http://blog.csdn.net/tianlesoftware/article/details/4703133)
+* [DBMS_JOB用法](http://blog.csdn.net/tianlesoftware/article/details/4703133

@@ -7,7 +7,7 @@ tags : [Network, Exception]
 
 Today there's a network problem within my [Linode](http://www.linode.com/) VPS. And now this issue has been resolved with its' support.
 
-##traceroute within my pc
+## traceroute within my pc
 
 traceroute to 198.74.50.175 from my PC within PRC.
 
@@ -28,7 +28,7 @@ traceroute to 198.74.50.175 from my PC within PRC.
 	 12     *        *        *     timeout
 	 13     *        *        *     timeout
 
-##the last hop
+## the last hop
 
 The last accessible hop is 202.97.33.214:
 
@@ -38,13 +38,13 @@ The last accessible hop is 202.97.33.214:
 ![backbone_of_chinanet](http://dylanninin.com/assets/images/2013/backbone_of_chinanet.png)
 
 
-##my ip status
+## my ip status
 
 check blacklist status
 
 ![blacklist_status](http://dylanninin.com/assets/images/2013/blacklist_status.png)
 
-##traceroute within linode
+## traceroute within linode
 
 traceroute to 8.8.8.8 from my linode(login with Lish Web Console)
 
@@ -65,7 +65,7 @@ traceroute to 8.8.8.8 from my linode(login with Lish Web Console)
 	10  * * *                                                                                            
 	11  google-public-dns-a.google.com (8.8.8.8)  24.454 ms  24.407 ms  24.473 ms  
 	
-##route within linode
+## route within linode
 
 route within my linode(login with Lish Web Console)
 
@@ -77,7 +77,7 @@ route within my linode(login with Lish Web Console)
 	198.74.50.0     0.0.0.0         255.255.255.0   U     0      0        0 eth0                         
 
 
-##ifconfig within linode
+## ifconfig within linode
 
 ifconfig within my linode(login with Lish Web Console)
                                                      
@@ -104,7 +104,7 @@ ifconfig within my linode(login with Lish Web Console)
 
 Well, there's some issues lately with the GFW.
 
-##reference
+## reference
 
 * [Using the Linode Shell(Lish)](http://library.linode.com/troubleshooting/using-lish-the-linode-shell)
 * [whatismyipaddress.com](http://whatismyipaddress.com)

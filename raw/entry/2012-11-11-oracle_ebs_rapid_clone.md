@@ -5,7 +5,7 @@ category : Oracle
 tags : [Oracle, Database, DBA,  EBS]
 ---
 
-##克隆环境
+## 克隆环境
 
 * OS: IBM AIX 5.3 64bit
 * EBS: 11.5.10.2 64bit
@@ -13,7 +13,7 @@ tags : [Oracle, Database, DBA,  EBS]
 
 ERPProd和ERPTest环境一样，在硬件方面ERPTest配置稍低
 
-##准备工作
+## 准备工作
 
 关闭克隆目标系统的数据库、应用等。目前ERP环境采用定期克隆，这里还需要删除克隆目标系统上以前的数据
 
@@ -55,7 +55,7 @@ ERPProd和ERPTest环境一样，在硬件方面ERPTest配置稍低
 	mv /u2/TEST/testmgr/testcomn/clone /u2/TEST/testmgr/testcomn/clone_120527bk
 	mv /u2/TEST/testmgr/testcomn/util /u2/TEST/testmgr/testcomn/util_120527bk
 
-##2.正式克隆
+## 2.正式克隆
 
 在执行rapid clone时，会从原系统创建克隆用的模板配置文件，当原系统文件复制到目标 系统时，rapid clone工具将使用目标心痛的配置来更新这些模板配置文件，达到克隆出另 外一套系统的目的。
 
@@ -151,7 +151,7 @@ ERPProd和ERPTest环境一样，在硬件方面ERPTest配置稍低
 	--prodmgr
 	adstrtal.sh apps/xxxxxx
 
-##3.配置目标系统
+## 3.配置目标系统
 
 配置目标系统，主要是运行一些配置命令，设置目标系统的sid，路径，端口等
 
@@ -315,7 +315,7 @@ ERPProd和ERPTest环境一样，在硬件方面ERPTest配置稍低
 	
 	.end err out.
 
-##4.完成目标系统最终设置
+## 4.完成目标系统最终设置
 
 1)Profile参数设置
 
@@ -409,9 +409,9 @@ ERPProd和ERPTest环境一样，在硬件方面ERPTest配置稍低
 	SQL> shutdown
 	SQL> startup
 
-##5.错误记录
+## 5.错误记录
 
-###1)2012-04-22 出错记录
+### 1)2012-04-22 出错记录
 
 将testvg挂载到正式环境后复制出现IO错误，重新挂载时出错
 
@@ -441,7 +441,7 @@ testvg无法挂载到正式环境的原因待查。
 	Superblock is marked dirty; FIX? y
 	All observed inconsistencies have been repaired.
 
-###2)2010-11-21 出错记录
+### 2)2010-11-21 出错记录
 
 	Completed Apply...
 	Sun Nov 21 15:30:38 2010
@@ -487,7 +487,7 @@ testvg无法挂载到正式环境的原因待查。
 	mv /tmp/oraInventory /tmp/oraInventory.bk
 	/tmp/orainstRoot.sh
 
-##参考
+## 参考
 
 * Cloning Oracle Applications Release 11i with Rapid Clone
 * EBS 11i Creating a Clone using Oracle Application Manager (OAM Clone)

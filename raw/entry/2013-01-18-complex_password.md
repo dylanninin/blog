@@ -19,7 +19,7 @@ tags : [Python, Utilities]
 
 想想这些问题其实很简单，但也很容易被忽视。当然了，从发现这些问题的测试来看，一定复杂度的密码确实起到不少作用，至少一个很容易被忽视的死角马上就暴露出来了。
 
-##程序
+## 程序
 
 因在日常工作中，有一部分是负责用户账号和权限分配，使用Lastpass自动生成密码容易导致密码繁多难以管理，且也有泄露的危险。于是动手写了一个简单的自动生成密码工具，主要使用Python的random和string标准库。
 
@@ -64,7 +64,7 @@ tags : [Python, Utilities]
 
 源代码：[dylanninin/utils/passwdgen.py](https://github.com/dylanninin/utils/blob/master/passwdgen.py)
 
-##参考
+## 参考
 
 * [如何管理并设计你的口令](如何管理并设计你的口令)
 * [CSDN明文口令泄露的启示](http://coolshell.cn/articles/6193.html)

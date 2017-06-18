@@ -5,7 +5,7 @@ category : Oracle
 tags : [Oracle, Database, DBA]
 ---
 
-##Cursor
+## Cursor
 
 Cursors are one of the most common and fundamental terms in the database terminology. 
 
@@ -17,7 +17,7 @@ Cursor follows a defined execution cycle to execute the SQL statement associated
 
 There are two types of cursors: Implicit cursors and explicit cursors.
 
-###Implicit Cursors
+### Implicit Cursors
 
 Oracle server processes every SQL statement in a PL/SQL block as an implicit cursor. All the DML statements (INSERT, UPDATE or DELETE) and SELECT query with INTO or BULK COLLECT clauses are candidates for implicit cursors. Whenever a SQL statement is executed, Oracle automatically allocates a memory area (known as context area) in Oracle database PGA i.e. Process Global Area. This allocated memory space is the query work area which holds the query related information.
 
@@ -30,7 +30,7 @@ For implicit cursor, the complete execution cycle is internally handled and main
 
 These attributes are set at the different stages of execution cycle and retained in the context area.
 
-###Explicit Cursors
+### Explicit Cursors
 
 These cursors are explicitly declared in the DECLARE section of the block. They possess a specific name and a static SELECT statement attached to them. Explicit cursors are manually executed by the developers and follow complete execution cycle.
 
@@ -41,6 +41,6 @@ Explicit cursor information is also captured in cursor attributes, which are set
 * CURSOR%FOUND
 * CURSOR%NOTFOUND
 
-##Reference
+## Reference
 
 * Oracle Database Administrator's Guide

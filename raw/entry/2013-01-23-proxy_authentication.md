@@ -7,9 +7,9 @@ tags : [Oracle, Database, DBA, Security]
 
 在学习[cx_Oracle](http://sourceforge.net/projects/cx-oracle/)访问Oracle数据库时， 下载作者的源代码，发现作者在测试的数据库脚本中创建用户即使用了代理授权。当时没有 太注意，最近正好总结作半年以来的工作，想起来就先测试下，以作备忘。
 
-##代理认证
+## 代理认证
 
-###cx_Oracle中创建用户脚本
+### cx_Oracle中创建用户脚本
 
 	... ...
 	create user cx_Oracle identified by "password"
@@ -31,9 +31,9 @@ tags : [Oracle, Database, DBA, Security]
 	to cx_Oracle;
 	... ...
 
-###代理认证测试
+### 代理认证测试
 
-####创建代理/被代理用户
+#### 创建代理/被代理用户
 
 查看DEV所有的系统权限
 
@@ -97,7 +97,7 @@ DEV_APP需要`CREATE SESSION`权限
 
 从这部分测试可用看出，被代理的用户(即`DEV_APP`)通过代理用户(即`DEV`)进行连接时，使用代理用户的用户名、密码进行认证，但被代理用户需要有连接数据库创建会话的权限才能连接。
 
-####对象访问权限
+#### 对象访问权限
 
 因`DEV_APP`通过代理用户`DEV`进行连接，不知`DEV_APP`是否也会拥有DEV的权限。故测试下被代理用户的权限是如何处理的。
 
@@ -151,7 +151,7 @@ DEV拥有的表：
 	
 通过这部分测试可用看出，被代理用户`DEV_APP`不会继承代理用户`DEV`的权限。要权限需要额外授予。
 
-##小结
+## 小结
 
 One should understand that a database proxied user behaves just like the user itself. The connection is created by the proxy, but the session's privileges are limited to the privileges of the proxied user, who is after all a database user.
 

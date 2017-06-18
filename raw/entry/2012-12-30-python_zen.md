@@ -36,7 +36,7 @@ Part of Python's documentation are the PEPs, or "Python Enhancement Proposals." 
 	>>>
 
 
-##Reference
+## Reference
 
 * [Codecademy](http://www.codecademy.com/courses/python-beginner-c7VZg/0#!/exercises/0)
 

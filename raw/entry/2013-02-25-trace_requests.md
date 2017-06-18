@@ -5,7 +5,7 @@ category : Oracle
 tags : [Oracle, DBA, EBS]
 ---
 
-##Trace File
+## Trace File
 
 命名规则：`[oracle_sid]_ora_[server_process_id]_[trace_id].trc` 
 
@@ -18,7 +18,7 @@ tags : [Oracle, DBA, EBS]
 
 大小设定：由参数 `max_dump_file_size`指定，以OS block为单位，跟踪时不确定文件大小，可以增加文件大小，或设为 unlimited。
 
-##跟踪请求会话
+## 跟踪请求会话
 
 **根据request_id查找并发请求信息：**
 
@@ -74,7 +74,7 @@ tags : [Oracle, DBA, EBS]
 	$ ll /u1/PROD/prodora/proddb/9.2.0/admin/PROD_erpprod/udump/prod_ora_3199034.trc
 	-rw-r--r--   1 prodora  dba          745495 Feb 25 15:20 /u1/PROD/prodora/proddb/9.2.0/admin/PROD_erpprod/udump/prod_ora_3199034.trc
  
-##使用tkprof格式化跟踪文件
+## 使用tkprof格式化跟踪文件
 
 因sql trace产生的跟踪文件阅读不太友好，Oracle提供了tkprof工具，可以对此格式化，便于阅读。
 
@@ -140,7 +140,7 @@ tags : [Oracle, DBA, EBS]
 	
 	********************************************************************************
 
-##延伸阅读
+## 延伸阅读
 
 * [Oracle EBS SQL Trace日志收集的方法](http://blog.csdn.net/pan_tian/article/details/7677120)
 * [How to Generate SQL Trace in OAF](http://blog.csdn.net/pan_tian/article/details/8555503)

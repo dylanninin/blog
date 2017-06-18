@@ -85,7 +85,7 @@ cx_Oracle test
     >>> connection.version
     '11.2.0.1.0'
 	
-##Reference
+## Reference
 
 * [Python cx_Oracle 5.0 New Features Overview](http://www.oracle.com/technetwork/articles/tuininga-cx-oracle-084866.html)
 * [cx_Oracle Tutorial](http://dbaportal.eu/sidekicks/sidekick-cx_oracle-code-paterns/)

@@ -9,7 +9,7 @@ tags : [Linux, Oracle, Exception]
 
 本文主要是记录在工作中使用rsync进行远程同步时遇到的问题及其解决方案，同时向大家 推荐关于rsync的两篇博客，一篇是酷壳陈皓的[rsync的核心算法](http://coolshell.cn/articles/7425.html)； 另一篇是51CTO上[抚琴煮酒的CentOS 5.5 下 rsync使用技巧与权限问题解读](http://os.51cto.com/art/201101/243374.htm)。
 
-##环境
+## 环境
 
 主机
 
@@ -25,7 +25,7 @@ tags : [Linux, Oracle, Exception]
 
 以下是一次使用rsync出现异常的维护记录。
 
-##第一次同步异常
+## 第一次同步异常
 
 查看某一系统主机和备机，发现2012-8-7的备份未进行同步，查看日志rsync连接异常，并手动进行测试。
 
@@ -42,15 +42,15 @@ rsync服务端输出日志如下
 	2012/08/08 09:18:28 [9301] rsync: connection unexpectedly closed (2097 bytes received so far) [generator]
 	2012/08/08 09:18:28 [9301] rsync error: error in rsync protocol data stream (code 12) at io.c(463) [generator=2.6.8]
 
-###1.ignore errors 
+### 1.ignore errors 
 
 查看`/etc/rsyncd.conf`，配置了ignore errors，注释掉即可；ignore errors 可以忽略掉一些无关的IO错误。
 
-###2.name lookup failed for 192.168.0.30: Temporary failure in name resolution
+### 2.name lookup failed for 192.168.0.30: Temporary failure in name resolution
 
 rsync 启用了DNS反向解析，查询不到时，可能需要花很长时间。 在`/etc/hosts`文件中，添加`192.168.0.30 any.egolife.com` 配置重新启动rynsc服务和客户端脚本，即可正常同步。
 
-##第二次同步异常
+## 第二次同步异常
 
 查看某一系统主机和备机，发现2012-9-25的备份未进行同步。
 
@@ -84,7 +84,7 @@ rsync服务端日志
 	Preparing... ########################################### [100%]
 	1:rsync ########################################### [100%]
 
-###升级版本之后，仍有错误信息。
+### 升级版本之后，仍有错误信息。
 
 rsync客户端日志
 
@@ -176,7 +176,7 @@ rsync服务端日志
 	root pts/1 192.138.1.100 Tue Sep 25 12:37 - 20:21 (07:43) 
 	reboot system boot 2.6.18-194.el5 Mon Sep 24 16:59 (1+03:31)
 
-##脚本
+## 脚本
 
 rsync.sh
 
@@ -212,11 +212,11 @@ rsync.sh
 	#inotify
 	inotify_fun >> ${log_file} 2<&1 &
 
-##延伸阅读
+## 延伸阅读
 
 * [抚琴煮酒：CentIOS 5.5 下rsync使用技巧和权限问题解读](http://os.51cto.com/art/201101/243374.htm)
 * [陈皓：rsync的核心算法](http://coolshell.cn/articles/7425.html)
 
-##参考文档
+## 参考文档
 
 * [suchalin：在redhat5.4/5.5/5.6中默认的rsync出现的bug](http://suchalin.blog.163.com/blog/static/553046772011917112312684/)

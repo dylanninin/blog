@@ -1,4 +1,4 @@
-##mount iscsi storage on aix
+## mount iscsi storage on aix
 
 1.os and iscsi package
 
@@ -267,7 +267,7 @@
     
 	# mount -V jfs2 -o log=INLINE /dev/hdisk10 /data
 
-##Reference
+## Reference
 
 * [AIX 5.3/6.1 ISCSI howto](http://dawangliang.blog.163.com/blog/static/1879031682011543446756/)
 * [AIX 5.3 iSCSI softwre initiator](http://publib.boulder.ibm.com/infocenter/pseries/v5r3/index.jsp?topic=/com.ibm.aix.commadmn/doc/commadmndita/iscsi_config.htm)

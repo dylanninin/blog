@@ -1,4 +1,4 @@
-##概述
+## 概述
 
 Oracle  Statspack 从 Oracle8.1.6 开始被引入 Oracle,并马上成为 DBA 和 Oracle 专家用来诊断数据库性能的强有力的工具。通过 Statspack 我们可以很容易的确定 Oracle 数据库的瓶颈所在，记录数据库性能状态，也可以使远程技术支持人员迅速了解你的数据库运行状况。因此了解和使用 Statspack 对于 DBA 来说至关重要。
 
@@ -6,9 +6,9 @@ Oracle 10g之前对数据库做性能检测使用statspack工具，自10g 提供
 
 在数据库中 Statspack 的脚本位于`$ORACLE_HOME/RDBMS/ADMIN` 目录下。
 
-##基本使用
+## 基本使用
 
-###1.安装statspack.
+### 1.安装statspack.
 
 在$ORACLE_HOME/rdbms/admin/目录下运行：
 
@@ -18,7 +18,7 @@ Oracle 10g之前对数据库做性能检测使用statspack工具，自10g 提供
 	
 	SQL> @spdrop.sql
  
-###2.测试
+### 2.测试
 
 	SQL>execute statspack.snap
 	  PL/SQL procedure successfully completed.
@@ -30,23 +30,23 @@ Oracle 10g之前对数据库做性能检测使用statspack工具，自10g 提供
 
 进行信息收集统计，每次运行都将产生一个快照号，获得快照号，必须要有两个以上的快照，才能生成报表
  
-###3.查选快照信息
+### 3.查选快照信息
 
 	SQL>select SNAP_ID, SNAP_TIME from STATS$SNAPSHOT;
  
-###4.获取statspack 报告
+### 4.获取statspack 报告
 
 	SQL>@spreport.sql          
                                                          
 按照提示，输入需要查看的开始快照号与结束快照号即可。
  
-###5.其他相关脚本
+### 5.其他相关脚本
 
 * spauto.sql： 利用dbms_job提交一个作业，自动的进行STATPACK的信息收集统计
 * sppurge.sql ：清除一段范围内的统计信息，需要提供开始快照与结束快照号
 * sptrunc.sql ： 清除(truncate)所有统计信息
  
-###6.查看Statspack 生成源代码
+### 6.查看Statspack 生成源代码
 
 在oracle 9i里面，我们可以通过查看statspack 生成脚本来帮助我们理解report，但是10g的AWR是通过`dbms_workload_repository`包来实现AWR的。包把代码都封装了起来，我们无法查看。
  	
@@ -54,11 +54,11 @@ statspack的生成脚本位置：`$ORACLE_HOME/rdbms/admin/sprepins.sql`
 代码很长，不过看懂了，能帮助我们理解statspack中各个数据的意义。
 
 
-##检查系统参数
+## 检查系统参数
 
 为了能够顺利安装和运行 Statspack 你可能需要设置以下系统参数：
 
-###1.`job_queue_processes` 
+### 1.`job_queue_processes` 
 
 为了能够建立自动任务，执行数据收集，该参数需要大于 0。你可以在初试化参数文件中修改该参数(使该参数在重起后以然有效)。 
 
@@ -84,7 +84,7 @@ statspack的生成脚本位置：`$ORACLE_HOME/rdbms/admin/sprepins.sql`
 	SQL> alter system set job_queue_processes = 6 scope=both;   
 	System altered.
 
-###2.`timed_statistics` 
+### 2.`timed_statistics` 
 
 收集操作系统的计时信息，这些信息可被用来显示时间等统计信息、优化数据库和 SQL 语句。要防止因从操作系统请求时间而引起的开销，请将该值设置为 False。 
 
@@ -105,10 +105,10 @@ timed_statistics 参数可以在实例级进行更改
 如果你担心一致启用 timed_statistics  对于性能的影响，你可以在使用 statspack 之前在 system 更改，采样过后把该参数动态修改成 false。
 
 
-##检查Statspack
+## 检查Statspack
 因测试环境中之前做过statspack监控，并未删除statspack对象，因此这里仅确认下是否安装正确。要看安装、卸载等，请查阅参考文档。
 
-###1.statspack检查
+### 1.statspack检查
 
 statspack脚本均在$ORACLE_HOME/rdbms/admin下。首先切换到该目录，下面执行脚本时会比较方便。
 
@@ -124,7 +124,7 @@ sp脚本
 	spauto.sql        spcreate.sql      spcusr.lis        spdrop.sql        sppurge.sql       spreport0902.txt  sptrunc.sql       spup817.sql
 	spcpkg.lis        spctab.lis        spcusr.sql        spdtab.sql        sprepins.sql      spreport0907.txt  spuexp.par        spup90.sql
 
-###2.测试sp脚本
+### 2.测试sp脚本
 
 	SQL> execute statspack.snap
 	
@@ -136,14 +136,14 @@ sp脚本
 	SQL> @spreport.sql
 	……	
 
-###3.检查statspach表空间
+### 3.检查statspach表空间
 
 	SQL> SELECT tablespace_name,file_name, round(dbf.BYTES / (1024 * 1024),0) "Total_space(M)" FROM dba_data_files dbf where dbf.TABLESPACE_NAME = 'STATSPACK';  
 			TABLESPACE_NAME   FILE_NAME                     Total_space(M)
 	-------------------- ------------------------------------------------------------ --------------
 	STATSPACK  /u2/TEST/testora/testdata/statspack_01.dbf               500.00
 
-##规划自动任务
+## 规划自动任务
 
 Statspack 正确安装以后，我们就可以设置定时任务，开始收集数据了。可以使用 spatuo.sql 来定义自动任务。
 
@@ -206,7 +206,7 @@ Statspack 正确安装以后，我们就可以设置定时任务，开始收集�
 
 关于采样间隔，我们通常建议以 1 小时为时间间隔，对于有特殊需要的环境，可以设置更短的，如半小时作为采样间隔，但是不推荐更短。因为 statspack 的执行本身需要消耗资源，对于繁忙的生产系统，太短的采样对系统的性能会产生较大的影响（甚至会使 statspack 的执行出现在采样数据中）。
 
-##生成分析报告
+## 生成分析报告
 
 运行spreport脚本，输入起始和结束的快照ID，生成分析报告。
 
@@ -257,7 +257,7 @@ Statspack 正确安装以后，我们就可以设置定时任务，开始收集�
 
 一个 statspack 的报告不能跨越一次停机，但是之前或之后的连续区间，收集的信息依然有效。你可以选择之前或之后的采样声称 report。
 
-##移除定时任务
+## 移除定时任务
 
 运行dbms_job.remove(‘job_id’)，移除定时任务。
 
@@ -270,7 +270,7 @@ Statspack 正确安装以后，我们就可以设置定时任务，开始收集�
 	PL/SQL procedure successfully completed.
 
 
-##删除历史数据
+## 删除历史数据
 
 删除stats$snapshot数据表中的数据，其他表中的数据会相应的级联删除
 
@@ -289,11 +289,11 @@ Statspack 正确安装以后，我们就可以设置定时任务，开始收集�
 	wish to export the data before continuing. 
 	About to Truncate Statspack Tables ……
 
-##延伸阅读
+## 延伸阅读
 
 * [statspack安装使用和report分析](http://blog.csdn.net/tianlesoftware/article/details/4682329)
 * [Oracle AWR说明](http://blog.csdn.net/tianlesoftware/article/details/4682300)
 
-##参考
+## 参考
 
-* [statspack使用指南](http://www.eygle.com/pdf/Statspack-v3.0.pdf)
+* [statspack使用指南](http://www.eygle.com/pdf/Statspack-v3.0.pdf

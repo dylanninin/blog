@@ -5,7 +5,7 @@ category : Oracle
 tags : [Oracle, Database, DBA]
 ---
 
-##Rowid Data Types
+## Rowid Data Types
 
 Every row stored in the database has an address. Oracle Database uses a  ROWID  data type to store the address (rowid) of every row in the database. Rowids fall into the following categories:
 
@@ -15,7 +15,7 @@ Every row stored in the database has an address. Oracle Database uses a  ROWID  
 
 A data type called the universal rowid, or  UROWID , supports all kinds of rowids.
 
-##Use of Rowids  
+## Use of Rowids  
 
 Oracle Database uses rowids internally for the construction of indexes. 
 
@@ -27,12 +27,12 @@ A B-tree index, which is the most common type, contains an ordered list of keys 
 
 You can also create tables with columns defined using the  ROWID  data type. For example, you can define an exception table with a column of data type  ROWID  to store the rowids of rows that violate integrity constraints. Columns defined using the  ROWID data type behave like other table columns: values can be updated, and so on.
 
-##ROWID Pseudocolumn  
+## ROWID Pseudocolumn  
 
 Every table in an Oracle database has a pseudocolumn named ROWID . A pseudocolumn behaves like a table column, but is not actually stored in the table. You can select from pseudocolumns, but you cannot insert, update, or delete their values. A pseudocolumn is also similar to a SQL function without arguments. Functions without arguments typically return the same value for every row in the result set, whereas pseudocolumns typically return a different value for each row. Values of the  ROWID  pseudocolumn are strings representing the address of each row. These strings have the data type  ROWID . This pseudocolumn is not evident when listing the structure of a table by executing  SELECT  or  DESCRIBE , nor does the pseudocolumn consume space. However, the rowid of each row can be retrieved with a SQL query using the reserved word  ROWID  as a column name.
 
 
-##Rowid Format  
+## Rowid Format  
 
 Oracle Database uses a rowid to uniquely identify a row. Internally, the rowid is a structure that holds information that the database needs to access a row. A rowid is not physically stored in the database, but is inferred from the file and block on which the data is stored.
 
@@ -57,7 +57,7 @@ After a rowid is assigned to a row piece, the rowid can change in special circum
     87582	        12	            796	            36
 
 	
-##The Base64 Alphabet
+## The Base64 Alphabet
 	
                     Table 1: The Base64 Alphabet
 
@@ -80,7 +80,7 @@ After a rowid is assigned to a row piece, the rowid can change in special circum
         15 P            32 g            49 x
         16 Q            33 h            50 y
 	
-##Reference
+## Reference
 
 * Oracle Database Administrator's Guide
 * [The Base16, Base32, and Base64 Data Encodings](http://tools.ietf.org/html/rfc4648)

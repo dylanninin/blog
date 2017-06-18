@@ -5,7 +5,7 @@ category : Database
 tags : [MySQL, DBA]
 ---
 
-##Comparison of Backup Tools
+## Comparison of Backup Tools
 
 <table class="table table-striped">
 	<tr>
@@ -34,9 +34,9 @@ tags : [MySQL, DBA]
 	</tr>
 </table>
 
-##Supplement
+## Supplement
 
-###Delimited file backups
+### Delimited file backups
 
 To create a text file containing a table's data, you can use [`SELECT * INTO OUTFILE 'file_name' FROM tbl_name`](http://dev.mysql.com/doc/refman/5.1/en/select-into.html). The file is created on the MySQL server host, not the client host. For this statement, the output file cannot already exist because permitting files to be overwritten constitutes a security risk. See [`SELECT Syntax`](http://dev.mysql.com/doc/refman/5.1/en/select.html). This method works for any kind of data file, but saves only table data, not the table structure.
 
@@ -58,7 +58,7 @@ recovery
 		 > fields terminated by ',' optionally enclosed by '"'
 		 > lines terminated by '\n';
 
-##Reference
+## Reference
 
 * [High Performance MySQL Backup and Recovery](http://book.douban.com/subject/1495763/)
 * [MySQL Backup and Recovery](https://dev.mysql.com/doc/mysql-backup-excerpt/5.1/en/index.html)

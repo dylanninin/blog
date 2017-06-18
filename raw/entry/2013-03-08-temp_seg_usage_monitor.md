@@ -103,7 +103,7 @@ create procudure and submit as a job
 
 	PL/SQL procedure successfully completed.
 	
-##Reference
+## Reference
 
 * MOS: How to Monitor the usage of temp segment.
-* [Privileges in PL/SQL](http://dylanninin.com/blog/2013/03/07/privileges_in_plsql.html)
+* [Privileges in PL/SQL](http://dylanninin.com/blog/2013/03/07/privileges_in_plsql.html

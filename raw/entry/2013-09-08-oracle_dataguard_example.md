@@ -5,12 +5,12 @@ category : Oracle
 tags : [Oracle, Database, DBA]
 ---
 
-##Environment
+## Environment
 
 * primary    192.168.1.100    CentOS 6.0 64bit  Oracle 11gR2  primary database
 * standby    192.168.2.100    Redhat 5.5 64bit  Oracle 10g    standby database
 
-##Primary Database
+## Primary Database
 
 force logging
 
@@ -345,11 +345,11 @@ edit listener.ora and tnsnames.ora
       )
   
   
-##Copy files to Standby Database
+## Copy files to Standby Database
   
 scp datafile,pfile/spfile/orapwd,tnsnames,listener to standby database
 
-##Standby Database
+## Standby Database
 
 edut dataguard configuration in pfile
 
@@ -398,7 +398,7 @@ mount standby database and start listener
 
 start primary database and listener
 
-##test archivelog sync and apply
+## test archivelog sync and apply
 
 primary database
 
@@ -439,7 +439,7 @@ standby database
     Current log sequence	       642
 
 
-##common operations
+## common operations
 
 switch logfile to archive log
 
@@ -470,7 +470,7 @@ sync failure
 	--apply archivelog
 	alter database recover managed standby database disconnect from session; 
 	
-##Reference
+## Reference
 
 * [如何搭建一个DataGuard环境](http://blog.csdn.net/tianlesoftware/article/details/6195771)
 * [David Dave -- DataGuard 专题](http://blog.csdn.net/tianlesoftware/article/category/700326)

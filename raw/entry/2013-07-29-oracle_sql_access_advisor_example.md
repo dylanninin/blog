@@ -5,7 +5,7 @@ category : Oracle
 tags : [Oracle, Database, DBA, Performance]
 ---
 
-##dbms_advisor
+## dbms_advisor
 
 The DBMS_ADVISOR package can be used to create and execute any advisor tasks, including SQL Access Advisor tasks. The following example shows how it is used to create, execute and display a typical SQL Access Advisor script for the current workload. 
 
@@ -105,7 +105,7 @@ The DBMS_ADVISOR package can be used to create and execute any advisor tasks, in
 	SET PAGESIZE 24
 
 
-##quick tune
+## quick tune
 
 If you just want to tune an individual statement you can use the QUICK_TUNE procedure as follows.
 
@@ -118,13 +118,13 @@ If you just want to tune an individual statement you can use the QUICK_TUNE proc
 	/
 
 
-##views definition
+## views definition
 
 * DBA_ADVISOR_TASKS - Basic information about existing tasks.
 * DBA_ADVISOR_LOG - Status information about existing tasks.
 * DBA_ADVISOR_FINDINGS - Findings identified for an existing task.
 * DBA_ADVISOR_RECOMMENDATIONS - Recommendations for the problems identified by an existing task.
 
-##Reference
+## Reference
 
 * Oracle Database Performance Tuning Guide

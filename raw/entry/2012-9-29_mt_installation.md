@@ -1,4 +1,4 @@
-##MovableType 安装记录
+## MovableType 安装记录
 
 安装环境
 
@@ -7,7 +7,7 @@
 * 数据库： MySQL 5.1.47
 * Web服务器: Apache/2.2.15 (CentOS) Server at localhost Port 80
 
-##安装步骤
+## 安装步骤
 
 解压
 
@@ -33,7 +33,7 @@
 	[root@dev]# chmod 777 /var/www/cgi-bin/MTOS-4.38-en/mt-static/support
 	[root@dev]# chmod 777 /var/www/cgi-bin/MTOS-4.38-en/themes
 
-##配置文件
+## 配置文件
 
 主要配置Movable Type的cgi-bin、静态文件的路径，数据库连接认证信息。
 
@@ -61,18 +61,18 @@
 	
 	#####################################################################
 
-##创建MT数据库、用户并授权
+## 创建MT数据库、用户并授权
 
 	[root@dev]# mysql -uroot -p
 	mysql> create database mt character utf8;
 	mysql> create user mt;
 	mysql> grant all on mt.* to xxxxxxxxx@'localhost' identified by 'xxxxxxxxx';
 
-##启动web服务器
+## 启动web服务器
 
 	[root@dev mt]# apachectl start
 
-##第一次访问
+## 第一次访问
 
 使用浏览器打开以下url:
 
@@ -92,9 +92,9 @@
 	[Sun Sep 23 00:11:39 2012] [error] [client 192.168.136.1] Symbolic link not allowed or link target not accessible: /var/www/cgi-bin/mt
 	[Sun Sep 23 00:13:44 2012] [error] [client 127.0.0.1] File does not exist: /var/www/html/server-status
 
-##主要错误信息
+## 主要错误信息
 
-###不允许mt符号连接
+### 不允许mt符号连接
 更改`httpd.conf`中`/var/www/cgi-bin`的配置，启用符号链接，如下:
 	
 	581 #
@@ -112,7 +112,7 @@
 
 再次访问，则可以正常浏览。
 
-###文件server-status不存在
+### 文件server-status不存在
 	
 	[root@dev httpd]# ll /var/www/html/
 	total 0
@@ -158,7 +158,7 @@
 
 发现更改DB配置时，没有将PostgreSQL和SQLite的配置注释掉，注释掉后重启Apache，则可以正常配置。
 
-##创建博客
+## 创建博客
 
 创建博客时，出现异常。主要信息如下:
 
@@ -187,4 +187,4 @@
 	total 8
 	drwxr-xr-x 2 apache apache 4096 Sep 23 00:46 blog
 
-到此，初步安装MovableType成功。
+到此，初步安装MovableType成功

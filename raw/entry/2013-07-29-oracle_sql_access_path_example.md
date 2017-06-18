@@ -5,13 +5,13 @@ category : Oracle
 tags : [Oracle, Database, DBA, Performance]
 ---
 
-##Init `SQL*Plus`
+## Init `SQL*Plus`
 
     SQL> set timing on
     SQL> set autot on exp
     SQL> set linesize 200
 
-##Full Table Scan
+## Full Table Scan
 
     SQL> select count(1) from bigtab where owner='DEV';
 
@@ -38,7 +38,7 @@ tags : [Oracle, Database, DBA, Performance]
 
        2 - filter("OWNER"='DEV')
 
-##Rowid Scan   
+## Rowid Scan   
    
     SQL> select rowid from bigtab where owner='DEV' and rownum <= 1;
 
@@ -140,9 +140,9 @@ create non-unique index
 
        1 - access("OWNER"='DEV')
 
-##Index Scans
+## Index Scans
 
-###Index Unique Scans
+### Index Unique Scans
 
     SQL> select  * from smalltab where id = 1;
     ... ...
@@ -226,7 +226,7 @@ create unique index
 
        2 - access("ID"=1)
 
-###Index Range Scans
+### Index Range Scans
 
     SQL> create index smalltab_owner_idx on smalltab(owner);
 
@@ -557,6 +557,6 @@ Todo ...
 
        1 - filter("OWNER"='DEV')
 	   
-##Reference
+## Reference
 
 * Oracle Database Performance Tuning Guide

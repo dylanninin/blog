@@ -19,7 +19,7 @@ DBA的成长不易，DBA要经过入门、初级、中级、高级、资深、�
 
 这一年多时间，看了一些官方文档，也看了一些个人博客，官方的英文文档依然是首先，中文圈重点推荐下 [Eygle](http://www.eygle.com/)，他是[Oracle ACE](http://www.oracle.com/technetwork/community/oracle-ace/index.html) 总监，[云和恩墨](http://www.enmotech.com/)创始人，现在专注于以数据为中心的企业服务和传道授业解惑； [Dave](http://blog.csdn.net/tianlesoftware)，熟读官方文档，原创和实践很多，是学习Oracle的益友；更 多Oracle牛人，可以参考[中国Oracle用户组](http://www.acoug.org/)。
 
-##Roadmap to Oracle DBA
+## Roadmap to Oracle DBA
 
 阅读官方文档和同行博客是熟悉其产品和技术的最有效的不二法门，以下是个人收集整理的一些资料，大部 分都可以在[Oracle Database Documentation Library](http://www.oracle.com/pls/db112/homepage) 和[Oracle Blogs](https://blogs.oracle.com/)中找到。
 

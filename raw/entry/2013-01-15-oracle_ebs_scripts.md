@@ -24,7 +24,7 @@ location: `<RDBMS ORACLE_HOME>/appsutil/install/dbname_node`
 	adsvdcnv.sh	 	Perform character set conversion and licensing tasks
 	adsvdb.sh	 	Start database during installation
 
-##COMMON_TOP Control scripts 
+## COMMON_TOP Control scripts 
 
 location: `<COMMON_TOP>/admin/scripts/dbname_node)`
 
@@ -52,7 +52,7 @@ location: `<COMMON_TOP>/admin/scripts/dbname_node)`
 	jtffmctl.sh	 	Control Oracle fulfillment server	 
 					HTTP server node
 
-##COMMON_TOP Install scripts 
+## COMMON_TOP Install scripts 
 
 location: `<COMMON_TOP>/admin/install/dbname_node`
 

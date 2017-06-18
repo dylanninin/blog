@@ -11,12 +11,12 @@ tags : [Oracle, DBA]
 
 ![oracle_database_basic_security.jpg](http://dylanninin.com/assets/images/2013/oracle_database_basic_security.jpg)
 
-##延伸阅读
+## 延伸阅读
 
 * [Oracle Database Security](http://www.oracle.com/us/products/database/security/resources/index.html)
 * [Oracle Database Security Guide](http://docs.oracle.com/cd/E11882_01/network.112/e16543/toc.htm)
 * [Oracle DBA手记4](http://book.douban.com/subject/10946310/)
 
-##参考
+## 参考
 
 * [Oracle 10g DBA手册](http://book.douban.com/subject/1938839/)

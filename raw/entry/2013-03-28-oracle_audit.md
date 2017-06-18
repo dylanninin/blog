@@ -56,7 +56,7 @@ tags : [Oracle, Database, DBA, Security, Exception]
 
 其中SYS.AUD$表占用4549MB，大约是整个SYSTEM表空间的90%。AUD$是Oracle数据库的审计跟踪表，专门用于存储审计跟踪信息。
 
-##异常处理
+## 异常处理
 
 审计设置
 
@@ -138,9 +138,9 @@ It is recommended to use shrink on the `AUD$` only during a downtime window, sin
 除了使用`TRUNCATE`，Oracle也提供了`DBMS_AUDIT_MGMT`程序包，可用结合`DBMS_SCHEDULE`定期清理过期的审计信息。具体用法参见[Auditing Enhancements in Oracle Database 11gR2](http://www.oracle-base.com/articles/11g/auditing-enhancements-11gr2.php)。
 
 
-##关于审计
+## 关于审计
 
-###Concepts and Overview
+### Concepts and Overview
 
 Database auditing is the process of recording, monitoring and reporting of the actions performed on a database. It allows the security auditors to observe whether the database users are using the database according to the established policies and that there are no policy violations. Database Auditing facilitates the analysis of  the database activity patterns/trends and it can help in the process of gathering the historical data about a particular database user or activity.  
 
@@ -153,15 +153,15 @@ Reasons for using auditing include:
 - Investigating, monitoring, and recording suspicious activity
 - Addressing auditing requirements for compliance
  
-###Auditing Installation
+### Auditing Installation
 
 The database standard auditing is a feature available by default in all the database editions.
 
-###Configuration and Administration
+### Configuration and Administration
 
 To use auditing one must first enable it and then define exactly what must be audited. The audited actions  are recorded either in the SYS.AUD$ table or in operating system files.
 
-###Enabling Auditing
+### Enabling Auditing
 
 The auditing is enabled by setting the `AUDIT_TRAIL` parameter to a value different than NONE followed by a restart of the database.  The following table presents all the possible legal values for the `AUDIT_TRAIL` parameter:
 
@@ -183,10 +183,10 @@ The following table shows what will happen when using different combinations for
 ![auditing_location_corr.jpg](http://dylanninin.com/assets/images/2013/auditing_location_corr.jpg)
 
 
-##参考
+## 参考
 
 * Master Note For Oracle Database Auditing
 * [Oracle Database Auditing Performance](http://www.oracle.com/technetwork/database/audit-vault/learnmore/twp-security-auditperformance-166655.pdf)
 * [Auditing Enhancements in Oracle Database 11gR2](http://www.oracle-base.com/articles/11g/auditing-enhancements-11gr2.php)
 * [Oracle® Audit Vault Administrator's Guide](http://docs.oracle.com/cd/E11062_01/admin.1023/e11059/avadm_mng_admin_tasks.htm#BEIJCFED)
-* [Oracle `DBMS_AUDIT_MGMT PL/SQL Package`](http://docs.oracle.com/cd/E11062_01/admin.1023/e11059/avadm_app_d_audit_mgmt.htm#BABBAGGI)
+* [Oracle `DBMS_AUDIT_MGMT PL/SQL Package`](http://docs.oracle.com/cd/E11062_01/admin.1023/e11059/avadm_app_d_audit_mgmt.htm#BABBAGGI

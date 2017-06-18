@@ -17,7 +17,7 @@ tags: [Java, Resource]
 
 今天有同学问起Java学习的一些推荐资料，乘此机会正好整理一份，方便以后参考，以下是自己看过和值得推荐的一些资料清单。
 
-##基础
+## 基础
 	
 主要熟悉Java语言历史、特点、基础语法以及常用标准库，推荐官方的参考Java SE5.0/6.0 [Java Specifications](http://docs.oracle.com/javase/specs/)， 另外，台湾人[良葛格](http://openhome.cc/Gossip/)从事Java教育经验丰富，他的Java Essence和Java上下教程写得浅显易懂，很适合Java初学者，看起来不费力，入门快。
 
@@ -27,7 +27,7 @@ tags: [Java, Resource]
 
 编码规范：参考[Java Code Conversion](http://www.oracle.com/technetwork/java/codeconv-138413.html)。
     
-##进阶
+## 进阶
 
 在了解Java语言基础之后，接下来可以熟悉下Java的网络和数据库编程，一般的Java项目都离不开这两项。
 
@@ -35,7 +35,7 @@ tags: [Java, Resource]
 
 数据库：参考[《Java Database Programming with JDBC》](http://eduunix.ccut.edu.cn/index2/pdf/O'Reilly%20-%20Java%20Database%20Programming%20with%20JDBC.pdf)，[MongoDB Getting Started with Java Drive](http://docs.mongodb.org/ecosystem/tutorial/getting-started-with-java-driver/)。
 
-##高级
+## 高级
 
 技术点：参考《Java核心技术》[卷1](http://www.china-pub.com/208978)，[卷2](http://www.china-pub.com/508881)，[Volume 1](http://www.amazon.com/Core-Java-I-Fundamentals-8th-Sun/dp/0132354764/ref=sr_11_1?ie=UTF8&qid=1215592737&sr=11-1)，[Volume 2](http://www.amazon.com/Core-Java-Vol-Advanced-Features/dp/0132354799/ref=sr_1_1?ie=UTF8&s=books&qid=1227751671&sr=1-1)，介绍了Java技术的方方面面，阐述精确到位，叙述深入浅出，并包含大量示例，可作参考书。
 
@@ -49,15 +49,15 @@ Java解惑：参考[《Java Puzzles》](http://www.javapuzzlers.com/)，熟悉Ja
 
 JVM：参考[《The JVM Specification》](http://docs.oracle.com/javase/specs/jvms/se5.0/html/VMSpecTOC.doc.html)，Java虚拟机的规范和细节，对深入编译器和字节码有兴趣的可以参考。
 
-##Web开发
+## Web开发
 
 主要介绍Java在Web开发方面的基础技术和框架。
 
-####1.前端
+#### 1.前端
 
 HTML/CSS/JS：这些是基础，BS架构的应用离不开
 
-####2.基础
+#### 2.基础
 
 JSP/Servlet：参考良葛格的[Servlet/JSP Gossip](http://openhome.cc/Gossip/ServletJSP/)，Java服务端编程基础，必须掌握。
 
@@ -65,7 +65,7 @@ XML：参考 [Java XML Tutorial](http://www.mkyong.com/tutorials/java-xml-tutori
 
 Web Container：参考[《How Tomcat Works》](http://files.cnblogs.com/wasp520/tomcat/HowTomcatWorks.pdf)，熟悉Java Web容器的原理以及实现细节，源代码很适合阅读。
         
-####3.一些框架
+#### 3.一些框架
 
 大学时做过一些Web项目基本都是SSH框架，对中小型企业已经够用，其他的暂未接触。
 
@@ -75,7 +75,7 @@ Web Container：参考[《How Tomcat Works》](http://files.cnblogs.com/wasp520/
 
 全能框架：[Spring2.5+](http://spring.io/)，参考[2012-9-12_Spring.ppt](https://docs.google.com/file/d/0B_BiAoqYvwURcWxzdGRtTE9FRkE/edit?usp=drive_web&pli=1)。
 
-##工具
+## 工具
 
 IDE: [Vim](http://www.vim.org/)，[Eclipse](http://www.eclipse.org/)，[MyEclipse](http://www.myeclipseide.com/)，Java开发并不难，主要在于设计，写代码方面更多的是在使用IDE（如自动补全、生成代码等），推荐使用MyEclipse，参考[MyEclipse10优化](http://www.cnblogs.com/batys/archive/2012/02/23/2364832.html)。
 
@@ -83,13 +83,13 @@ IDE: [Vim](http://www.vim.org/)，[Eclipse](http://www.eclipse.org/)，[MyEclips
 
 自动化工具：[Ant](http://ant.apache.org/)，[Maven](http://maven.apache.org/)，用于项目的自动化编译、测试、打包、部署等。
 
-##其他
+## 其他
 
 UML：设计核心、参考手册, [UML相关工具一览](http://www.umlchina.com/tools/newindex1.htm)。从不同维度和层次对项目进行建模（分析和设计），有助于熟悉项目的整体架构。
 
 我用得比较多的是[StarUML](staruml.sourceforge.net/‎)，现在也有很多Web版的UML工具，推荐[LucidChart](https://www.lucidchart.com/)，Google Docs现在也支持LucidChart。
 
-##参考
+## 参考
 	
 * [Welcome to Java for Python Programmers](http://interactivepython.org/runestone/static/java4python/index.html)
 * [Java Specifications](http://docs.oracle.com/javase/specs/)
