@@ -15,7 +15,7 @@
 * 核心逻辑：
 
 	* 初始化。EntryService读取指定路径下的markdown文件，进行初始化，以`2013-7-3_github_tips.md`为例：
-		
+
 		* 1.生成URL，即根据文件名生成URL。如 `2013-7-3_github_tips.md` -> `/blog/2013/07/03/github_tips.html`，对应的raw文件URL则为`/raw/2013/07/03/github_tips.md`。
 		* 2.获取时间，优先从文件名中提取，否则获取文件的创建或者更新时间，这里暂未处理好。
 	    * 3.获取内容，包括markdown原文内容，以及经过markdown到html转换后的内容。
@@ -86,7 +86,7 @@
 		    ├── powered.html
 		    ├── recently.html
 		    └── tag.html
-	
+
 #要求
 
 * 仅限于Linux平台。因使用[pyinotify](https://github.com/seb-m/pyinotify)有平台限制。Pyinotify监听指定路径，即可自动处理新增、更新以及删除的博客。详见[pyinotify](https://github.com/seb-m/pyinotify)。
@@ -104,9 +104,9 @@
 	$ cd ~
 
 	$ git clone https://github.com/dylanninin/blog.git
- 
+
 切换路径
-	
+
 	$ cd blog
 
 启动博客
@@ -134,7 +134,7 @@
 #效果
 
  * Online Demo: [http://dylanninin.com:8080/](http://dylanninin.com:8080)
- * Movable Type 5：[http://dylanninin.com/](http://dylanninin.com/)	
+ * Movable Type 5：[http://dylanninin.com/](http://dylanninin.com/)
 
 #计划
 
@@ -148,7 +148,11 @@
 
 * 代码重构
 
-#更新 
+#更新
+
+## 2017-06-18
+
+- 部署到 [Heroku](https://www.heroku.com/)
 
 ## 2016-03-06
 
@@ -172,7 +176,7 @@
 
 因使用[YAML](http://en.wikipedia.org/wiki/Yaml)解析，需要新增[PyYAML](http://pyyaml.org/)包。
 
-另外，此博客的在线[demo](http://ec2-54-254-45-254.ap-southeast-1.compute.amazonaws.com/)。
+另外，此博客的在线[demo](https://webpy-blog.herokuapp.com/)。
 
 
 * 阮一峰的网络日志—— TF-IDF与余弦相似性的应用系列：[自动提取关键字](http://www.ruanyifeng.com/blog/2013/03/tf-idf.html)；[找出相似文章](http://www.ruanyifeng.com/blog/2013/03/cosine_similarity.html)；[自动摘要](http://www.ruanyifeng.com/blog/2013/03/automatic_summarization.html)
