@@ -86,7 +86,7 @@ class Models(object):
 
     def search(self, search_type, value, total):
         """
-        search model for queriery
+        search model for queries
 
         args:
             serach_type: seach by tag, category, keyword, and or just main index of the blog
